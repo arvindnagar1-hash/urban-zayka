@@ -714,6 +714,22 @@ function placeOrder() {
   // Show success screen
   document.getElementById('order-ref').textContent = 'Order ID: ' + refNo;
   document.getElementById('wa-open-btn').onclick = () => window.open(waUrl, '_blank');
+
+  // Auto open WhatsApp after 3 seconds
+  const btn = document.getElementById('wa-open-btn');
+  let countdown = 3;
+  btn.textContent = `📲 Opening WhatsApp in ${countdown}s...`;
+  const timer = setInterval(() => {
+    countdown--;
+    if (countdown > 0) {
+      btn.textContent = `📲 Opening WhatsApp in ${countdown}s...`;
+    } else {
+      clearInterval(timer);
+      btn.textContent = '📲 Open WhatsApp to Send Order';
+      window.open(waUrl, '_blank');
+    }
+  }, 1000);
+
   showScreen('sc-success');
 }
 
