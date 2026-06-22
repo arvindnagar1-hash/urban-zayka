@@ -537,8 +537,10 @@ function cartCount() {
 
 function deliveryCharge() {
   if (orderType !== 'delivery') return 0;
-  if (distKm < 0) return 0;   // location not yet detected
+  if (distKm < 0) return 0;
+  const sub = cartTotal();
   const { zone1_km, zone1_charge, zone2_charge } = CONFIG.delivery;
+  if (distKm <= zone1_km && sub >= 1000) return 0; // Free delivery within 5km above ₹1000
   return distKm <= zone1_km ? zone1_charge : zone2_charge;
 }
 
@@ -577,9 +579,34 @@ function renderBill() {
   const del = deliveryCharge();
   const tot = sub + del;
 
+  // Free delivery progress bar (only for delivery within 5km)
+  let progressBar = '';
+  if (orderType === 'delivery' && distKm >= 0 && distKm <= CONFIG.delivery.zone1_km) {
+    if (sub >= 1000) {
+      progressBar = `
+        <div style="background:#e8f5e9;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:12px;color:#2E7D32;font-weight:500">
+          🎉 Free delivery applied! You saved ₹${CONFIG.delivery.zone1_charge}
+        </div>`;
+    } else {
+      const remaining = 1000 - sub;
+      const percent = Math.min((sub / 1000) * 100, 100);
+      progressBar = `
+        <div style="background:#FFF8E1;border-radius:8px;padding:8px 12px;margin-bottom:8px">
+          <div style="font-size:12px;color:#F57F17;font-weight:500;margin-bottom:5px">
+            🚚 Add ₹${remaining} more for FREE delivery!
+          </div>
+          <div style="background:#FFE082;border-radius:4px;height:6px">
+            <div style="background:#F57F17;border-radius:4px;height:6px;width:${percent}%;transition:width .3s"></div>
+          </div>
+        </div>`;
+    }
+  }
+
   let deliveryRow = '';
   if (orderType === 'delivery') {
-    if (del > 0) {
+    if (distKm >= 0 && distKm <= CONFIG.delivery.zone1_km && sub >= 1000) {
+      deliveryRow = `<div class="bill-row"><span>Delivery charge</span><span style="text-decoration:line-through;color:#aaa">₹${CONFIG.delivery.zone1_charge}</span>&nbsp;<span style="color:#2E7D32;font-weight:600">FREE</span></div>`;
+    } else if (del > 0) {
       deliveryRow = `<div class="bill-row"><span>Delivery charge (${distKm.toFixed(1)} km)</span><span>₹${del}</span></div>`;
     } else if (distKm < 0) {
       deliveryRow = `<div class="bill-row"><span style="color:#e53935">⚠️ Detect location to see charge</span><span>–</span></div>`;
@@ -587,6 +614,7 @@ function renderBill() {
   }
 
   document.getElementById('bill-box').innerHTML = `
+    ${progressBar}
     <div class="bill-row"><span>Subtotal</span><span>₹${sub}</span></div>
     ${deliveryRow}
     <div class="bill-row"><span>Total</span><span>₹${tot}</span></div>`;
@@ -980,16 +1008,14 @@ window.addEventListener('beforeinstallprompt', e => {
     const btn    = document.getElementById('install-btn');
     banner.style.display = 'flex';
 
-    btn.onclick = async () => {
-      banner.style.display = 'none';
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
+    btn.onclick = () => {
+      // Link to install page for proper guided experience
+      window.location.href = '/install.html';
     };
   }
 });
 
-// iOS Safari: show manual "Add to Home Screen" instructions
+// iOS Safari: show install guide link
 if (isIOS && !isInStandalone) {
   setTimeout(() => {
     const banner = document.getElementById('install-banner');
@@ -997,8 +1023,7 @@ if (isIOS && !isInStandalone) {
     banner.style.display = 'flex';
 
     btn.onclick = () => {
-      banner.style.display = 'none';
-      document.getElementById('ios-tooltip').classList.add('show');
+      window.location.href = '/install.html';
     };
   }, 2500);
 }
