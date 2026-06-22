@@ -298,7 +298,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
         <div class="sec-label">Your Location</div>
         <button class="loc-btn" id="loc-btn" onclick="detectLocation()">
           <span id="loc-btn-icon">📍</span>
-          <span id="loc-btn-text">Detect My Location (Free)</span>
+          <span id="loc-btn-text">Detecting location...</span>
         </button>
         <div class="loc-result" id="loc-result"></div>
         <div class="dist-note">⚠️ Delivery: upto 5 km = ₹50 &nbsp;|&nbsp; 5–10 km = ₹100 &nbsp;|&nbsp; Max 10 km</div>
@@ -630,7 +630,12 @@ function setType(t) {
   document.getElementById('btn-delivery').classList.toggle('sel', t === 'delivery');
   document.getElementById('dist-block').style.display         = t === 'delivery' ? 'block' : 'none';
   document.getElementById('delivery-addr-block').style.display = t === 'delivery' ? 'block' : 'none';
-  if (t === 'pickup') distKm = -1;
+  if (t === 'pickup') {
+    distKm = -1;
+  } else {
+    // Auto detect location when delivery is selected
+    detectLocation();
+  }
   renderCart();
 }
 
