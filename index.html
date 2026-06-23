@@ -1,828 +1,1176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<meta name="theme-color" content="#16213E"/>
-<meta name="description" content="Urban ज़ायका - Fresh food delivery in Met City, Haryana. Order online now!"/>
-<meta property="og:title" content="Urban ज़ायका"/>
-<meta property="og:description" content="Fresh food delivery in Met City, Haryana"/>
-<meta property="og:type" content="website"/>
-<title>Urban ज़ायका</title>
-<link rel="manifest" href="/manifest.json"/>
-<link rel="icon" href="/icon-192.png"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<style>
-:root{--red:#F40009;--navy:#16213E;--white:#fff;--bg:#f4f4f4;--card:#fff;--border:#e8e8e8;--muted:#777;--green:#2e7d32;--r:14px;}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html{scroll-behavior:smooth;}
-body{font-family:'Inter','Noto Sans Devanagari',sans-serif;background:var(--bg);color:#1a1a1a;max-width:480px;margin:0 auto;min-height:100vh;overflow-x:hidden;}
-body.hi{font-family:'Noto Sans Devanagari','Inter',sans-serif;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-/* ── HEADER ── */
-.hdr{background:var(--navy);padding:13px 16px 11px;position:sticky;top:0;z-index:200;}
-.hdr-top{display:flex;align-items:center;justify-content:space-between;}
-.logo h1{color:#fff;font-size:20px;font-weight:700;letter-spacing:-.3px;}
-.logo h1 span{color:var(--red);}
-.logo p{color:#8899bb;font-size:11px;margin-top:2px;}
-.lang-btn{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);color:#fff;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:background .2s;}
-.lang-btn:hover{background:rgba(255,255,255,.2);}
+  <!-- PRIMARY SEO -->
+  <title>Urban ज़ायका | Order Food Online – Met City, Haryana</title>
+  <meta name="description" content="Order delicious Indian, Chinese & Breakfast food online from Urban Zayka, Met City Haryana. Fast delivery within 10 km. Malai Chaap, Paneer Tikka, Biryani & more!">
+  <meta name="keywords" content="Urban Zayka, Met City food, food delivery Met City, order food online Haryana, Indian restaurant Met City, Chinese food Met City, breakfast delivery, Malai Chaap, Paneer Tikka, Biryani near me">
+  <meta name="author" content="Urban Zayka">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://urbanzayka.in/">
 
-/* ── SEARCH ── */
-.search-wrap{background:var(--navy);padding:8px 16px 13px;}
-.s-inner{position:relative;}
-.s-inp{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:9px 14px 9px 36px;color:#fff;font-size:13px;outline:none;}
-.s-inp::placeholder{color:#8899bb;}
-.s-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#8899bb;font-size:14px;pointer-events:none;}
+  <!-- OPEN GRAPH (WhatsApp, Facebook preview) -->
+  <meta property="og:type" content="restaurant">
+  <meta property="og:title" content="Urban ज़ायका – Order Food Online | Met City">
+  <meta property="og:description" content="Order Indian, Chinese & Breakfast online from Urban Zayka, Met City. Fast delivery, easy WhatsApp ordering!">
+  <meta property="og:url" content="https://urbanzayka.in/">
+  <meta property="og:site_name" content="Urban Zayka">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:image" content="https://urbanzayka.in/icons/icon-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
 
-/* ── BANNER ── */
-.banner{background:linear-gradient(130deg,#b50007,var(--red));margin:12px 12px 4px;border-radius:var(--r);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;overflow:hidden;position:relative;}
-.banner::before{content:'';position:absolute;right:-10px;top:-20px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.07);}
-.bn-sub{color:rgba(255,255,255,.82);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
-.bn-main{color:#fff;font-size:14px;font-weight:700;margin-top:3px;}
-.bn-ico{font-size:34px;position:relative;z-index:1;}
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Urban ज़ायका – Order Food Online | Met City">
+  <meta name="twitter:description" content="Order Indian, Chinese & Breakfast online. Fast delivery in Met City, Haryana!">
+  <meta name="twitter:image" content="https://urbanzayka.in/icons/icon-512.png">
 
-/* ── CATEGORY PILLS ── */
-.cat-bar{display:flex;gap:7px;overflow-x:auto;padding:9px 12px 5px;scrollbar-width:none;}
-.cat-bar::-webkit-scrollbar{display:none;}
-.cpill{flex-shrink:0;background:var(--card);border:1.5px solid var(--border);border-radius:20px;padding:5px 13px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .15s;color:#444;}
-.cpill.on{background:var(--red);border-color:var(--red);color:#fff;font-weight:600;}
+  <!-- GEO / LOCAL SEO -->
+  <meta name="geo.region" content="IN-HR">
+  <meta name="geo.placename" content="Met City, Haryana, India">
+  <meta name="geo.position" content="28.50518186292854;76.74672250104636">
+  <meta name="ICBM" content="28.50518186292854, 76.74672250104636">
 
-/* ── SECTION TITLE ── */
-.sec-hd{font-size:15px;font-weight:700;padding:13px 16px 7px;color:var(--navy);display:flex;align-items:center;gap:8px;}
-.sec-hd::after{content:'';flex:1;height:1.5px;background:var(--border);border-radius:2px;}
+  <!-- PWA -->
+  <meta name="theme-color" content="#F40009">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Urban ज़ायका">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
 
-/* ── MENU CARD ── */
-.mlist{padding:0 12px;display:flex;flex-direction:column;gap:9px;}
-.mcard{background:var(--card);border-radius:var(--r);display:flex;align-items:stretch;box-shadow:0 1px 5px rgba(0,0,0,.07);overflow:hidden;position:relative;transition:box-shadow .2s;}
-.mcard:active{box-shadow:0 3px 12px rgba(0,0,0,.13);}
+  <!-- STRUCTURED DATA — Google Rich Results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Urban Zayka",
+    "alternateName": "Urban ज़ायका",
+    "description": "Indian, Chinese and Breakfast restaurant in Met City, Haryana. Online ordering available with home delivery.",
+    "url": "https://urbanzayka.in",
+    "telephone": "+91-1251-298167",
+    "image": "https://urbanzayka.in/icons/icon-512.png",
+    "priceRange": "₹50 - ₹260",
+    "servesCuisine": ["Indian", "Chinese", "North Indian", "Street Food"],
+    "hasMenu": "https://urbanzayka.in",
+    "acceptsReservations": false,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Met City",
+      "addressLocality": "Bahadurgarh",
+      "addressRegion": "Haryana",
+      "postalCode": "124501",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 28.50518186292854,
+      "longitude": 76.74672250104636
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "07:00",
+        "closes": "22:30"
+      }
+    ],
+    "potentialAction": {
+      "@type": "OrderAction",
+      "target": "https://urbanzayka.in"
+    }
+  }
+  </script>
 
-/* SVG photo tile */
-.ptile{width:96px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.ptile svg{width:100%;height:100%;display:block;}
+  <style>
+/* ============================================
+   Urban Zayka PWA — Stylesheet
+   Theme: Midnight Header + White Body
+   ============================================ */
 
-/* Item info */
-.minfo{flex:1;padding:10px 12px 10px 9px;display:flex;flex-direction:column;justify-content:space-between;min-width:0;}
-.vrow{display:flex;align-items:center;gap:5px;margin-bottom:3px;}
-.vdot{width:14px;height:14px;border:1.5px solid;border-radius:2px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
-.vdot.v{border-color:var(--green);}.vdot.v::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);}
-.vdot.nv{border-color:#c62828;}.vdot.nv::after{content:'';width:7px;height:7px;border-radius:50%;background:#c62828;}
-.iname{font-size:14px;font-weight:600;color:#1a1a1a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.idesc{font-size:11px;color:var(--muted);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:5px;}
-.ifoot{display:flex;align-items:center;justify-content:space-between;}
-.iprice{font-size:15px;font-weight:700;color:var(--navy);}
-.sold-lbl{font-size:11px;color:#999;font-weight:500;}
+:root {
+  --red:    #F40009;
+  --red-dk: #C0000A;
+  --navy:   #1A1A2E;
+  --navy2:  #16213E;
+  --muted:  #A0A0B0;
+  --border-dark: rgba(255,255,255,0.09);
+  --card-dark:   rgba(255,255,255,0.06);
+}
 
-.add-btn{background:#fff;border:1.5px solid var(--red);color:var(--red);border-radius:8px;padding:5px 15px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;}
-.add-btn:active{background:var(--red);color:#fff;transform:scale(.97);}
-.qctrl{display:flex;align-items:center;background:var(--red);border-radius:8px;overflow:hidden;}
-.qbtn{background:none;border:none;color:#fff;font-size:16px;font-weight:700;padding:4px 10px;cursor:pointer;line-height:1;}
-.qnum{color:#fff;font-size:13px;font-weight:700;min-width:20px;text-align:center;}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #1a1a1a; }
+#app { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; display: flex; flex-direction: column; }
 
-.best-badge{position:absolute;top:7px;left:7px;background:rgba(230,81,0,.92);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;z-index:2;}
+/* ---- INSTALL BANNER ---- */
+.install-banner { background: #FFF8E1; border-bottom: 1px solid #FFE082; padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
+.install-banner p { flex: 1; font-size: 12px; color: #5D4037; line-height: 1.4; }
+.install-banner p strong { display: block; font-size: 13px; color: #4E342E; margin-bottom: 2px; }
+.install-btn { background: var(--red); color: #fff; border: none; border-radius: 8px; padding: 7px 13px; font-size: 12px; cursor: pointer; white-space: nowrap; font-family: inherit; font-weight: 500; }
+.install-close { background: none; border: none; color: #aaa; font-size: 18px; cursor: pointer; padding: 0 4px; }
 
-/* ── CART BAR ── */
-.cart-bar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:448px;background:var(--navy);border-radius:14px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 8px 32px rgba(22,33,62,.4);z-index:300;cursor:pointer;animation:slideUp .3s ease;}
-@keyframes slideUp{from{transform:translateX(-50%) translateY(20px);opacity:0;}to{transform:translateX(-50%) translateY(0);opacity:1;}}
-.cl{display:flex;align-items:center;gap:10px;}
-.ccount{background:var(--red);color:#fff;width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;}
-.clbl{color:#fff;font-size:13px;font-weight:600;line-height:1.2;}
-.clbl span{display:block;font-size:11px;color:#8899bb;font-weight:400;}
-.cprice{color:#fff;font-size:16px;font-weight:700;}
-.carrow{background:rgba(255,255,255,.1);color:#fff;width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;}
+/* ---- IOS TOOLTIP ---- */
+.ios-tooltip { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: calc(100% - 24px); max-width: 456px; background: #1a1a1a; color: #fff; border-radius: 14px 14px 0 0; padding: 16px 18px 28px; z-index: 999; display: none; }
+.ios-tooltip.show { display: block; }
+.ios-tooltip h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.ios-tooltip p { font-size: 13px; color: #ccc; line-height: 1.6; }
+.ios-tooltip .step { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 13px; }
+.ios-tooltip .step span { font-size: 22px; }
+.ios-close { position: absolute; top: 12px; right: 14px; background: none; border: none; color: #aaa; font-size: 20px; cursor: pointer; }
 
-/* ── CHECKOUT OVERLAY ── */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:400;display:none;align-items:flex-end;}
-.overlay.show{display:flex;}
-.sheet{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:480px;margin:0 auto;padding:20px 20px 32px;max-height:92vh;overflow-y:auto;}
-.sheet-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
-.sheet-hd h2{font-size:17px;font-weight:700;color:var(--navy);}
-.close-btn{background:#f4f4f4;border:none;width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+/* ---- SCREENS ---- */
+.screen { display: none; flex-direction: column; flex: 1; }
+.screen.active { display: flex; }
 
-/* Order type toggle */
-.otype{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
-.otype-btn{border:1.5px solid var(--border);border-radius:10px;padding:10px;text-align:center;cursor:pointer;transition:all .15s;background:#fff;}
-.otype-btn.on{border-color:var(--red);background:#fff5f5;}
-.otype-btn .oi{font-size:22px;display:block;margin-bottom:3px;}
-.otype-btn .ol{font-size:13px;font-weight:600;color:#444;}
-.otype-btn.on .ol{color:var(--red);}
+/* ---- HEADER (dark) ---- */
+.app-header { background: var(--navy2); padding: 12px 14px 10px; position: sticky; top: 0; z-index: 100; }
+.header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.header-logo { width: 40px; height: 40px; border-radius: 10px; background: var(--red); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.logo-inner .logo-icon { font-size: 20px; display: block; }
+.header-center { flex: 1; padding: 0 10px; }
+.header-center h1 { font-size: 17px; font-weight: 700; color: #fff; letter-spacing: -.3px; }
+.header-center small { font-size: 11px; color: var(--muted); display: block; margin-top: 1px; }
+.hcart-btn { background: var(--red); border: none; color: #fff; border-radius: 20px; padding: 6px 13px; font-size: 13px; cursor: pointer; display: none; align-items: center; gap: 6px; font-family: inherit; font-weight: 500; }
 
-/* GPS / Location */
-.gps-btn{width:100%;padding:11px;border-radius:10px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;transition:all .2s;}
-.gps-btn.detected{border-color:var(--red);background:#fff5f5;color:var(--red);}
-.gps-status{font-size:12px;padding:8px 12px;border-radius:8px;margin-bottom:12px;display:none;}
-.gps-status.ok{background:#e8f5e9;color:#2e7d32;display:block;}
-.gps-status.err{background:#fff3e0;color:#e65100;display:block;}
-.gps-status.far{background:#fce4ec;color:#c62828;display:block;}
+/* SEARCH BAR (inside dark header) */
+.search-bar { background: rgba(255,255,255,0.08); border-radius: 10px; padding: 9px 12px; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.12); }
+.search-bar span { font-size: 13px; color: var(--muted); }
 
-/* Free delivery progress */
-.free-bar{background:#fff8e1;border-radius:10px;padding:10px 12px;margin-bottom:14px;display:none;}
-.free-bar.show{display:block;}
-.free-bar p{font-size:12px;font-weight:600;color:#e65100;margin-bottom:6px;}
-.prog-track{background:#ffe082;border-radius:4px;height:5px;overflow:hidden;}
-.prog-fill{background:#FF6F00;height:100%;border-radius:4px;transition:width .4s;}
+/* ---- TABS (white bg) ---- */
+.tabs { display: flex; overflow-x: auto; gap: 6px; padding: 10px 12px; background: #fff; position: sticky; top: 106px; z-index: 99; scrollbar-width: none; border-bottom: 1px solid #eee; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { white-space: nowrap; border: 1px solid #e0e0e0; background: #f8f8f8; color: #666; border-radius: 20px; padding: 5px 13px; font-size: 12px; cursor: pointer; flex-shrink: 0; font-family: inherit; transition: all .2s; }
+.tab.active { background: var(--red); color: #fff; border-color: var(--red); }
 
-/* Form fields */
-.flabel{font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;display:block;}
-.flabel .req{color:var(--red);}
-.finp{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;font-size:14px;outline:none;margin-bottom:12px;font-family:inherit;transition:border-color .2s;}
-.finp:focus{border-color:var(--red);}
-.finp.err-field{border-color:#c62828;}
+/* ---- MENU (white bg) ---- */
+.menu-list { padding: 6px 12px 100px; flex: 1; background: #fff; }
+.sec-title { font-size: 11px; font-weight: 600; color: var(--red); margin: 14px 0 7px; text-transform: uppercase; letter-spacing: .6px; border-left: 3px solid var(--red); padding-left: 8px; }
+.menu-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+.item-emoji { width: 50px; height: 50px; border-radius: 12px; background: #fff5f5; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; border: 1px solid #fde0e0; }
+.item-info { flex: 1; min-width: 0; }
+.item-name { font-size: 14px; font-weight: 500; color: #1a1a1a; }
+.item-sub { font-size: 11px; color: #999; margin-top: 2px; }
+.item-price { font-size: 13px; font-weight: 700; color: var(--red); margin-top: 3px; }
+.add-btn { background: var(--red); color: #fff; border: none; border-radius: 8px; width: 30px; height: 30px; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: inherit; }
+.qty-ctrl { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.qty-ctrl button { background: var(--red); color: #fff; border: none; border-radius: 6px; width: 26px; height: 26px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: inherit; }
+.qty-ctrl span { font-size: 14px; font-weight: 600; min-width: 16px; text-align: center; color: #1a1a1a; }
 
-/* Order summary */
-.sum-box{background:#f9f9f9;border-radius:10px;padding:12px;margin-bottom:16px;}
-.sum-row{display:flex;justify-content:space-between;font-size:13px;padding:3px 0;}
-.sum-row.total{font-size:15px;font-weight:700;border-top:1.5px solid var(--border);margin-top:6px;padding-top:8px;}
-.sum-row.free-del{color:var(--green);font-weight:600;}
+/* ---- FLOAT BAR ---- */
+.float-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: calc(100% - 24px); max-width: 456px; background: var(--red); color: #fff; border-radius: 14px; padding: 13px 18px; display: none; align-items: center; justify-content: space-between; cursor: pointer; border: none; font-family: inherit; margin-bottom: 10px; box-shadow: 0 4px 24px rgba(244,0,9,.35); }
+.float-bar.vis { display: flex; }
+.float-bar span { font-size: 14px; font-weight: 600; }
 
-.wa-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:12px;padding:15px;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s;}
-.wa-btn:disabled{opacity:.6;cursor:not-allowed;}
-.wa-btn:active{opacity:.85;}
+/* ---- CART SCREEN (white) ---- */
+.cart-header { background: var(--navy2); color: #fff; padding: 13px 14px; display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 100; }
+.back-btn { background: none; border: none; color: #fff; cursor: pointer; font-size: 22px; display: flex; align-items: center; padding: 0; font-family: inherit; }
+.cart-header h2 { font-size: 16px; font-weight: 600; color: #fff; }
+.cart-list { padding: 10px 12px; background: #fff; }
+.cart-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+.ci-name { font-size: 14px; font-weight: 500; color: #1a1a1a; }
+.ci-price { font-size: 12px; color: #888; margin-top: 2px; }
 
-/* Cart items in sheet */
-.cart-items{margin-bottom:14px;}
-.ci-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f0f0;font-size:13px;}
-.ci-row:last-child{border-bottom:none;}
-.ci-name{flex:1;font-weight:500;}
-.ci-qty{color:var(--muted);margin:0 10px;}
-.ci-price{font-weight:600;}
+/* ---- CART SECTIONS (white) ---- */
+.section-block { padding: 12px; background: #fff; }
+.sec-label { font-size: 11px; font-weight: 600; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .5px; }
+.otype-btns { display: flex; gap: 8px; }
+.otype-btn { flex: 1; padding: 10px 8px; border: 1.5px solid #e0e0e0; background: #f8f8f8; border-radius: 10px; font-size: 13px; cursor: pointer; color: #555; display: flex; flex-direction: column; align-items: center; gap: 4px; font-family: inherit; transition: all .2s; }
+.otype-btn .icon { font-size: 22px; }
+.otype-btn.sel { border-color: var(--red); background: #fff5f5; color: var(--red); }
+.name-input { width: 100%; border: 1.5px solid #e0e0e0; border-radius: 10px; padding: 10px 12px; font-size: 14px; font-family: inherit; outline: none; background: #fff; color: #1a1a1a; transition: border .2s; }
+.name-input:focus { border-color: var(--red); }
+.name-input:invalid:not(:placeholder-shown) { border-color: #F40009; }
+.required-note { font-size: 11px; color: #aaa; padding: 0 12px 8px; }
+.required-note span { color: #F40009; }
 
-.pb{height:90px;}
+/* ---- LOCATION ---- */
+.loc-btn { width: 100%; padding: 11px 14px; border: 1.5px solid var(--red); background: #fff5f5; border-radius: 10px; font-size: 13px; cursor: pointer; color: var(--red); font-family: inherit; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; transition: all .2s; }
+.loc-result { border-radius: 10px; padding: 10px 12px; font-size: 13px; line-height: 1.6; margin-bottom: 8px; display: none; }
+.loc-result.ok   { background: #e8f5e9; color: #2E7D32; border: 1px solid #A5D6A7; }
+.loc-result.warn { background: #FFF8E1; color: #F57F17; border: 1px solid #FFE082; }
+.loc-result.err  { background: #FFEBEE; color: #C62828; border: 1px solid #FFCDD2; }
+.dist-note { font-size: 11px; color: #888; text-align: center; margin-top: 4px; }
 
-/* Loading spinner */
-.loading{text-align:center;padding:40px 20px;color:var(--muted);}
-.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px;}
-@keyframes spin{to{transform:rotate(360deg);}}
+/* ---- BILL ---- */
+.bill-box { margin: 0 12px; border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff; }
+.bill-row { display: flex; justify-content: space-between; padding: 9px 12px; font-size: 13px; border-bottom: 1px solid #f0f0f0; color: #666; }
+.bill-row:last-child { border-bottom: none; font-weight: 700; color: #1a1a1a; font-size: 14px; }
 
-/* Toast */
-.toast{position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:500;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;}
-.toast.show{opacity:1;}
+/* ---- CHECKOUT ---- */
+.checkout-bar { position: sticky; bottom: 0; padding: 12px; background: #fff; border-top: 1px solid #eee; }
+.checkout-btn { width: 100%; background: var(--red); color: #fff; border: none; border-radius: 14px; padding: 14px 18px; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: inherit; }
+
+/* ---- SUCCESS ---- */
+.success-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; gap: 12px; padding: 30px 24px; text-align: center; background: #fff; }
+.suc-icon { font-size: 64px; animation: pop .4s ease; }
+@keyframes pop { 0%{transform:scale(0)} 70%{transform:scale(1.2)} 100%{transform:scale(1)} }
+.success-wrap h2 { font-size: 22px; font-weight: 700; color: #1a1a1a; }
+.success-wrap p { font-size: 14px; color: #666; line-height: 1.7; }
+.wa-open-btn { background: #25D366; color: #fff; border: none; border-radius: 14px; padding: 13px 28px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; margin-top: 8px; }
+.new-order-btn { background: #fff; border: 1.5px solid #ddd; color: #333; border-radius: 14px; padding: 11px 24px; font-size: 14px; cursor: pointer; font-family: inherit; }
+.order-ref { font-size: 12px; color: #aaa; margin-top: 4px; }
+
 </style>
 </head>
-<body id="appBody">
+<body>
+<div id="app">
 
-<!-- HEADER -->
-<div class="hdr">
-  <div class="hdr-top">
-    <div class="logo">
-      <h1>Urban <span>ज़ायका</span></h1>
-      <p id="hdr-sub">Met City, Haryana · Open Now 🟢</p>
+  <!-- INSTALL BANNER (Android) -->
+  <div class="install-banner" id="install-banner" style="display:none">
+    <div style="font-size:28px">📲</div>
+    <p><strong>Add to Home Screen</strong>Install Urban ज़ायका for quick ordering!</p>
+    <button class="install-btn" id="install-btn">Install</button>
+    <button class="install-close" onclick="document.getElementById('install-banner').style.display='none'">×</button>
+  </div>
+
+  <!-- iOS INSTALL TOOLTIP -->
+  <div class="ios-tooltip" id="ios-tooltip">
+    <button class="ios-close" onclick="document.getElementById('ios-tooltip').classList.remove('show')">×</button>
+    <h3>📲 Add to Home Screen</h3>
+    <p>Install Urban ज़ायका as an app in 2 steps:</p>
+    <div class="step"><span>1️⃣</span><div>Tap the <strong>Share</strong> button at the bottom of Safari</div></div>
+    <div class="step"><span>2️⃣</span><div>Tap <strong>"Add to Home Screen"</strong> → tap Add</div></div>
+  </div>
+
+  <!-- ===== SCREEN: MENU ===== -->
+  <div class="screen active" id="sc-menu">
+    <div class="app-header">
+      <div class="header-top">
+        <div class="header-logo">
+          <div class="logo-inner">
+            <span class="logo-icon">🍽️</span>
+          </div>
+        </div>
+        <div class="header-center">
+          <h1>Urban ज़ायका</h1>
+          <small>Met City · 7AM – 10:30PM</small>
+        </div>
+        <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLang()" style="background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);color:#fff;padding:5px 11px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;margin-right:6px;">हिंदी</button>
+        <button class="hcart-btn" id="hcart-btn" onclick="showCart()">
+          🛒 <span id="hcart-cnt">0</span>
+        </button>
+      </div>
+      <div class="search-bar">
+        <span>🔍 Search dishes, e.g. Malai Chaap…</span>
+      </div>
     </div>
-    <button class="lang-btn" id="langBtn" onclick="toggleLang()">हिंदी</button>
-  </div>
-</div>
-
-<!-- SEARCH -->
-<div class="search-wrap">
-  <div class="s-inner">
-    <span class="s-ico">🔍</span>
-    <input class="s-inp" id="srch" placeholder="Search dishes..." oninput="renderMenu()"/>
-  </div>
-</div>
-
-<!-- BANNER -->
-<div class="banner">
-  <div>
-    <p class="bn-sub" id="bnSub">ORDER ABOVE ₹1000 FOR FREE DELIVERY</p>
-    <p class="bn-main" id="bnMain">Fresh food, Fast delivery 🚀</p>
-  </div>
-  <div class="bn-ico">🍛</div>
-</div>
-
-<!-- CATEGORIES -->
-<div class="cat-bar" id="catBar"></div>
-
-<!-- MENU -->
-<div id="menuWrap">
-  <div class="loading"><div class="spinner"></div><p id="loadTxt">Loading menu...</p></div>
-</div>
-
-<div class="pb"></div>
-
-<!-- CART BAR -->
-<div class="cart-bar" id="cartBar" style="display:none" onclick="openCheckout()">
-  <div class="cl">
-    <div class="ccount" id="cCount">0</div>
-    <div class="clbl" id="cLbl">View Cart<span id="cSub">Tap to place order</span></div>
-  </div>
-  <div style="display:flex;align-items:center;gap:8px">
-    <div class="cprice" id="cPrice">₹0</div>
-    <div class="carrow">›</div>
-  </div>
-</div>
-
-<!-- CHECKOUT OVERLAY -->
-<div class="overlay" id="overlay" onclick="overlayClick(event)">
-<div class="sheet" id="sheet">
-  <div class="sheet-hd">
-    <h2 id="sheetTitle">Your Order</h2>
-    <button class="close-btn" onclick="closeCheckout()">✕</button>
-  </div>
-
-  <!-- Order type -->
-  <div class="otype">
-    <div class="otype-btn" id="btnPickup" onclick="setOtype('pickup')">
-      <span class="oi">🚶</span><span class="ol" id="pickupLbl">Pickup</span>
-    </div>
-    <div class="otype-btn on" id="btnDelivery" onclick="setOtype('delivery')">
-      <span class="oi">🛵</span><span class="ol" id="deliveryLbl">Delivery</span>
-    </div>
-  </div>
-
-  <!-- GPS section (shown only for delivery) -->
-  <div id="gpsSection">
-    <button class="gps-btn" id="gpsBtn" onclick="detectGPS()">
-      <span>📍</span><span id="gpsBtnTxt">Detect My Location</span>
+    <div class="tabs" id="tabs-container"></div>
+    <div class="menu-list" id="menu-list"></div>
+    <button class="float-bar" id="float-bar" onclick="showCart()">
+      <span id="fb-items">0 items</span>
+      <span>View Cart →</span>
+      <span id="fb-total">₹0</span>
     </button>
-    <div class="gps-status" id="gpsStatus"></div>
   </div>
 
-  <!-- Free delivery progress bar -->
-  <div class="free-bar" id="freeBar">
-    <p id="freeBarTxt">🚚 Add ₹920 more for FREE delivery!</p>
-    <div class="prog-track"><div class="prog-fill" id="progFill" style="width:8%"></div></div>
+  <!-- ===== SCREEN: CART ===== -->
+  <div class="screen" id="sc-cart">
+    <div class="cart-header">
+      <button class="back-btn" onclick="showMenu()">←</button>
+      <h2>Your Order</h2>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding-bottom:80px">
+
+      <div class="cart-list" id="cart-list"></div>
+      <div class="required-note"><span>*</span> Required fields</div>
+
+      <!-- ORDER TYPE -->
+      <div class="section-block">
+        <div class="sec-label">Order Type</div>
+        <div class="otype-btns">
+          <button class="otype-btn sel" id="btn-pickup" onclick="setType('pickup')">
+            <span class="icon">🚶</span>Pickup
+          </button>
+          <button class="otype-btn" id="btn-delivery" onclick="setType('delivery')">
+            <span class="icon">🛵</span>Delivery
+          </button>
+        </div>
+      </div>
+
+      <!-- DELIVERY LOCATION -->
+      <div class="section-block" id="dist-block" style="display:none;padding-top:0">
+        <div class="sec-label">Your Location</div>
+        <button class="loc-btn" id="loc-btn" onclick="detectLocation()">
+          <span id="loc-btn-icon">📍</span>
+          <span id="loc-btn-text">Detect My Location (Free)</span>
+        </button>
+        <div class="loc-result" id="loc-result"></div>
+        <div class="dist-note">⚠️ Delivery: upto 5 km = ₹50 &nbsp;|&nbsp; 5–10 km = ₹100 &nbsp;|&nbsp; Max 10 km</div>
+      </div>
+
+      <!-- CUSTOMER DETAILS -->
+      <div class="section-block" style="padding-top:0">
+        <div class="sec-label">Your Name <span style="color:#F40009">*</span></div>
+        <input class="name-input" id="cust-name" type="text" placeholder="Enter your full name" required />
+      </div>
+
+      <div class="section-block" style="padding-top:0">
+        <div class="sec-label">Mobile Number <span style="color:#F40009">*</span></div>
+        <input class="name-input" id="cust-phone" type="tel" placeholder="10-digit mobile number" maxlength="10" required />
+      </div>
+      </div>
+      <div id="delivery-addr-block" style="display:none" class="section-block" style="padding-top:0">
+        <div class="sec-label">Delivery Address</div>
+        <input class="name-input" id="cust-addr" type="text" placeholder="Enter full delivery address" />
+      </div>
+
+      <!-- BILL -->
+      <div class="bill-box" id="bill-box"></div>
+      <div style="height:20px"></div>
+    </div>
+
+    <div class="checkout-bar">
+      <button class="checkout-btn" onclick="placeOrder()">
+        <span>📲 Order via WhatsApp</span>
+        <span id="checkout-total">₹0</span>
+      </button>
+    </div>
   </div>
 
-  <!-- Cart items -->
-  <div class="cart-items" id="cartItems"></div>
-
-  <!-- Form -->
-  <label class="flabel" for="custName"><span id="nameLbl">Your Name</span> <span class="req">*</span></label>
-  <input class="finp" id="custName" type="text" placeholder="Enter your full name"/>
-
-  <label class="flabel" for="custPhone"><span id="phoneLbl">Mobile Number</span> <span class="req">*</span></label>
-  <input class="finp" id="custPhone" type="tel" placeholder="10-digit mobile number" maxlength="10"/>
-
-  <div id="addrSection">
-    <label class="flabel" for="custAddr"><span id="addrLbl">Delivery Address</span></label>
-    <textarea class="finp" id="custAddr" rows="2" placeholder="Enter full delivery address" style="resize:none;"></textarea>
+  <!-- ===== SCREEN: SUCCESS ===== -->
+  <div class="screen" id="sc-success">
+    <div class="success-wrap">
+      <div class="suc-icon">🎉</div>
+      <h2>Order Sent!</h2>
+      <p>WhatsApp will open with your complete order.<br>Urban ज़ायका will confirm shortly.</p>
+      <p class="order-ref" id="order-ref"></p>
+      <button class="wa-open-btn" id="wa-open-btn">Open WhatsApp to Send Order</button>
+      <button class="new-order-btn" onclick="newOrder()">Place Another Order</button>
+    </div>
   </div>
 
-  <!-- Summary -->
-  <div class="sum-box">
-    <div class="sum-row"><span id="subLbl">Subtotal</span><span id="sumSub">₹0</span></div>
-    <div class="sum-row" id="delRow"><span id="delLbl">Delivery charge</span><span id="sumDel">₹0</span></div>
-    <div class="sum-row total"><span id="totalLbl">Total</span><span id="sumTotal">₹0</span></div>
-  </div>
-
-  <button class="wa-btn" id="waBtn" onclick="placeOrder()">
-    <span>📱</span><span id="waBtnTxt">Order via WhatsApp</span><span id="waBtnPrice"></span>
-  </button>
 </div>
-</div>
-
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
-
-<!-- FIREBASE -->
-<script type="module">
-import{initializeApp}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import{getFirestore,collection,getDocs,query,orderBy}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const FC={
-  apiKey:"AIzaSyBkgTWZwKcXy5BiCVpppltZWVTW7gIPDbE",
-  authDomain:"urban-zayka.firebaseapp.com",
-  projectId:"urban-zayka",
-  storageBucket:"urban-zayka.firebasestorage.app",
-  messagingSenderId:"849575139822",
-  appId:"1:849575139822:web:01e6d124f8d78267b196ff",
-  measurementId:"G-HLPX0RYR22"
-};
-const app=initializeApp(FC);
-const db=getFirestore(app);
-window._db=db;
-
-async function loadMenu(){
-  try{
-    const snap=await getDocs(collection(db,"menuItems"));
-    const items=[];
-    snap.forEach(d=>items.push({id:d.id,...d.data()}));
-    window._menuData=items;
-    window._menuLoaded=true;
-    if(window._initDone)window.buildMenu();
-  }catch(e){
-    console.error(e);
-    document.getElementById('loadTxt').textContent='Failed to load menu. Please refresh.';
-  }
-}
-loadMenu();
-</script>
 
 <script>
-// ── LANGUAGE ──────────────────────────────────────────────────────────────
-const L={
-  en:{
-    hdrSub:"Met City, Haryana · Open Now 🟢",
-    bnSub:"ORDER ABOVE ₹1000 FOR FREE DELIVERY",
-    bnMain:"Fresh food, Fast delivery 🚀",
-    search:"Search dishes...",
-    loading:"Loading menu...",
-    langBtn:"हिंदी",
-    allCat:"All",
-    add:"ADD",
-    best:"BESTSELLER",
-    soldOut:"SOLD OUT",
-    viewCart:"View Cart",
-    cartSub:"Tap to place order",
-    sheetTitle:"Your Order",
-    pickup:"Pickup",
-    delivery:"Delivery",
-    detectGPS:"Detect My Location",
-    locationDetected:"Location Detected ✓",
-    nameLbl:"Your Name",
-    phoneLbl:"Mobile Number",
-    addrLbl:"Delivery Address",
-    subLbl:"Subtotal",
-    delLbl:"Delivery charge",
-    totalLbl:"Total",
-    freeDelRow:"FREE 🎉",
-    orderBtn:"Order via WhatsApp",
-    nameErr:"Please enter your name",
-    phoneErr:"Please enter valid 10-digit mobile number",
-    farErr:"Sorry, we deliver only within 10km. You are {d}km away.",
-    gpsOk:"You are {d}km away — Delivery charge: ₹{c}",
-    gpsFree:"You are {d}km away — FREE Delivery! 🎉",
-    gpsErr:"Could not detect location. Enter address manually.",
-    freeBarTxt:"🚚 Add ₹{r} more for FREE delivery!",
-    delSlabs:"Delivery: upto 5km = ₹50 | 5–10km = ₹100 | Max 10km",
-    countdown:"Opening WhatsApp in {n}s..."
+/* ============================================
+   Urban Zayka PWA — Configuration
+   File: js/config.js
+   Edit this file to update restaurant settings
+   ============================================ */
+
+const CONFIG = {
+
+  // ---- RESTAURANT DETAILS ----
+  name:        'Urban ज़ायका',
+  phone:       '01251-298167',       // Display phone
+  whatsapp:    '918860609555',       // WhatsApp number with country code (91 = India)
+  address:     'Met City, Haryana',
+  hours:       '7AM – 10:30PM',
+
+  // ---- LOCATION (for delivery distance calculation) ----
+  // To get exact coordinates:
+  // 1. Open Google Maps → search your restaurant
+  // 2. Right-click on the pin → copy lat/lng
+  lat: 28.50518186292854,
+  lng: 76.74672250104636,
+
+  // ---- DELIVERY CHARGES ----
+  delivery: {
+    zone1_km:     5,    // Up to this distance (km)
+    zone1_charge: 50,   // Charge in ₹
+    zone2_km:     10,   // Up to this distance (km)
+    zone2_charge: 100,  // Charge in ₹
+    // Beyond zone2_km → outside delivery zone (no delivery)
   },
-  hi:{
-    hdrSub:"मेट सिटी, हरियाणा · अभी खुला है 🟢",
-    bnSub:"₹1000 से ऊपर के ऑर्डर पर मुफ़्त डिलीवरी",
-    bnMain:"ताज़ा खाना, तेज़ डिलीवरी 🚀",
-    search:"खाना खोजें...",
-    loading:"मेनू लोड हो रहा है...",
-    langBtn:"English",
-    allCat:"सभी",
-    add:"जोड़ें",
-    best:"बेस्टसेलर",
-    soldOut:"उपलब्ध नहीं",
-    viewCart:"कार्ट देखें",
-    cartSub:"ऑर्डर करने के लिए दबाएं",
-    sheetTitle:"आपका ऑर्डर",
-    pickup:"पिकअप",
-    delivery:"डिलीवरी",
-    detectGPS:"मेरी लोकेशन पता करें",
-    locationDetected:"लोकेशन मिल गई ✓",
-    nameLbl:"आपका नाम",
-    phoneLbl:"मोबाइल नंबर",
-    addrLbl:"डिलीवरी पता",
-    subLbl:"उप-योग",
-    delLbl:"डिलीवरी चार्ज",
-    totalLbl:"कुल",
-    freeDelRow:"मुफ़्त 🎉",
-    orderBtn:"WhatsApp पर ऑर्डर करें",
-    nameErr:"कृपया अपना नाम दर्ज करें",
-    phoneErr:"कृपया 10 अंकों का मोबाइल नंबर दर्ज करें",
-    farErr:"खेद है, हम केवल 10km तक डिलीवरी करते हैं। आप {d}km दूर हैं।",
-    gpsOk:"आप {d}km दूर हैं — डिलीवरी चार्ज: ₹{c}",
-    gpsFree:"आप {d}km दूर हैं — मुफ़्त डिलीवरी! 🎉",
-    gpsErr:"लोकेशन नहीं मिली। पता मैन्युअल भरें।",
-    freeBarTxt:"🚚 मुफ़्त डिलीवरी के लिए ₹{r} और जोड़ें!",
-    delSlabs:"डिलीवरी: 5km तक = ₹50 | 5–10km = ₹100 | अधिकतम 10km",
-    countdown:"{n}s में WhatsApp खुल रहा है..."
-  }
+
 };
 
-// ── SVG ILLUSTRATIONS (per category) ──────────────────────────────────────
-const SVGS={
-  breakfast:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#FFF8E1"/><ellipse cx="48" cy="56" rx="34" ry="20" fill="#F4C842"/><ellipse cx="48" cy="54" rx="30" ry="16" fill="#E8A020"/><ellipse cx="48" cy="52" rx="22" ry="11" fill="#F4C842"/><circle cx="36" cy="48" r="4" fill="#2e7d32" opacity=".7"/><circle cx="52" cy="50" r="3" fill="#2e7d32" opacity=".7"/><circle cx="44" cy="56" r="3" fill="#c62828" opacity=".6"/><ellipse cx="48" cy="34" rx="18" ry="7" fill="#FFE082" opacity=".8"/><ellipse cx="48" cy="32" rx="16" ry="5" fill="#FFF9C4"/></svg>`,
-  starters:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#FFF3E0"/><rect x="18" y="62" width="60" height="5" rx="2.5" fill="#8B6914"/><rect x="42" y="28" width="5" height="38" rx="2" fill="#A0522D"/><rect x="26" y="40" width="17" height="17" rx="3" fill="#FF8C42" transform="rotate(-10 34 48)"/><rect x="27" y="41" width="15" height="15" rx="2" fill="#FFB347" transform="rotate(-10 34 48)"/><circle cx="35" cy="37" r="5" fill="#FF6347" opacity=".85"/><rect x="50" y="36" width="17" height="17" rx="3" fill="#FF8C42" transform="rotate(8 58 44)"/><rect x="51" y="37" width="15" height="15" rx="2" fill="#FFB347" transform="rotate(8 58 44)"/><circle cx="60" cy="34" r="5" fill="#2e7d32" opacity=".85"/></svg>`,
-  sandwiches:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#FFFDE7"/><rect x="14" y="58" width="68" height="14" rx="7" fill="#D4A055"/><rect x="14" y="44" width="68" height="16" rx="4" fill="#F5F5F5"/><rect x="14" y="46" width="68" height="4" fill="#FF8F00" opacity=".7"/><rect x="14" y="50" width="68" height="4" fill="#4CAF50" opacity=".8"/><rect x="14" y="54" width="68" height="4" fill="#FF5252" opacity=".7"/><rect x="14" y="30" width="68" height="16" rx="7" fill="#E8A020"/><ellipse cx="48" cy="30" rx="34" ry="7" fill="#F4C17A"/></svg>`,
-  indian:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#FBE9E7"/><path d="M16 64 Q16 40 48 38 Q80 40 80 64 Q80 76 48 76 Q16 76 16 64Z" fill="#E53935"/><path d="M18 63 Q18 41 48 39 Q78 41 78 63 Q78 74 48 74 Q18 74 18 63Z" fill="#EF5350"/><path d="M20 62 Q20 43 48 41 Q76 43 76 62 Q76 72 48 72 Q20 72 20 62Z" fill="#FF7043"/><rect x="31" y="50" width="13" height="13" rx="2" fill="#FFFDE7" opacity=".9"/><rect x="51" y="52" width="11" height="11" rx="2" fill="#FFFDE7" opacity=".9"/><rect x="38" y="58" width="11" height="11" rx="2" fill="#FFFDE7" opacity=".85"/><circle cx="48" cy="36" r="4" fill="#FFC107"/></svg>`,
-  chinese:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#F3F8FF"/><ellipse cx="48" cy="70" rx="34" ry="8" fill="#ccc" opacity=".3"/><ellipse cx="30" cy="56" rx="13" ry="9" fill="#F5F5F5" stroke="#DDD" stroke-width="1.5"/><path d="M19 56 Q30 44 41 56" fill="#EFEFEF" stroke="#DDD" stroke-width="1.5"/><ellipse cx="48" cy="50" rx="13" ry="9" fill="#F5F5F5" stroke="#DDD" stroke-width="1.5"/><path d="M37 50 Q48 38 59 50" fill="#EFEFEF" stroke="#DDD" stroke-width="1.5"/><ellipse cx="66" cy="56" rx="13" ry="9" fill="#F5F5F5" stroke="#DDD" stroke-width="1.5"/><path d="M55 56 Q66 44 77 56" fill="#EFEFEF" stroke="#DDD" stroke-width="1.5"/><circle cx="48" cy="28" r="10" fill="#E53935" opacity=".9"/><path d="M43 28 Q48 23 53 28 Q48 33 43 28" fill="#C62828"/></svg>`,
-  breads:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#FFF8E1"/><ellipse cx="48" cy="62" rx="34" ry="16" fill="#D4A055"/><ellipse cx="48" cy="58" rx="32" ry="14" fill="#E8B86D"/><ellipse cx="48" cy="54" rx="28" ry="11" fill="#F4C842"/><ellipse cx="48" cy="52" rx="24" ry="8" fill="#E8A020"/><path d="M28 46 Q38 40 48 44 Q58 40 68 46" fill="none" stroke="#C8860A" stroke-width="2" opacity=".6"/><circle cx="36" cy="50" r="3" fill="#C8860A" opacity=".4"/><circle cx="60" cy="48" r="3" fill="#C8860A" opacity=".4"/></svg>`,
-  meals:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#F1F8E9"/><ellipse cx="48" cy="68" rx="36" ry="10" fill="#ccc" opacity=".2"/><circle cx="48" cy="54" r="28" fill="#fff" stroke="#E0E0E0" stroke-width="2"/><ellipse cx="32" cy="52" rx="10" ry="8" fill="#FF7043" opacity=".85"/><ellipse cx="52" cy="46" rx="9" ry="7" fill="#FFCC02" opacity=".85"/><ellipse cx="58" cy="58" rx="9" ry="7" fill="#4CAF50" opacity=".85"/><ellipse cx="40" cy="62" rx="8" ry="6" fill="#795548" opacity=".75"/><circle cx="48" cy="54" r="6" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1.5"/></svg>`,
-  beverages:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#FFFDE7"/><rect x="30" y="30" width="36" height="48" rx="8" fill="#FFB300"/><rect x="31" y="31" width="34" height="46" rx="7" fill="#FFC107"/><rect x="32" y="32" width="32" height="18" rx="6" fill="#FFD54F" opacity=".7"/><ellipse cx="48" cy="30" rx="18" ry="5" fill="#FFCA28"/><ellipse cx="48" cy="29" rx="17" ry="4" fill="#FFE082"/><path d="M36 56 Q48 51 60 56" fill="none" stroke="#FF8F00" stroke-width="1.5"/><rect x="62" y="44" width="13" height="4" rx="2" fill="#FFB300"/></svg>`
-};
+/* ============================================
+   Urban Zayka PWA — Menu Data
+   File: js/menu.js
+   Add / remove / edit items here
+   ============================================ */
 
-// ── MENU CATEGORIES CONFIG ─────────────────────────────────────────────────
-const CATS=[
-  {key:'breakfast',  label:'Breakfast',  labelHi:'नाश्ता',      icon:'🌅'},
-  {key:'starters',   label:'Starters',   labelHi:'स्टार्टर',    icon:'🥗'},
-  {key:'sandwiches', label:'Sandwiches', labelHi:'सैंडविच',     icon:'🥪'},
-  {key:'indian',     label:'Indian Main',labelHi:'इंडियन मेन',  icon:'🍛'},
-  {key:'chinese',    label:'Chinese',    labelHi:'चाइनीज़',     icon:'🥡'},
-  {key:'breads',     label:'Breads',     labelHi:'ब्रेड्स',     icon:'🫓'},
-  {key:'meals',      label:'Meals',      labelHi:'मील्स',       icon:'🍱'},
-  {key:'beverages',  label:'Beverages',  labelHi:'पेय',         icon:'🥤'},
+const CATS = [
+  { id: 'all',        label: 'All Items'      },
+  { id: 'breakfast',  label: '🌅 Breakfast'   },
+  { id: 'starters',   label: '🍢 Starters'    },
+  { id: 'sandwiches', label: '🥪 Sandwiches'  },
+  { id: 'indian',     label: '🍛 Indian Main' },
+  { id: 'chinese',    label: '🥢 Chinese'     },
+  { id: 'breads',     label: '🫓 Breads'      },
+  { id: 'meals',      label: '🍱 Meals'       },
+  { id: 'beverages',  label: '☕ Beverages'   },
 ];
 
-// ── STATE ──────────────────────────────────────────────────────────────────
-let lang = localStorage.getItem('uz_lang') || 'en';
-let cart = {};
-let activeCat = 'all';
-let orderType = 'delivery';
-let gpsData = null; // {dist, charge}
-let menuData = []; // loaded from Firebase
+const CAT_LABELS = {
+  breakfast:  '🌅 Breakfast (7–10AM)',
+  starters:   '🍢 Starters (12PM–10:30PM)',
+  sandwiches: '🥪 Sandwiches',
+  indian:     '🍛 Indian Main Course',
+  chinese:    '🥢 Chinese Main Course',
+  breads:     '🫓 Indian Breads',
+  meals:      '🍱 Meals & Thali',
+  beverages:  '☕ Beverages',
+};
 
-const RESTAURANT_LAT = 28.50518186292854;
-const RESTAURANT_LNG = 76.74672250104636;
-const WA_NUMBER = '918860609555';
-const FREE_DEL_MIN = 1000;
+// Each item: { id, name, price, cat, emoji, sub?, mrp? }
+// mrp:true  → price shown as "MRP" (no add button)
+// sub       → small grey text below item name
+const MENU = [
 
-// ── HELPERS ────────────────────────────────────────────────────────────────
-function t(key, vars={}){
-  let s = L[lang][key] || key;
-  Object.entries(vars).forEach(([k,v])=>{ s=s.replace(`{${k}}`,v); });
-  return s;
-}
-function showToast(msg,dur=2500){
-  const el=document.getElementById('toast');
-  el.textContent=msg; el.classList.add('show');
-  setTimeout(()=>el.classList.remove('show'),dur);
-}
-function haversine(lat1,lon1,lat2,lon2){
-  const R=6371, dLat=(lat2-lat1)*Math.PI/180, dLon=(lon2-lon1)*Math.PI/180;
-  const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
-  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-}
-function deliveryCharge(distKm, subtotal){
-  if(subtotal >= FREE_DEL_MIN) return 0;
-  if(distKm <= 5) return 50;
-  if(distKm <= 10) return 100;
-  return -1; // too far
-}
+  // ── BREAKFAST ──────────────────────────────
+  { id: 1,  name: 'Plain Maggi',             price: 50,  cat: 'breakfast',  emoji: '🍜' },
+  { id: 2,  name: 'Vegetable Maggi',          price: 80,  cat: 'breakfast',  emoji: '🍜' },
+  { id: 3,  name: 'Aloo Paratha',             price: 50,  cat: 'breakfast',  emoji: '🫓' },
+  { id: 4,  name: 'Aloo Pyaz Paratha',        price: 60,  cat: 'breakfast',  emoji: '🫓' },
+  { id: 5,  name: 'Paneer Paratha',           price: 120, cat: 'breakfast',  emoji: '🫓' },
+  { id: 6,  name: 'Curd (Add-on)',            price: 30,  cat: 'breakfast',  emoji: '🥛', sub: 'With paratha' },
+  { id: 7,  name: 'Subji + 4 Puri',           price: 50,  cat: 'breakfast',  emoji: '🍽️' },
+  { id: 8,  name: 'Samosa + Chole',           price: 50,  cat: 'breakfast',  emoji: '🥟' },
+  { id: 9,  name: 'Chole Bature',             price: 90,  cat: 'breakfast',  emoji: '🍽️' },
 
-// ── LANGUAGE ──────────────────────────────────────────────────────────────
-function applyLang(){
-  document.getElementById('appBody').className = lang==='hi'?'hi':'';
-  document.getElementById('langBtn').textContent = t('langBtn');
-  document.getElementById('hdr-sub').textContent = t('hdrSub');
-  document.getElementById('bnSub').textContent = t('bnSub');
-  document.getElementById('bnMain').textContent = t('bnMain');
-  document.getElementById('srch').placeholder = t('search');
-  document.getElementById('loadTxt').textContent = t('loading');
-  document.getElementById('sheetTitle').textContent = t('sheetTitle');
-  document.getElementById('pickupLbl').textContent = t('pickup');
-  document.getElementById('deliveryLbl').textContent = t('delivery');
-  document.getElementById('gpsBtnTxt').textContent = gpsData ? t('locationDetected') : t('detectGPS');
-  document.getElementById('nameLbl').textContent = t('nameLbl');
-  document.getElementById('phoneLbl').textContent = t('phoneLbl');
-  document.getElementById('addrLbl').textContent = t('addrLbl');
-  document.getElementById('subLbl').textContent = t('subLbl');
-  document.getElementById('delLbl').textContent = t('delLbl');
-  document.getElementById('totalLbl').textContent = t('totalLbl');
-  document.getElementById('waBtnTxt').textContent = t('orderBtn');
-}
-function toggleLang(){
-  lang = lang==='en'?'hi':'en';
-  localStorage.setItem('uz_lang', lang);
-  applyLang();
-  renderCats();
+  // ── STARTERS ───────────────────────────────
+  { id: 10, name: 'Tandoori Chaap',           price: 200, cat: 'starters',   emoji: '🍢' },
+  { id: 11, name: 'Malai Chaap',              price: 220, cat: 'starters',   emoji: '🍢' },
+  { id: 12, name: 'Chilli Paneer',            price: 220, cat: 'starters',   emoji: '🧀' },
+  { id: 13, name: 'Veg Manchurian Dry',       price: 200, cat: 'starters',   emoji: '🥢' },
+  { id: 14, name: 'Honey Chilli Potato',      price: 150, cat: 'starters',   emoji: '🥔' },
+  { id: 15, name: 'French Fries',             price: 90,  cat: 'starters',   emoji: '🍟' },
+  { id: 16, name: 'Paneer Tikka',             price: 250, cat: 'starters',   emoji: '🧀' },
+  { id: 17, name: 'Paneer Malai Tikka',       price: 260, cat: 'starters',   emoji: '🧀' },
+  { id: 18, name: 'Afghani Paneer Tikka',     price: 250, cat: 'starters',   emoji: '🧀' },
+  { id: 19, name: 'Veg Pakora',               price: 180, cat: 'starters',   emoji: '🧅' },
+  { id: 20, name: 'Chilli Mushroom',          price: 180, cat: 'starters',   emoji: '🍄' },
+  { id: 21, name: 'Samosa',                   price: 20,  cat: 'starters',   emoji: '🥟', sub: 'Available 3PM–5PM only' },
+  { id: 22, name: 'Bread Pakoda',             price: 25,  cat: 'starters',   emoji: '🧅', sub: 'Available 3PM–5PM only' },
+
+  // ── SANDWICHES ─────────────────────────────
+  { id: 23, name: 'Veg Grilled Sandwich',     price: 150, cat: 'sandwiches', emoji: '🥪' },
+  { id: 24, name: 'Paneer Grilled Sandwich',  price: 180, cat: 'sandwiches', emoji: '🥪' },
+
+  // ── INDIAN MAIN COURSE ─────────────────────
+  { id: 25, name: 'Veg Biryani',              price: 250, cat: 'indian',     emoji: '🍚' },
+  { id: 26, name: 'Paneer Burji',             price: 250, cat: 'indian',     emoji: '🧀' },
+  { id: 27, name: 'Kadhai Paneer',            price: 220, cat: 'indian',     emoji: '🍛' },
+  { id: 28, name: 'Paneer Butter Masala',     price: 250, cat: 'indian',     emoji: '🍛' },
+  { id: 29, name: 'Paneer ज़ायका',             price: 250, cat: 'indian',     emoji: '🍛' },
+  { id: 30, name: 'Mix Veg',                  price: 120, cat: 'indian',     emoji: '🥗' },
+  { id: 31, name: 'Mushroom Do Pyaza',        price: 200, cat: 'indian',     emoji: '🍄' },
+  { id: 32, name: 'Malai Kofta',              price: 250, cat: 'indian',     emoji: '🍲' },
+  { id: 33, name: 'Aloo Jeera',               price: 110, cat: 'indian',     emoji: '🥔' },
+  { id: 34, name: 'Rajma Masala',             price: 180, cat: 'indian',     emoji: '🫘' },
+  { id: 35, name: 'Chole Masala',             price: 180, cat: 'indian',     emoji: '🫘' },
+  { id: 36, name: 'Dal Makhani',              price: 200, cat: 'indian',     emoji: '🍲' },
+  { id: 37, name: 'Dal Tadka',                price: 120, cat: 'indian',     emoji: '🍲' },
+  { id: 38, name: 'Dal Fry',                  price: 100, cat: 'indian',     emoji: '🍲' },
+  { id: 39, name: 'Steamed Rice',             price: 90,  cat: 'indian',     emoji: '🍚' },
+
+  // ── CHINESE MAIN COURSE ────────────────────
+  { id: 40, name: 'Chilli Paneer Gravy',      price: 220, cat: 'chinese',    emoji: '🧀' },
+  { id: 41, name: 'Veg Manchurian Gravy',     price: 220, cat: 'chinese',    emoji: '🥢' },
+  { id: 42, name: 'Veg Hakka Noodle',         price: 120, cat: 'chinese',    emoji: '🍜' },
+  { id: 43, name: 'Schezwan Noodle',          price: 120, cat: 'chinese',    emoji: '🍜' },
+  { id: 44, name: 'Veg Noodle',               price: 100, cat: 'chinese',    emoji: '🍜' },
+  { id: 45, name: 'Veg Fried Rice',           price: 100, cat: 'chinese',    emoji: '🍚' },
+  { id: 46, name: 'Sezwan Fried Rice',        price: 120, cat: 'chinese',    emoji: '🍚' },
+
+  // ── INDIAN BREADS ──────────────────────────
+  { id: 47, name: 'Plain Roti',               price: 10,  cat: 'breads',     emoji: '🫓' },
+  { id: 48, name: 'Butter Roti',              price: 15,  cat: 'breads',     emoji: '🫓' },
+  { id: 49, name: 'Plain Tandoori Roti',      price: 18,  cat: 'breads',     emoji: '🫓' },
+  { id: 50, name: 'Tandoori Butter Roti',     price: 20,  cat: 'breads',     emoji: '🫓' },
+  { id: 51, name: 'Tandoori Naan',            price: 50,  cat: 'breads',     emoji: '🫓' },
+  { id: 52, name: 'Butter Naan',              price: 70,  cat: 'breads',     emoji: '🫓' },
+  { id: 53, name: 'Garlic Naan',              price: 80,  cat: 'breads',     emoji: '🫓' },
+  { id: 54, name: 'Laccha Paratha',           price: 30,  cat: 'breads',     emoji: '🫓' },
+  { id: 55, name: 'Aloo Pyaz Kulcha',         price: 80,  cat: 'breads',     emoji: '🫓' },
+  { id: 56, name: 'Aloo Kulcha',              price: 80,  cat: 'breads',     emoji: '🫓' },
+  { id: 57, name: 'Paneer Kulcha',            price: 120, cat: 'breads',     emoji: '🫓' },
+
+  // ── MEALS & THALI ──────────────────────────
+  { id: 58, name: 'Chole Masala + Rice',      price: 150, cat: 'meals',      emoji: '🍽️' },
+  { id: 59, name: 'Dal Makhani + Rice',       price: 180, cat: 'meals',      emoji: '🍽️' },
+  { id: 60, name: 'Rajma Masala + Rice',      price: 150, cat: 'meals',      emoji: '🍽️' },
+  { id: 61, name: 'Diet Thali',               price: 100, cat: 'meals',      emoji: '🍱', sub: 'Dal + Sabji + Rice + Roti + Green Salad' },
+  { id: 62, name: 'ज़ायका Special Thali',      price: 180, cat: 'meals',      emoji: '🍱', sub: 'Dal + Sabji + Rice + Roti + Salad + Raita + Paneer + Sweet' },
+
+  // ── BEVERAGES ──────────────────────────────
+  { id: 63, name: 'Tea',                      price: 30,  cat: 'beverages',  emoji: '☕' },
+  { id: 64, name: 'Coffee',                   price: 45,  cat: 'beverages',  emoji: '☕' },
+  { id: 65, name: 'Black Tea',                price: 20,  cat: 'beverages',  emoji: '🍵' },
+  { id: 66, name: 'Black Coffee',             price: 30,  cat: 'beverages',  emoji: '☕' },
+  { id: 67, name: 'Water Bottle',             price: 0,   cat: 'beverages',  emoji: '💧', sub: 'MRP', mrp: true },
+  { id: 68, name: 'Soft Drink',               price: 0,   cat: 'beverages',  emoji: '🥤', sub: 'MRP', mrp: true },
+
+];
+
+/* ============================================
+   Urban Zayka PWA — Cart Logic
+   File: js/cart.js
+   ============================================ */
+
+let cart      = {};   // { itemId: quantity }
+let orderType = 'pickup';
+
+// ── CART OPERATIONS ────────────────────────
+
+function addItem(id) {
+  cart[id] = (cart[id] || 0) + 1;
+  updateFloatBar();
   renderMenu();
-  updateCartBar();
-  if(document.getElementById('overlay').classList.contains('show')) updateSheet();
 }
 
-// ── CATEGORIES ─────────────────────────────────────────────────────────────
-function renderCats(){
-  const bar = document.getElementById('catBar');
-  const allLabel = t('allCat');
-  const pills = [{key:'all', icon:'🍽️', label:allLabel}, ...CATS.map(c=>({key:c.key, icon:c.icon, label:lang==='hi'?c.labelHi:c.label}))];
-  bar.innerHTML = pills.map(p=>`<div class="cpill${activeCat===p.key?' on':''}" onclick="selCat('${p.key}')">${p.icon} ${p.label}</div>`).join('');
-}
-function selCat(c){ activeCat=c; renderCats(); renderMenu(); }
-
-// ── MENU RENDERING ──────────────────────────────────────────────────────────
-function buildMenu(){
-  // Called once Firebase data is loaded
-  menuData = window._menuData || [];
+function removeItem(id) {
+  if (cart[id] > 1) cart[id]--;
+  else delete cart[id];
+  updateFloatBar();
   renderMenu();
 }
 
-function getSvg(category){
-  const key = (category||'').toLowerCase();
-  return SVGS[key] || SVGS['indian'];
+function cartTotal() {
+  return Object.entries(cart).reduce((sum, [id, qty]) => {
+    const item = MENU.find(m => m.id == id);
+    return sum + (item.price * qty);
+  }, 0);
 }
 
-function renderMenu(){
-  if(!window._menuLoaded){ return; }
-  const wrap = document.getElementById('menuWrap');
-  const q = document.getElementById('srch').value.toLowerCase().trim();
-
-  // Group by category, maintaining CATS order
-  const grouped = {};
-  CATS.forEach(c=>{ grouped[c.key]=[]; });
-
-  menuData.forEach(item=>{
-    const cat = (item.category||'').toLowerCase();
-    if(grouped[cat]) grouped[cat].push(item);
-  });
-
-  // Sort within each category: paneer first, then high-to-low price
-  Object.keys(grouped).forEach(cat=>{
-    grouped[cat].sort((a,b)=>{
-      const aP = (a.name||'').toLowerCase().includes('paneer');
-      const bP = (b.name||'').toLowerCase().includes('paneer');
-      if(aP && !bP) return -1;
-      if(!aP && bP) return 1;
-      return (b.price||0)-(a.price||0);
-    });
-  });
-
-  wrap.innerHTML='';
-
-  const sections = activeCat==='all' ? CATS : CATS.filter(c=>c.cat===activeCat||c.key===activeCat);
-
-  let anyShown = false;
-  sections.forEach(catCfg=>{
-    let items = grouped[catCfg.key]||[];
-    if(q) items = items.filter(i=>{
-      const name = (lang==='hi' && i.nameHi ? i.nameHi : i.name)||'';
-      return name.toLowerCase().includes(q);
-    });
-    if(!items.length) return;
-    anyShown = true;
-
-    const sec = document.createElement('div');
-    const title = lang==='hi' ? catCfg.labelHi : catCfg.label;
-    sec.innerHTML = `<div class="sec-hd">${catCfg.icon} ${title}</div><div class="mlist" id="ml-${catCfg.key}"></div>`;
-    wrap.appendChild(sec);
-
-    const list = sec.querySelector(`#ml-${catCfg.key}`);
-    items.forEach(item => renderCard(list, item));
-  });
-
-  if(!anyShown){
-    wrap.innerHTML=`<div class="loading"><p style="font-size:14px;color:var(--muted)">${lang==='hi'?'कोई आइटम नहीं मिला':'No items found'}</p></div>`;
-  }
+function cartCount() {
+  return Object.values(cart).reduce((sum, qty) => sum + qty, 0);
 }
 
-function renderCard(list, item){
-  const qty = cart[item.id]||0;
-  const name = (lang==='hi' && item.nameHi) ? item.nameHi : item.name;
-  const desc = (lang==='hi' && item.descHi) ? item.descHi : (item.description||item.desc||'');
-  const isSoldOut = item.soldOut || item.available===false;
-  const isBest = item.bestseller || item.best;
-
-  const card = document.createElement('div');
-  card.className='mcard'; card.id=`card-${item.id}`;
-
-  const photoHtml = item.imageUrl
-    ? `<div class="ptile" style="background:#f5f5f5;">
-        <img src="${item.imageUrl}" alt="${name}"
-          style="width:100%;height:100%;object-fit:cover;display:block;"
-          onerror="this.parentNode.innerHTML='${getSvg(item.category).replace(/'/g,"&#39;")}'"/>
-       </div>`
-    : `<div class="ptile">${getSvg(item.category)}</div>`;
-
-  card.innerHTML=`
-    ${photoHtml}
-    <div class="minfo">
-      <div>
-        <div class="vrow">
-          <div class="vdot ${item.veg||item.isVeg?'v':'nv'}"></div>
-          <div class="iname">${name}</div>
-        </div>
-        ${desc?`<div class="idesc">${desc}</div>`:''}
-      </div>
-      <div class="ifoot">
-        <div class="iprice">₹${item.price}</div>
-        <div id="ctrl-${item.id}"></div>
-      </div>
-    </div>
-    ${isBest?`<div class="best-badge">${t('best')}</div>`:''}
-  `;
-  list.appendChild(card);
-  renderCtrl(item.id, isSoldOut);
+function deliveryCharge() {
+  if (orderType !== 'delivery') return 0;
+  if (distKm < 0) return 0;   // location not yet detected
+  const sub = cartTotal();
+  if (sub >= 1000) return 0; // Free delivery above ₹1000
+  const { zone1_km, zone1_charge, zone2_charge } = CONFIG.delivery;
+  return distKm <= zone1_km ? zone1_charge : zone2_charge;
 }
 
-function renderCtrl(id, soldOut){
-  const el = document.getElementById(`ctrl-${id}`); if(!el) return;
-  const qty = cart[id]||0;
-  if(soldOut){
-    el.innerHTML=`<span class="sold-lbl">${t('soldOut')}</span>`;
+// ── RENDER CART LIST ───────────────────────
+
+function renderCart() {
+  const items = Object.entries(cart);
+  const el = document.getElementById('cart-list');
+
+  if (!items.length) {
+    el.innerHTML = '<p style="color:#aaa;padding:14px;font-size:13px;">Your cart is empty.</p>';
     return;
   }
-  el.innerHTML = qty===0
-    ? `<button class="add-btn" onclick="addItem('${id}')">${t('add')}</button>`
-    : `<div class="qctrl"><button class="qbtn" onclick="remItem('${id}')">−</button><span class="qnum">${qty}</span><button class="qbtn" onclick="addItem('${id}')">+</button></div>`;
+
+  el.innerHTML = items.map(([id, qty]) => {
+    const item = MENU.find(m => m.id == id);
+    return `
+      <div class="cart-item">
+        <div>
+          <div class="ci-name">${item.emoji} ${item.name}</div>
+          <div class="ci-price">₹${item.price} × ${qty} = ₹${item.price * qty}</div>
+        </div>
+        <div class="qty-ctrl">
+          <button onclick="removeItem(${id}); renderCart()">−</button>
+          <span>${qty}</span>
+          <button onclick="addItem(${id}); renderCart()">+</button>
+        </div>
+      </div>`;
+  }).join('');
+
+  renderBill();
 }
 
-function addItem(id){
-  cart[id]=(cart[id]||0)+1;
-  const item=menuData.find(i=>i.id===id);
-  const sold=item&&(item.soldOut||item.available===false);
-  renderCtrl(id,sold); updateCartBar();
-  if(document.getElementById('overlay').classList.contains('show')) updateSheet();
-}
-function remItem(id){
-  if(cart[id]>1) cart[id]--; else delete cart[id];
-  const item=menuData.find(i=>i.id===id);
-  const sold=item&&(item.soldOut||item.available===false);
-  renderCtrl(id,sold); updateCartBar();
-  if(document.getElementById('overlay').classList.contains('show')) updateSheet();
-}
+function renderBill() {
+  const sub = cartTotal();
+  const del = deliveryCharge();
+  const tot = sub + del;
 
-function cartTotals(){
-  let qty=0, sub=0;
-  Object.entries(cart).forEach(([id,q])=>{
-    const item=menuData.find(i=>i.id===id);
-    if(item){ qty+=q; sub+=q*item.price; }
-  });
-  return {qty, sub};
-}
-
-// ── CART BAR ────────────────────────────────────────────────────────────────
-function updateCartBar(){
-  const {qty, sub} = cartTotals();
-  const bar = document.getElementById('cartBar');
-  if(!qty){ bar.style.display='none'; return; }
-  bar.style.display='flex';
-  document.getElementById('cCount').textContent=qty;
-  document.getElementById('cPrice').textContent=`₹${sub}`;
-  document.getElementById('cLbl').innerHTML=`${t('viewCart')}<span>${t('cartSub')}</span>`;
-}
-
-// ── GPS ─────────────────────────────────────────────────────────────────────
-function detectGPS(){
-  if(!navigator.geolocation){ showToast(t('gpsErr')); return; }
-  const btn=document.getElementById('gpsBtn');
-  btn.innerHTML=`<span>⏳</span><span>${lang==='hi'?'लोकेशन ढूंढ रहे हैं...':'Detecting location...'}</span>`;
-  navigator.geolocation.getCurrentPosition(pos=>{
-    const dist = haversine(pos.coords.latitude, pos.coords.longitude, RESTAURANT_LAT, RESTAURANT_LNG);
-    const distR = Math.round(dist*10)/10;
-    const {sub} = cartTotals();
-    const charge = deliveryCharge(distR, sub);
-
-    if(charge===-1){
-      document.getElementById('gpsStatus').className='gps-status far';
-      document.getElementById('gpsStatus').textContent=t('farErr',{d:distR});
-      gpsData=null;
-      btn.innerHTML=`<span>📍</span><span>${t('detectGPS')}</span>`;
-    } else {
-      gpsData={dist:distR, charge};
-      btn.className='gps-btn detected';
-      btn.innerHTML=`<span>📍</span><span>${t('locationDetected')}</span>`;
-      const statusEl=document.getElementById('gpsStatus');
-      if(charge===0){
-        statusEl.className='gps-status ok';
-        statusEl.textContent=t('gpsFree',{d:distR});
-      } else {
-        statusEl.className='gps-status ok';
-        statusEl.textContent=t('gpsOk',{d:distR,c:charge});
-      }
+  let deliveryRow = '';
+  if (orderType === 'delivery') {
+    if (del > 0) {
+      deliveryRow = `<div class="bill-row"><span>Delivery charge (${distKm.toFixed(1)} km)</span><span>₹${del}</span></div>`;
+    } else if (distKm < 0) {
+      deliveryRow = `<div class="bill-row"><span style="color:#e53935">⚠️ Detect location to see charge</span><span>–</span></div>`;
     }
-    updateSheet();
-  }, ()=>{
-    document.getElementById('gpsStatus').className='gps-status err';
-    document.getElementById('gpsStatus').textContent=t('gpsErr');
-    btn.innerHTML=`<span>📍</span><span>${t('detectGPS')}</span>`;
-    gpsData=null;
-  });
-}
-
-// ── CHECKOUT ─────────────────────────────────────────────────────────────────
-function openCheckout(){
-  const {qty}=cartTotals(); if(!qty) return;
-  document.getElementById('overlay').classList.add('show');
-  document.body.style.overflow='hidden';
-  applyLang();
-  updateSheet();
-}
-function closeCheckout(){
-  document.getElementById('overlay').classList.remove('show');
-  document.body.style.overflow='';
-}
-function overlayClick(e){ if(e.target===document.getElementById('overlay')) closeCheckout(); }
-
-function setOtype(type){
-  orderType=type;
-  document.getElementById('btnPickup').classList.toggle('on', type==='pickup');
-  document.getElementById('btnDelivery').classList.toggle('on', type==='delivery');
-  document.getElementById('gpsSection').style.display=type==='delivery'?'block':'none';
-  document.getElementById('addrSection').style.display=type==='delivery'?'block':'none';
-  document.getElementById('delRow').style.display=type==='delivery'?'flex':'none';
-  updateSheet();
-}
-
-function updateSheet(){
-  const {qty, sub} = cartTotals();
-
-  // Cart items list
-  const ciWrap=document.getElementById('cartItems');
-  ciWrap.innerHTML='';
-  Object.entries(cart).forEach(([id,q])=>{
-    const item=menuData.find(i=>i.id===id); if(!item) return;
-    const name=(lang==='hi'&&item.nameHi)?item.nameHi:item.name;
-    const row=document.createElement('div'); row.className='ci-row';
-    row.innerHTML=`<span class="ci-name">${name}</span><span class="ci-qty">×${q}</span><span class="ci-price">₹${item.price*q}</span>`;
-    ciWrap.appendChild(row);
-  });
-
-  // Delivery charge
-  let delCharge = 0;
-  if(orderType==='delivery'){
-    if(gpsData) delCharge=deliveryCharge(gpsData.dist, sub);
-    else delCharge=sub>=FREE_DEL_MIN?0:50; // default estimate
   }
 
-  // Free delivery progress bar
-  const freeBar=document.getElementById('freeBar');
-  const freeBarTxt=document.getElementById('freeBarTxt');
-  const progFill=document.getElementById('progFill');
-  if(orderType==='delivery' && sub<FREE_DEL_MIN && delCharge>0){
-    freeBar.classList.add('show');
-    const remain=FREE_DEL_MIN-sub;
-    const pct=Math.min(100,Math.round(sub/FREE_DEL_MIN*100));
-    freeBarTxt.textContent=t('freeBarTxt',{r:remain});
-    progFill.style.width=pct+'%';
+  document.getElementById('bill-box').innerHTML = `
+    <div class="bill-row"><span>Subtotal</span><span>₹${sub}</span></div>
+    ${deliveryRow}
+    <div class="bill-row"><span>Total</span><span>₹${tot}</span></div>`;
+
+  document.getElementById('checkout-total').textContent = '₹' + tot;
+}
+
+// ── ORDER TYPE ─────────────────────────────
+
+function setType(t) {
+  orderType = t;
+  document.getElementById('btn-pickup').classList.toggle('sel', t === 'pickup');
+  document.getElementById('btn-delivery').classList.toggle('sel', t === 'delivery');
+  document.getElementById('dist-block').style.display         = t === 'delivery' ? 'block' : 'none';
+  document.getElementById('delivery-addr-block').style.display = t === 'delivery' ? 'block' : 'none';
+  if (t === 'pickup') distKm = -1;
+  renderCart();
+}
+
+// ── FLOAT BAR UPDATE ───────────────────────
+
+function updateFloatBar() {
+  const cnt  = cartCount();
+  const sub  = cartTotal();
+  const fb   = document.getElementById('float-bar');
+  const hb   = document.getElementById('hcart-btn');
+
+  if (cnt > 0) {
+    fb.classList.add('vis');
+    hb.style.display = 'flex';
+    document.getElementById('fb-items').textContent = cnt + (cnt === 1 ? ' item' : ' items');
+    document.getElementById('fb-total').textContent = '₹' + sub;
+    document.getElementById('hcart-cnt').textContent = cnt;
   } else {
-    freeBar.classList.remove('show');
+    fb.classList.remove('vis');
+    hb.style.display = 'none';
   }
-
-  const total = sub + (orderType==='delivery' ? (delCharge>0?delCharge:0) : 0);
-  document.getElementById('sumSub').textContent=`₹${sub}`;
-
-  const delRow=document.getElementById('sumDel');
-  if(orderType==='delivery'){
-    if(delCharge===0) {
-      delRow.textContent=t('freeDelRow');
-      delRow.parentElement.className='sum-row free-del';
-    } else if(delCharge>0){
-      delRow.textContent=`₹${delCharge}`;
-      delRow.parentElement.className='sum-row';
-    } else {
-      delRow.textContent=lang==='hi'?'क्षेत्र के बाहर':'Out of range';
-      delRow.parentElement.className='sum-row';
-    }
-  }
-
-  document.getElementById('sumTotal').textContent=`₹${total}`;
-  document.getElementById('waBtnPrice').textContent=` ₹${total}`;
 }
 
-// ── PLACE ORDER ──────────────────────────────────────────────────────────────
-function placeOrder(){
-  const name=document.getElementById('custName').value.trim();
-  const phone=document.getElementById('custPhone').value.trim();
-  const addr=document.getElementById('custAddr').value.trim();
+// ── PLACE ORDER ────────────────────────────
 
-  // Validate
-  document.getElementById('custName').classList.remove('err-field');
-  document.getElementById('custPhone').classList.remove('err-field');
+function placeOrder() {
+  const items = Object.entries(cart);
 
-  if(!name){ showToast(t('nameErr')); document.getElementById('custName').classList.add('err-field'); return; }
-  if(!/^\d{10}$/.test(phone)){ showToast(t('phoneErr')); document.getElementById('custPhone').classList.add('err-field'); return; }
-  if(orderType==='delivery' && gpsData && gpsData.charge===-1){ showToast(t('farErr',{d:gpsData.dist})); return; }
+  if (!items.length) {
+    alert('Please add items to your cart first.');
+    return;
+  }
+  if (orderType === 'delivery' && distKm < 0) {
+    alert('Please detect your location first to calculate the delivery charge.');
+    return;
+  }
 
-  const {sub} = cartTotals();
-  const delCharge = orderType==='delivery' ? (gpsData?deliveryCharge(gpsData.dist,sub):sub>=FREE_DEL_MIN?0:50) : 0;
-  const total = sub + (orderType==='delivery' && delCharge>0 ? delCharge : 0);
+  const name  = document.getElementById('cust-name').value.trim();
+  const phone = document.getElementById('cust-phone').value.trim();
+  const addr  = document.getElementById('cust-addr').value.trim();
+
+  if (!name) {
+    alert('Please enter your name to place the order.');
+    document.getElementById('cust-name').focus();
+    return;
+  }
+  if (!phone || phone.length < 10) {
+    alert('Please enter a valid 10-digit mobile number.');
+    document.getElementById('cust-phone').focus();
+    return;
+  }
+  if (orderType === 'delivery' && !addr) {
+    alert('Please enter your delivery address.');
+    document.getElementById('cust-addr').focus();
+    return;
+  }
+  const refNo = 'UZ' + Date.now().toString().slice(-6);
 
   // Build WhatsApp message
-  let msg = `🍽️ *New Order — Urban ज़ायका*\n\n`;
-  msg += `👤 *Name:* ${name}\n`;
-  msg += `📱 *Mobile:* ${phone}\n`;
-  msg += `🛵 *Type:* ${orderType==='delivery'?'Delivery':'Pickup'}\n`;
-  if(orderType==='delivery'){
-    if(gpsData) msg+=`📍 *Distance:* ${gpsData.dist}km\n`;
-    if(addr) msg+=`🏠 *Address:* ${addr}\n`;
+  let msg = `*🍽️ New Order – Urban ज़ायका*\n`;
+  msg += `*Order ID:* ${refNo}\n`;
+  msg += `*Name:* ${name}\n`;
+  if (phone) msg += `*Phone:* ${phone}\n`;
+  msg += `*Type:* ${orderType === 'delivery' ? '🛵 Delivery' : '🚶 Pickup'}\n`;
+
+  if (orderType === 'delivery') {
+    msg += `*Distance:* ${distKm.toFixed(1)} km\n`;
+    if (addr) msg += `*Address:* ${addr}\n`;
   }
-  msg+=`\n📋 *Order Details:*\n`;
-  Object.entries(cart).forEach(([id,q])=>{
-    const item=menuData.find(i=>i.id===id); if(!item) return;
-    msg+=`• ${item.name} ×${q} — ₹${item.price*q}\n`;
+
+  msg += `\n*Order Items:*\n`;
+  items.forEach(([id, qty]) => {
+    const item = MENU.find(m => m.id == id);
+    msg += `• ${item.name} × ${qty}  = ₹${item.price * qty}\n`;
   });
-  msg+=`\n💰 *Subtotal:* ₹${sub}`;
-  if(orderType==='delivery') msg+=`\n🚚 *Delivery:* ${delCharge===0?'FREE':'₹'+delCharge}`;
-  msg+=`\n✅ *Total: ₹${total}*`;
 
-  const url=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  const sub = cartTotal();
+  const del = deliveryCharge();
+  msg += `\n*Subtotal:* ₹${sub}`;
+  if (del) msg += `\n*Delivery charge:* ₹${del}`;
+  msg += `\n*Total:* ₹${sub + del}`;
+  msg += `\n\n_Placed via urbanzayka.com/order_`;
 
-  // 3-second countdown
-  const btn=document.getElementById('waBtn');
-  btn.disabled=true;
-  let n=3;
-  const tick=()=>{
-    document.getElementById('waBtnTxt').textContent=t('countdown',{n});
-    if(n===0){ window.open(url,'_blank'); closeCheckout(); cart={}; updateCartBar(); renderMenu(); return; }
-    n--; setTimeout(tick,1000);
+  // Save to Firebase (for dashboard)
+  if (typeof window.saveOrderToFirebase === 'function') {
+    const orderData = {
+      orderId: refNo,
+      customerName: name,
+      customerPhone: phone,
+      orderType,
+      address: addr || '',
+      distance: distKm >= 0 ? parseFloat(distKm.toFixed(1)) : null,
+      deliveryCharge: del,
+      items: items.map(([id, qty]) => {
+        const item = MENU.find(m => m.id == id);
+        return { name: item.name, qty, price: item.price, total: item.price * qty };
+      }),
+      subtotal: sub,
+      total: sub + del,
+    };
+    window.saveOrderToFirebase(orderData);
+  }
+
+  const waUrl = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+
+  // Play ding sound
+  playDing();
+
+  // Show success screen
+  document.getElementById('order-ref').textContent = 'Order ID: ' + refNo;
+  document.getElementById('wa-open-btn').onclick = () => window.open(waUrl, '_blank');
+  showScreen('sc-success');
+}
+
+// ── DING SOUND ─────────────────────────────
+
+function playDing() {
+  try {
+    const ctx    = new (window.AudioContext || window.webkitAudioContext)();
+    const notes  = [523.25, 659.25, 783.99]; // C5, E5, G5
+    notes.forEach((freq, i) => {
+      const osc  = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = freq;
+      osc.type = 'sine';
+      const t = ctx.currentTime + i * 0.15;
+      gain.gain.setValueAtTime(0, t);
+      gain.gain.linearRampToValueAtTime(0.3, t + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.5);
+      osc.start(t);
+      osc.stop(t + 0.5);
+    });
+  } catch (e) {
+    // Audio not available — silently ignore
+  }
+}
+
+// ── RESET ──────────────────────────────────
+
+function newOrder() {
+  cart      = {};
+  orderType = 'pickup';
+  distKm    = -1;
+  document.getElementById('cust-name').value  = '';
+  document.getElementById('cust-phone').value = '';
+  document.getElementById('cust-addr').value  = '';
+  document.getElementById('loc-result').style.display = 'none';
+  document.getElementById('loc-btn-icon').textContent = '📍';
+  document.getElementById('loc-btn-text').textContent = 'Detect My Location (Free)';
+  updateFloatBar();
+  renderMenu();
+  showScreen('sc-menu');
+}
+
+/* ============================================
+   Urban Zayka PWA — Location Detection
+   File: js/location.js
+   Uses browser GPS (free, no API key needed)
+   ============================================ */
+
+let distKm = -1;  // -1 = not yet detected
+
+// ── HAVERSINE FORMULA ──────────────────────
+// Calculates distance (km) between two GPS coordinates
+
+function getDistanceKm(lat1, lon1, lat2, lon2) {
+  const R    = 6371; // Earth radius in km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a    =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+// ── MAIN DETECT FUNCTION ───────────────────
+
+function detectLocation() {
+  if (!navigator.geolocation) {
+    showLocResult('err', '❌ GPS not supported on this browser. Please enter your address manually.');
+    return;
+  }
+
+  // Show loading state
+  setLocBtnState('loading');
+
+  navigator.geolocation.getCurrentPosition(
+    onLocationSuccess,
+    onLocationError,
+    { timeout: 10000, maximumAge: 60000, enableHighAccuracy: false }
+  );
+}
+
+// ── SUCCESS HANDLER ────────────────────────
+
+function onLocationSuccess(pos) {
+  const { latitude: lat, longitude: lng } = pos.coords;
+  const km = getDistanceKm(lat, lng, CONFIG.lat, CONFIG.lng);
+  distKm = km;
+
+  setLocBtnState('done');
+
+  const { zone1_km, zone1_charge, zone2_km, zone2_charge } = CONFIG.delivery;
+
+  if (km <= zone1_km) {
+    showLocResult('ok',
+      `✅ You are ${km.toFixed(1)} km away — Delivery charge: ₹${zone1_charge}`);
+  } else if (km <= zone2_km) {
+    showLocResult('warn',
+      `🛵 You are ${km.toFixed(1)} km away — Delivery charge: ₹${zone2_charge}`);
+  } else {
+    showLocResult('err',
+      `❌ You are ${km.toFixed(1)} km away — Outside our delivery zone (max ${zone2_km} km). Please pick up or call us at ${CONFIG.phone}.`);
+    distKm = -1; // Block order
+  }
+
+  renderCart(); // Refresh bill with delivery charge
+}
+
+// ── ERROR HANDLER ──────────────────────────
+
+function onLocationError(err) {
+  setLocBtnState('retry');
+
+  const messages = {
+    1: 'Location permission denied. Please allow location access in your browser settings and try again.',
+    2: 'Unable to detect your location. Try again or enter your address manually.',
+    3: 'Location request timed out. Please try again.',
   };
-  tick();
+  showLocResult('err', '❌ ' + (messages[err.code] || 'An unknown error occurred.'));
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────
-applyLang();
-renderCats();
-setOtype('delivery');
+// ── UI HELPERS ─────────────────────────────
 
-// Poll for Firebase data
-window._initDone=true;
-if(window._menuLoaded){ buildMenu(); }
-else{
-  const poll=setInterval(()=>{
-    if(window._menuLoaded){ clearInterval(poll); buildMenu(); }
-  },200);
-  setTimeout(()=>clearInterval(poll),15000);
+function setLocBtnState(state) {
+  const btn  = document.getElementById('loc-btn');
+  const icon = document.getElementById('loc-btn-icon');
+  const text = document.getElementById('loc-btn-text');
+
+  const states = {
+    loading: { icon: '⏳', label: 'Detecting location…', disabled: true  },
+    done:    { icon: '📍', label: 'Location Detected ✓', disabled: false },
+    retry:   { icon: '📍', label: 'Try Again',            disabled: false },
+  };
+
+  const s = states[state];
+  icon.textContent        = s.icon;
+  text.textContent        = s.label;
+  btn.style.opacity       = s.disabled ? '.7' : '1';
+  btn.style.pointerEvents = s.disabled ? 'none' : 'auto';
 }
 
-// Register service worker
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/sw.js').catch(()=>{});
+function showLocResult(type, message) {
+  const el = document.getElementById('loc-result');
+  el.className      = 'loc-result ' + type;
+  el.textContent    = message;
+  el.style.display  = 'block';
 }
+
+/* ============================================
+   Urban Zayka PWA — App Entry Point
+   File: js/app.js
+   Screen navigation, menu render, PWA install
+   ============================================ */
+
+// ── SCREEN NAVIGATION ──────────────────────
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function showMenu() { showScreen('sc-menu'); }
+
+function showCart() {
+  renderCart();
+  showScreen('sc-cart');
+}
+
+// ── MENU RENDER ────────────────────────────
+
+let activeCat = 'all';
+
+function renderMenu() {
+  const el    = document.getElementById('menu-list');
+  const items = activeCat === 'all' ? MENU : MENU.filter(i => i.cat === activeCat || i.cat?.toLowerCase() === activeCat?.toLowerCase());
+  let html = '', lastCat = '';
+
+  items.forEach(item => {
+    // Section header when showing all categories
+    if (activeCat === 'all' && item.cat !== lastCat) {
+      const catKey = item.cat;
+      const hiCatLabel = HINDI_CAT_LABELS[catKey];
+      const secLabel = (window._lang === 'hi' && hiCatLabel) ? hiCatLabel : CAT_LABELS[catKey];
+      html += `<div class="sec-title">${secLabel}</div>`;
+      lastCat = item.cat;
+    }
+
+    const qty  = cart[item.id] || 0;
+    const ctrl = item.mrp
+      ? ''   // MRP items: no add button
+      : qty === 0
+        ? `<button class="add-btn" onclick="addItem(${item.id})">+</button>`
+        : `<div class="qty-ctrl">
+             <button onclick="removeItem(${item.id})">−</button>
+             <span>${qty}</span>
+             <button onclick="addItem(${item.id})">+</button>
+           </div>`;
+
+    const displayName = (window._lang === 'hi' && item.nameHi) ? item.nameHi : item.name;
+    const displayDesc = (window._lang === 'hi' && item.descriptionHi) ? item.descriptionHi : (item.description || item.sub || '');
+    const photoHtml = item.imageUrl
+      ? `<img src="${item.imageUrl}" style="width:54px;height:54px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid #fde0e0;" onerror="this.style.display='none'" />`
+      : `<div class="item-emoji">${item.emoji || '🍽️'}</div>`;
+
+    html += `
+      <div class="menu-item">
+        ${photoHtml}
+        <div class="item-info">
+          <div class="item-name">${displayName}</div>
+          ${displayDesc ? `<div class="item-sub">${displayDesc}</div>` : ''}
+          <div class="item-price">${item.mrp ? 'MRP' : '₹' + item.price}</div>
+        </div>
+        ${ctrl}
+      </div>`;
+  });
+
+  el.innerHTML = html;
+}
+
+// ── HINDI LANGUAGE TOGGLE ──────────────────
+
+window._lang = localStorage.getItem('uz_lang') || 'en';
+
+const HINDI_CATS = {
+  'all':        'सभी आइटम',
+  'Breakfast':  '🌅 नाश्ता',
+  'Starters':   '🍢 स्टार्टर',
+  'Sandwiches': '🥪 सैंडविच',
+  'Indian Main':'🍛 इंडियन मेन',
+  'Chinese':    '🥢 चाइनीज़',
+  'Breads':     '🫓 ब्रेड्स',
+  'Meals':      '🍱 मील्स',
+  'Beverages':  '☕ पेय',
+};
+
+const HINDI_CAT_LABELS = {
+  breakfast:  '🌅 नाश्ता (7–10AM)',
+  starters:   '🍢 स्टार्टर (12PM–10:30PM)',
+  sandwiches: '🥪 सैंडविच',
+  indian:     '🍛 इंडियन मेन कोर्स',
+  chinese:    '🥢 चाइनीज़ मेन कोर्स',
+  breads:     '🫓 इंडियन ब्रेड्स',
+  meals:      '🍱 मील्स & थाली',
+  beverages:  '☕ पेय',
+  Breakfast:  '🌅 नाश्ता (7–10AM)',
+  Starters:   '🍢 स्टार्टर (12PM–10:30PM)',
+  Sandwiches: '🥪 सैंडविच',
+  'Indian Main': '🍛 इंडियन मेन कोर्स',
+  Chinese:    '🥢 चाइनीज़ मेन कोर्स',
+  Breads:     '🫓 इंडियन ब्रेड्स',
+  Meals:      '🍱 मील्स & थाली',
+  Beverages:  '☕ पेय',
+};
+
+function toggleLang() {
+  window._lang = window._lang === 'en' ? 'hi' : 'en';
+  localStorage.setItem('uz_lang', window._lang);
+  document.getElementById('langToggleBtn').textContent = window._lang === 'hi' ? 'English' : 'हिंदी';
+  buildTabs();
+  renderMenu();
+}
+
+// Apply saved language on load
+if (window._lang === 'hi') {
+  document.getElementById('langToggleBtn').textContent = 'English';
+}
+
+// ── BUILD CATEGORY TABS ────────────────────
+
+function buildTabs() {
+  const container = document.getElementById('tabs-container');
+  container.innerHTML = '';
+  CATS.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'tab' + (cat.id === activeCat ? ' active' : '');
+    const hiLabel = HINDI_CATS[cat.id];
+    btn.textContent = (window._lang === 'hi' && hiLabel) ? hiLabel : cat.label;
+    btn.onclick = () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      activeCat = cat.id;
+      renderMenu();
+    };
+    container.appendChild(btn);
+  });
+}
+
+// ── PWA INSTALL ────────────────────────────
+
+const isIOS          = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+const isInStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+let deferredPrompt = null;
+
+// Android / Chrome: capture install prompt
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  if (!isInStandalone) {
+    const banner = document.getElementById('install-banner');
+    const btn    = document.getElementById('install-btn');
+    banner.style.display = 'flex';
+
+    btn.onclick = async () => {
+      banner.style.display = 'none';
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+    };
+  }
+});
+
+// iOS Safari: show manual "Add to Home Screen" instructions
+if (isIOS && !isInStandalone) {
+  setTimeout(() => {
+    const banner = document.getElementById('install-banner');
+    const btn    = document.getElementById('install-btn');
+    banner.style.display = 'flex';
+
+    btn.onclick = () => {
+      banner.style.display = 'none';
+      document.getElementById('ios-tooltip').classList.add('show');
+    };
+  }, 2500);
+}
+
+// ── INIT ───────────────────────────────────
+
+buildTabs();
+renderMenu();
+// Show loading indicator — Firebase will replace this when data arrives
+document.getElementById('menu-list').innerHTML = '<div style="text-align:center;padding:40px;color:#aaa;font-size:14px">⏳ Loading menu...</div>';
+
+</script>
+<script type="module">
+/* ============================================
+   Urban Zayka PWA — Firebase Integration
+   File: js/firebase.js
+   - Loads menu from Firestore in real time
+   - Saves orders to Firestore
+   ============================================ */
+
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js';
+import { getFirestore, collection, onSnapshot, addDoc, setDoc, doc, serverTimestamp, getDocs } from 'https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBkgTWZwKcXy5BiCVpppltZWVTW7gIPDbE",
+  authDomain: "urban-zayka.firebaseapp.com",
+  projectId: "urban-zayka",
+  storageBucket: "urban-zayka.firebasestorage.app",
+  messagingSenderId: "849575139822",
+  appId: "1:849575139822:web:01e6d124f8d78267b196ff"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+const CAT_ORDER = ['Breakfast','Starters','Sandwiches','Indian Main','Chinese','Breads','Meals','Beverages'];
+const isPaneer  = name => /paneer/i.test(name);
+
+function applyFirebaseMenu(docs) {
+  if (!docs.length) return;
+
+  // Rebuild MENU array
+  MENU.length = 0;
+  docs
+    .filter(item => !item.soldOut && item.available !== false)
+    .forEach(item => {
+      // Normalise: support both 'cat' and 'category' field names
+      if (!item.cat && item.category) item.cat = item.category;
+      if (!item.category && item.cat) item.category = item.cat;
+      MENU.push(item);
+    });
+
+  // Sort: category order → paneer first → high to low price
+  MENU.sort((a, b) => {
+    const catDiff = CAT_ORDER.indexOf(a.cat) - CAT_ORDER.indexOf(b.cat);
+    if (catDiff !== 0) return catDiff;
+    const pa = isPaneer(a.name) ? 0 : 1;
+    const pb = isPaneer(b.name) ? 0 : 1;
+    if (pa !== pb) return pa - pb;
+    return b.price - a.price;
+  });
+
+  // Rebuild CATS tabs
+  CATS.length = 0;
+  const catLabels = {
+    'all':        'All Items',
+    'Breakfast':  '🌅 Breakfast',
+    'Starters':   '🍢 Starters',
+    'Sandwiches': '🥪 Sandwiches',
+    'Indian Main':'🍛 Indian Main',
+    'Chinese':    '🥢 Chinese',
+    'Breads':     '🫓 Breads',
+    'Meals':      '🍱 Meals',
+    'Beverages':  '☕ Beverages',
+  };
+  ['all', ...CAT_ORDER].forEach(id => CATS.push({ id, label: catLabels[id] || id }));
+
+  // Rebuild CAT_LABELS
+  Object.assign(CAT_LABELS, {
+    'Breakfast':  '🌅 Breakfast (7–10AM)',
+    'Starters':   '🍢 Starters (12PM–10:30PM)',
+    'Sandwiches': '🥪 Sandwiches',
+    'Indian Main':'🍛 Indian Main Course',
+    'Chinese':    '🥢 Chinese Main Course',
+    'Breads':     '🫓 Indian Breads',
+    'Meals':      '🍱 Meals & Thali',
+    'Beverages':  '☕ Beverages',
+  });
+
+  // Rebuild tabs and re-render
+  buildTabs();
+  renderMenu();
+  console.log(`✅ Menu loaded from Firebase: ${MENU.length} items`);
+}
+
+// ── LOAD MENU FROM FIREBASE ──────────────
+// Try 'menuItems' collection first, fallback to 'menu'
+onSnapshot(collection(db, 'menuItems'), (snap) => {
+  if (!snap.empty) {
+    const docs = snap.docs.map(d => ({ ...d.data(), id: d.id }));
+    applyFirebaseMenu(docs);
+    return;
+  }
+  // Fallback to old 'menu' collection
+  onSnapshot(collection(db, 'menu'), (snap2) => {
+    if (snap2.empty) {
+      console.log('Firebase menu empty — using hardcoded menu');
+      return;
+    }
+    const docs = snap2.docs.map(d => ({ ...d.data(), id: d.id }));
+    applyFirebaseMenu(docs);
+  });
+});
+
+// ── SAVE ORDER TO FIREBASE ───────────────
+window.saveOrderToFirebase = async function(orderData) {
+  try {
+    await addDoc(collection(db, 'orders'), {
+      ...orderData,
+      status: 'new',
+      createdAt: serverTimestamp()
+    });
+    console.log('✅ Order saved to Firebase');
+  } catch(e) {
+    console.log('Firebase save failed (order still sent via WhatsApp):', e);
+  }
+};
+
 </script>
 </body>
 </html>
