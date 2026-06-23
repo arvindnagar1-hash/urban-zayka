@@ -207,13 +207,29 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 .checkout-btn { width: 100%; background: var(--red); color: #fff; border: none; border-radius: 14px; padding: 14px 18px; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: inherit; }
 
 /* ---- SUCCESS ---- */
-.success-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; gap: 12px; padding: 30px 24px; text-align: center; background: #fff; }
-.suc-icon { font-size: 64px; animation: pop .4s ease; }
-@keyframes pop { 0%{transform:scale(0)} 70%{transform:scale(1.2)} 100%{transform:scale(1)} }
-.success-wrap h2 { font-size: 22px; font-weight: 700; color: #1a1a1a; }
-.success-wrap p { font-size: 14px; color: #666; line-height: 1.7; }
-.wa-open-btn { background: #25D366; color: #fff; border: none; border-radius: 14px; padding: 13px 28px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; margin-top: 8px; }
-.new-order-btn { background: #fff; border: 1.5px solid #ddd; color: #333; border-radius: 14px; padding: 11px 24px; font-size: 14px; cursor: pointer; font-family: inherit; }
+.success-wrap { display: flex; flex-direction: column; flex: 1; background: var(--bg,#f4f4f4); padding: 16px; overflow-y: auto; }
+.suc-card { background: #fff; border-radius: 14px; border: 0.5px solid #e8e8e8; overflow: hidden; }
+.suc-header { background: #16213E; padding: 14px 16px; }
+.suc-header span { font-size: 15px; font-weight: 600; color: #fff; }
+.suc-body { padding: 16px; }
+.suc-top { text-align: center; padding-bottom: 16px; border-bottom: 0.5px solid #e8e8e8; margin-bottom: 16px; }
+.suc-icon-wrap { width: 52px; height: 52px; border-radius: 50%; background: #E8F5E9; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-size: 26px; }
+.suc-title { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 3px; }
+.suc-ref { font-size: 12px; color: #888; }
+.suc-summary { border: 0.5px solid #e8e8e8; border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
+.suc-summary-hd { background: #f9f9f9; padding: 7px 12px; font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+.suc-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; padding: 9px 12px; border-bottom: 0.5px solid #f0f0f0; color: #1a1a1a; }
+.suc-row:last-child { border-bottom: none; }
+.suc-row.total { font-size: 14px; font-weight: 700; }
+.suc-row.total span:last-child { font-size: 16px; color: #F40009; }
+.suc-row .muted { color: #888; font-size: 12px; }
+.suc-countdown { background: #f9f9f9; border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; display: flex; align-items: center; gap: 14px; }
+.suc-ring-wrap { position: relative; width: 56px; height: 56px; flex-shrink: 0; }
+.suc-ring-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: #1a1a1a; }
+.suc-countdown-txt { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 3px; }
+.suc-countdown-sub { font-size: 12px; color: #888; line-height: 1.5; }
+.wa-open-btn { width: 100%; background: #25D366; color: #fff; border: none; border-radius: 10px; padding: 13px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 8px; }
+.new-order-btn { width: 100%; background: #fff; border: 0.5px solid #e8e8e8; border-radius: 10px; padding: 11px; font-size: 13px; color: #888; cursor: pointer; font-family: inherit; }
 .order-ref { font-size: 12px; color: #aaa; margin-top: 4px; }
 
 </style>
@@ -336,27 +352,56 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
   <!-- ===== SCREEN: SUCCESS ===== -->
   <div class="screen" id="sc-success">
     <div class="success-wrap">
-      <div class="suc-icon">🎉</div>
-      <h2>Order Confirmed!</h2>
-      <p>Your order has been placed.<br>WhatsApp is opening to share your order details with Urban ज़ायका.</p>
-      <p class="order-ref" id="order-ref"></p>
+      <div class="suc-card">
 
-      <!-- Countdown ring -->
-      <div style="position:relative;width:90px;height:90px;margin:8px auto;">
-        <svg width="90" height="90" style="transform:rotate(-90deg)">
-          <circle cx="45" cy="45" r="38" fill="none" stroke="#f0f0f0" stroke-width="7"/>
-          <circle id="countdown-ring" cx="45" cy="45" r="38" fill="none" stroke="#25D366" stroke-width="7"
-            stroke-dasharray="239" stroke-dashoffset="0" style="transition:stroke-dashoffset 1s linear;"/>
-        </svg>
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:#1a1a1a;" id="countdown-num">3</div>
+        <div class="suc-header"><span>Your Order</span></div>
+
+        <div class="suc-body">
+
+          <div class="suc-top">
+            <div class="suc-icon-wrap">✅</div>
+            <div class="suc-title">Order Confirmed!</div>
+            <div class="suc-ref" id="order-ref"></div>
+          </div>
+
+          <div class="suc-summary">
+            <div class="suc-summary-hd">Order summary</div>
+            <div id="suc-items"></div>
+            <div class="suc-row" id="suc-del-row" style="display:none;">
+              <span class="muted">🛵 Delivery</span>
+              <span id="suc-del">₹50</span>
+            </div>
+            <div class="suc-row total">
+              <span>Total</span>
+              <span id="suc-total">₹0</span>
+            </div>
+          </div>
+
+          <div class="suc-countdown">
+            <div class="suc-ring-wrap">
+              <svg width="56" height="56" viewBox="0 0 56 56">
+                <circle cx="28" cy="28" r="23" fill="none" stroke="#e8e8e8" stroke-width="5"/>
+                <circle id="countdown-ring" cx="28" cy="28" r="23" fill="none" stroke="#25D366" stroke-width="5"
+                  stroke-dasharray="144.5" stroke-dashoffset="0" stroke-linecap="round"
+                  style="transform:rotate(-90deg);transform-origin:28px 28px;transition:stroke-dashoffset 1s linear;"/>
+              </svg>
+              <div class="suc-ring-center" id="countdown-num">3</div>
+            </div>
+            <div>
+              <div class="suc-countdown-txt" id="countdown-txt">Opening WhatsApp in 3s...</div>
+              <div class="suc-countdown-sub">Share order details with Urban ज़ायका for quick confirmation</div>
+            </div>
+          </div>
+
+          <button class="wa-open-btn" id="wa-open-btn">
+            📲 Open WhatsApp Now
+          </button>
+          <button class="new-order-btn" onclick="newOrder()">
+            🔄 Place Another Order
+          </button>
+
+        </div>
       </div>
-
-      <p style="font-size:13px;color:#888;" id="countdown-txt">Opening WhatsApp in 3s...</p>
-
-      <button class="wa-open-btn" id="wa-open-btn" style="margin-top:8px;">
-        📲 Open WhatsApp Now
-      </button>
-      <button class="new-order-btn" onclick="newOrder()" style="margin-top:8px;">Place Another Order</button>
     </div>
   </div>
 
@@ -769,11 +814,11 @@ async function placeOrder() {
   const ring = document.getElementById('countdown-ring');
   const numEl = document.getElementById('countdown-num');
   const txtEl = document.getElementById('countdown-txt');
-  const circumference = 239;
+  const circumference = 144.5;
 
   const tick = () => {
     secs--;
-    numEl.textContent = secs;
+    numEl.textContent = secs > 0 ? secs : '📲';
     txtEl.textContent = secs > 0 ? `Opening WhatsApp in ${secs}s...` : 'Opening WhatsApp...';
     ring.style.strokeDashoffset = circumference * (1 - secs / 3);
     if (secs <= 0) {
