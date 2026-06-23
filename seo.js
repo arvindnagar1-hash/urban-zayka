@@ -25,35 +25,79 @@ const UZ_SEO = {
   // ── PAGE TITLE & DESCRIPTION ────────────────────────────────
   // Keep title under 60 chars, description under 160 chars
   title:       "Urban ज़ायका — Order Food Online | Met City, Haryana",
-  description: "Order fresh Indian, Chinese & Breakfast food online from Urban Zayka, Met City Haryana. Fast delivery within 10km. Paneer Tikka, Malai Chaap, Biryani & more. Order via WhatsApp!",
+  description: "Order fresh Indian, Chinese & Breakfast food online from Urban Zayka, Met City Haryana. Fast delivery in Dadri Toe, Jhajjar. Paneer Tikka, Malai Chaap, Biryani. Order via WhatsApp!",
 
   // ── KEYWORDS ────────────────────────────────────────────────
-  // Mix of English + Hindi + Local keywords
+  // Deep local SEO — Dadri Toe, Met City, Jhajjar area
   keywords: [
-    // English local keywords
-    "food delivery Met City",
-    "food delivery Manesar",
-    "food order online Haryana",
-    "restaurant near Met City",
-    "Indian food delivery Gurugram",
-    "Chinese food delivery Met City",
-    "breakfast delivery Met City",
-    "Paneer Tikka delivery Met City",
-    "Malai Chaap Met City",
-    "Biryani delivery Manesar",
-    "order food online near me",
+    // ── Primary Brand ──
     "Urban Zayka",
     "Urban Zayka Met City",
-    "fast food delivery Haryana",
+    "Urban Zayka Dadri",
+    "urbanzayka.in",
+
+    // ── Core Local (most important) ──
+    "food delivery Met City",
+    "food delivery Dadri Toe",
+    "food delivery Jhajjar",
+    "restaurant Met City Jhajjar",
+    "food order online Met City",
+    "home delivery Met City Haryana",
+    "online food order Dadri Toe",
+    "food delivery near MET City",
+
+    // ── Nearby Areas ──
+    "food delivery Fatehpur Jhajjar",
+    "food delivery Khalekpur",
+    "food delivery Yaqubpur",
+    "food delivery Kutani Jhajjar",
+    "food delivery Nangla Jhajjar",
+    "food delivery Sondhi",
+    "food delivery Nimana Jhajjar",
+    "food delivery Bir Dadri",
+    "food delivery Sheojipura",
+    "food delivery Kaloi Jhajjar",
+    "restaurant near Dadri Toe",
+    "restaurant near KMP Expressway Jhajjar",
+
+    // ── Dish-specific keywords ──
+    "Paneer Tikka delivery Met City",
+    "Malai Chaap Met City",
+    "Malai Chaap delivery Jhajjar",
+    "Paneer Butter Masala Met City",
+    "Veg Biryani delivery Dadri",
+    "Dal Makhani delivery Met City",
+    "Chole Bhature Met City",
+    "Paratha delivery Met City",
+    "Maggi delivery Met City",
+    "Momos delivery Met City",
+    "Tandoori Chaap Jhajjar",
+    "Chinese food delivery Met City",
+    "breakfast delivery Met City",
     "tiffin service Met City",
-    // Hindi keywords
+    "lunch delivery MET City workers",
+    "office food delivery Met City",
+
+    // ── Industry workers (600+ companies in MET City!) ──
+    "food delivery Reliance MET City",
+    "lunch delivery Panasonic MET City",
+    "food delivery Japanese Industrial Township",
+    "canteen food delivery MET City",
+    "office lunch delivery Jhajjar",
+
+    // ── Hindi keywords (local audience) ──
     "मेट सिटी खाना डिलीवरी",
     "मेट सिटी रेस्टोरेंट",
-    "हरियाणा खाना ऑर्डर",
-    "पनीर टिक्का डिलीवरी",
+    "दादरी टोए खाना डिलीवरी",
+    "झज्जर खाना ऑर्डर",
+    "पनीर टिक्का डिलीवरी मेट सिटी",
     "मलाई चाप मेट सिटी",
-    "ऑनलाइन खाना ऑर्डर",
-    "घर पर खाना डिलीवरी",
+    "ऑनलाइन खाना ऑर्डर झज्जर",
+    "घर पर खाना डिलीवरी मेट सिटी",
+    "दादरी खाना डिलीवरी",
+    "नाश्ता डिलीवरी मेट सिटी",
+    "ऑफिस खाना डिलीवरी मेट सिटी",
+    "झज्जर रेस्टोरेंट",
   ].join(", "),
 
   // ── OPEN GRAPH (Facebook, WhatsApp preview) ────────────────
