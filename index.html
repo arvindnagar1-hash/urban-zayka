@@ -284,17 +284,17 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
       <div class="section-block">
         <div class="sec-label">Order Type</div>
         <div class="otype-btns">
-          <button class="otype-btn sel" id="btn-pickup" onclick="setType('pickup')">
+          <button class="otype-btn" id="btn-pickup" onclick="setType('pickup')">
             <span class="icon">🚶</span>Pickup
           </button>
-          <button class="otype-btn" id="btn-delivery" onclick="setType('delivery')">
+          <button class="otype-btn sel" id="btn-delivery" onclick="setType('delivery')">
             <span class="icon">🛵</span>Delivery
           </button>
         </div>
       </div>
 
       <!-- DELIVERY LOCATION -->
-      <div class="section-block" id="dist-block" style="display:none;padding-top:0">
+      <div class="section-block" id="dist-block" style="display:block;padding-top:0">
         <div class="sec-label">Your Location</div>
         <button class="loc-btn" id="loc-btn" onclick="detectLocation()">
           <span id="loc-btn-icon">📍</span>
@@ -315,7 +315,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
         <input class="name-input" id="cust-phone" type="tel" placeholder="10-digit mobile number" maxlength="10" required />
       </div>
       </div>
-      <div id="delivery-addr-block" style="display:none" class="section-block" style="padding-top:0">
+      <div id="delivery-addr-block" style="display:block;" class="section-block" style="padding-top:0">
         <div class="sec-label">Delivery Address</div>
         <input class="name-input" id="cust-addr" type="text" placeholder="Enter full delivery address" />
       </div>
@@ -327,7 +327,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 
     <div class="checkout-bar">
       <button class="checkout-btn" onclick="placeOrder()">
-        <span>📲 Order via WhatsApp</span>
+        <span>✅ Confirm Order</span>
         <span id="checkout-total">₹0</span>
       </button>
     </div>
@@ -337,11 +337,26 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
   <div class="screen" id="sc-success">
     <div class="success-wrap">
       <div class="suc-icon">🎉</div>
-      <h2>Order Sent!</h2>
-      <p>WhatsApp will open with your complete order.<br>Urban ज़ायका will confirm shortly.</p>
+      <h2>Order Confirmed!</h2>
+      <p>Your order has been placed.<br>WhatsApp is opening to share your order details with Urban ज़ायका.</p>
       <p class="order-ref" id="order-ref"></p>
-      <button class="wa-open-btn" id="wa-open-btn">Open WhatsApp to Send Order</button>
-      <button class="new-order-btn" onclick="newOrder()">Place Another Order</button>
+
+      <!-- Countdown ring -->
+      <div style="position:relative;width:90px;height:90px;margin:8px auto;">
+        <svg width="90" height="90" style="transform:rotate(-90deg)">
+          <circle cx="45" cy="45" r="38" fill="none" stroke="#f0f0f0" stroke-width="7"/>
+          <circle id="countdown-ring" cx="45" cy="45" r="38" fill="none" stroke="#25D366" stroke-width="7"
+            stroke-dasharray="239" stroke-dashoffset="0" style="transition:stroke-dashoffset 1s linear;"/>
+        </svg>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:#1a1a1a;" id="countdown-num">3</div>
+      </div>
+
+      <p style="font-size:13px;color:#888;" id="countdown-txt">Opening WhatsApp in 3s...</p>
+
+      <button class="wa-open-btn" id="wa-open-btn" style="margin-top:8px;">
+        📲 Open WhatsApp Now
+      </button>
+      <button class="new-order-btn" onclick="newOrder()" style="margin-top:8px;">Place Another Order</button>
     </div>
   </div>
 
@@ -516,7 +531,7 @@ const MENU = [
    ============================================ */
 
 let cart      = {};   // { itemId: quantity }
-let orderType = 'pickup';
+let orderType = 'delivery';
 
 // ── CART OPERATIONS ────────────────────────
 
@@ -613,9 +628,14 @@ function setType(t) {
   orderType = t;
   document.getElementById('btn-pickup').classList.toggle('sel', t === 'pickup');
   document.getElementById('btn-delivery').classList.toggle('sel', t === 'delivery');
-  document.getElementById('dist-block').style.display         = t === 'delivery' ? 'block' : 'none';
+  document.getElementById('dist-block').style.display          = t === 'delivery' ? 'block' : 'none';
   document.getElementById('delivery-addr-block').style.display = t === 'delivery' ? 'block' : 'none';
-  if (t === 'pickup') distKm = -1;
+  if (t === 'pickup') {
+    distKm = -1;
+  } else {
+    // Auto-detect location when delivery is selected
+    if (distKm < 0) detectLocation();
+  }
   renderCart();
 }
 
@@ -642,7 +662,7 @@ function updateFloatBar() {
 
 // ── PLACE ORDER ────────────────────────────
 
-function placeOrder() {
+async function placeOrder() {
   const items = Object.entries(cart);
 
   if (!items.length) {
@@ -701,36 +721,68 @@ function placeOrder() {
   msg += `\n*Total:* ₹${sub + del}`;
   msg += `\n\n_Placed via urbanzayka.com/order_`;
 
-  // Save to Firebase (for dashboard)
-  if (typeof window.saveOrderToFirebase === 'function') {
-    const orderData = {
-      orderId: refNo,
-      customerName: name,
-      customerPhone: phone,
-      orderType,
-      address: addr || '',
-      distance: distKm >= 0 ? parseFloat(distKm.toFixed(1)) : null,
-      deliveryCharge: del,
-      items: items.map(([id, qty]) => {
-        const item = MENU.find(m => String(m.id) === String(id));
-        if(!item) return null;
-        return { name: item.name, qty, price: item.price, total: item.price * qty };
-      }).filter(Boolean),
-      subtotal: sub,
-      total: sub + del,
-    };
-    window.saveOrderToFirebase(orderData);
-  }
-
   const waUrl = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
 
-  // Play ding sound
-  playDing();
+  // ── STEP 1: Disable button & show saving state ──────────────────────────
+  const confirmBtn = document.querySelector('.checkout-btn');
+  if (confirmBtn) { confirmBtn.disabled = true; confirmBtn.querySelector('span').textContent = '⏳ Saving order...'; }
 
-  // Show success screen
+  // ── STEP 2: Save to Firebase FIRST (await) ─────────────────────────────
+  const orderData = {
+    orderId: refNo,
+    customerName: name,
+    customerPhone: phone,
+    orderType,
+    address: addr || '',
+    distance: distKm >= 0 ? parseFloat(distKm.toFixed(1)) : null,
+    deliveryCharge: del,
+    items: Object.entries(cart).map(([id, qty]) => {
+      const item = MENU.find(m => String(m.id) === String(id));
+      if(!item) return null;
+      return { name: item.name, qty, price: item.price, total: item.price * qty };
+    }).filter(Boolean),
+    subtotal: sub,
+    total: sub + del,
+  };
+
+  try {
+    if (typeof window.saveOrderToFirebase === 'function') {
+      await window.saveOrderToFirebase(orderData);
+      console.log('✅ Order saved to dashboard');
+    }
+  } catch(e) {
+    // Even if Firebase fails, still proceed — WhatsApp is backup
+    console.warn('Firebase save failed, proceeding anyway:', e);
+  }
+
+  // ── STEP 3: Play ding, show success screen ─────────────────────────────
+  playDing();
   document.getElementById('order-ref').textContent = 'Order ID: ' + refNo;
   document.getElementById('wa-open-btn').onclick = () => window.open(waUrl, '_blank');
   showScreen('sc-success');
+
+  // Reset button state
+  if (confirmBtn) { confirmBtn.disabled = false; confirmBtn.querySelector('span').textContent = '✅ Confirm Order'; }
+
+  // ── STEP 4: 3-second countdown → auto-open WhatsApp ────────────────────
+  let secs = 3;
+  const ring = document.getElementById('countdown-ring');
+  const numEl = document.getElementById('countdown-num');
+  const txtEl = document.getElementById('countdown-txt');
+  const circumference = 239;
+
+  const tick = () => {
+    secs--;
+    numEl.textContent = secs;
+    txtEl.textContent = secs > 0 ? `Opening WhatsApp in ${secs}s...` : 'Opening WhatsApp...';
+    ring.style.strokeDashoffset = circumference * (1 - secs / 3);
+    if (secs <= 0) {
+      window.open(waUrl, '_blank');
+    } else {
+      setTimeout(tick, 1000);
+    }
+  };
+  setTimeout(tick, 1000);
 }
 
 // ── DING SOUND ─────────────────────────────
@@ -900,6 +952,10 @@ function showMenu() { showScreen('sc-menu'); }
 function showCart() {
   renderCart();
   showScreen('sc-cart');
+  // Auto-detect location if delivery is selected and not yet detected
+  if (orderType === 'delivery' && distKm < 0) {
+    setTimeout(detectLocation, 400);
+  }
 }
 
 // ── MENU RENDER ────────────────────────────
