@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
+
   <url>
     <loc>https://urbanzayka.in/</loc>
-    <lastmod>2026-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://urbanzayka.in/og-image.png</image:loc>
+      <image:title>Urban Zayka — Food Delivery Met City Haryana</image:title>
+      <image:caption>Order Indian, Chinese and Breakfast food online from Urban Zayka, Met City</image:caption>
+    </image:image>
+    <mobile:mobile/>
   </url>
+
+  <url>
+    <loc>https://urbanzayka.in/install</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <mobile:mobile/>
+  </url>
+
 </urlset>

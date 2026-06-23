@@ -1,3 +1,16 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /dashboard.html
+
 Sitemap: https://urbanzayka.in/sitemap.xml
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 5
