@@ -153,6 +153,7 @@ const UZ_SEO = {
   document.title = S.title;
 
   // ── 2. BASIC META ──────────────────────────────────────────
+  meta('google-site-verification', '3Sntnz5x6HouSRmwxU3SHJF-UknwBOxJzcI3i7j1Xac');
   meta('description',            S.description);
   meta('keywords',               S.keywords);
   meta('author',                 S.siteNameEn);
