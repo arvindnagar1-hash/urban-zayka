@@ -203,7 +203,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 .bill-row:last-child { border-bottom: none; font-weight: 700; color: #1a1a1a; font-size: 14px; }
 
 /* ---- CHECKOUT ---- */
-.checkout-bar { position: sticky; bottom: 0; padding: 12px; background: #fff; border-top: 1px solid #eee; z-index: 10; }
+.checkout-bar { padding: 12px; background: #fff; border-top: 1px solid #eee; }
 .checkout-btn { width: 100%; background: var(--red); color: #fff; border: none; border-radius: 14px; padding: 14px 18px; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: inherit; }
 
 /* ---- SUCCESS ---- */
@@ -521,14 +521,15 @@ let orderType = 'pickup';
 // ── CART OPERATIONS ────────────────────────
 
 function addItem(id) {
-  cart[id] = (cart[id] || 0) + 1;
+  cart[String(id)] = (cart[String(id)] || 0) + 1;
   updateFloatBar();
   renderMenu();
 }
 
 function removeItem(id) {
-  if (cart[id] > 1) cart[id]--;
-  else delete cart[id];
+  const key = String(id);
+  if (cart[key] > 1) cart[key]--;
+  else delete cart[key];
   updateFloatBar();
   renderMenu();
 }
@@ -631,7 +632,7 @@ function updateFloatBar() {
     hb.style.display = 'flex';
     document.getElementById('fb-items').textContent = '🛒 ' + cnt + (cnt === 1 ? ' item' : ' items');
     document.getElementById('fb-label').textContent = 'View Cart →';
-    document.getElementById('fb-total').textContent = '₹' + sub;
+    document.getElementById('fb-total').textContent = sub > 0 ? '₹' + sub : '';
     document.getElementById('hcart-cnt').textContent = cnt;
   } else {
     fb.classList.remove('vis');
