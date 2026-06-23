@@ -129,6 +129,9 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 /* ---- SCREENS ---- */
 .screen { display: none; flex-direction: column; flex: 1; }
 .screen.active { display: flex; }
+#sc-cart { height: 100vh; height: 100dvh; }
+#sc-cart > div[style*="flex:1"] { min-height: 0; }
+#sc-success { height: 100vh; height: 100dvh; }
 
 /* ---- HEADER (dark) ---- */
 .app-header { background: var(--navy2); padding: 12px 14px 10px; position: sticky; top: 0; z-index: 100; }
@@ -335,7 +338,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
       <button class="back-btn" onclick="showMenu()">←</button>
       <h2>Your Order</h2>
     </div>
-    <div style="flex:1;overflow-y:auto;padding-bottom:80px">
+    <div style="flex:1;overflow-y:auto;padding-bottom:80px;min-height:0;">
 
       <div class="cart-list" id="cart-list"></div>
       <div class="required-note"><span>*</span> Required fields</div>
