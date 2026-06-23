@@ -203,7 +203,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 .bill-row:last-child { border-bottom: none; font-weight: 700; color: #1a1a1a; font-size: 14px; }
 
 /* ---- CHECKOUT ---- */
-.checkout-bar { position: sticky; bottom: 0; padding: 12px; background: #fff; border-top: 1px solid #eee; }
+.checkout-bar { position: sticky; bottom: 0; padding: 12px; background: #fff; border-top: 1px solid #eee; z-index: 10; }
 .checkout-btn { width: 100%; background: var(--red); color: #fff; border: none; border-radius: 14px; padding: 14px 18px; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: inherit; }
 
 /* ---- SUCCESS ---- */
@@ -263,8 +263,8 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
     <div class="tabs" id="tabs-container"></div>
     <div class="menu-list" id="menu-list"></div>
     <button class="float-bar" id="float-bar" onclick="showCart()">
-      <span id="fb-items">0 items</span>
-      <span>View Cart →</span>
+      <span id="fb-items">🛒 0 items</span>
+      <span id="fb-label" style="font-size:13px;opacity:.85">View Cart →</span>
       <span id="fb-total">₹0</span>
     </button>
   </div>
@@ -400,14 +400,23 @@ const CATS = [
 ];
 
 const CAT_LABELS = {
-  breakfast:  '🌅 Breakfast (7–10AM)',
-  starters:   '🍢 Starters (12PM–10:30PM)',
-  sandwiches: '🥪 Sandwiches',
-  indian:     '🍛 Indian Main Course',
-  chinese:    '🥢 Chinese Main Course',
-  breads:     '🫓 Indian Breads',
-  meals:      '🍱 Meals & Thali',
-  beverages:  '☕ Beverages',
+  breakfast:    '🌅 Breakfast (7–10AM)',
+  starters:     '🍢 Starters (12PM–10:30PM)',
+  sandwiches:   '🥪 Sandwiches',
+  indian:       '🍛 Indian Main Course',
+  chinese:      '🥢 Chinese Main Course',
+  breads:       '🫓 Indian Breads',
+  meals:        '🍱 Meals & Thali',
+  beverages:    '☕ Beverages',
+  // Uppercase fallbacks
+  'Breakfast':  '🌅 Breakfast (7–10AM)',
+  'Starters':   '🍢 Starters (12PM–10:30PM)',
+  'Sandwiches': '🥪 Sandwiches',
+  'Indian Main':'🍛 Indian Main Course',
+  'Chinese':    '🥢 Chinese Main Course',
+  'Breads':     '🫓 Indian Breads',
+  'Meals':      '🍱 Meals & Thali',
+  'Beverages':  '☕ Beverages',
 };
 
 // Each item: { id, name, price, cat, emoji, sub?, mrp? }
@@ -526,8 +535,8 @@ function removeItem(id) {
 
 function cartTotal() {
   return Object.entries(cart).reduce((sum, [id, qty]) => {
-    const item = MENU.find(m => m.id == id);
-    return sum + (item.price * qty);
+    const item = MENU.find(m => String(m.id) === String(id));
+    return sum + ((item ? item.price : 0) * qty);
   }, 0);
 }
 
@@ -556,17 +565,18 @@ function renderCart() {
   }
 
   el.innerHTML = items.map(([id, qty]) => {
-    const item = MENU.find(m => m.id == id);
+    const item = MENU.find(m => String(m.id) === String(id));
+    if(!item) return '';
     return `
       <div class="cart-item">
         <div>
-          <div class="ci-name">${item.emoji} ${item.name}</div>
+          <div class="ci-name">${item.emoji || '🍽️'} ${item.name}</div>
           <div class="ci-price">₹${item.price} × ${qty} = ₹${item.price * qty}</div>
         </div>
         <div class="qty-ctrl">
-          <button onclick="removeItem(${id}); renderCart()">−</button>
+          <button onclick="removeItem('${id}'); renderCart()">−</button>
           <span>${qty}</span>
-          <button onclick="addItem(${id}); renderCart()">+</button>
+          <button onclick="addItem('${id}'); renderCart()">+</button>
         </div>
       </div>`;
   }).join('');
@@ -619,7 +629,8 @@ function updateFloatBar() {
   if (cnt > 0) {
     fb.classList.add('vis');
     hb.style.display = 'flex';
-    document.getElementById('fb-items').textContent = cnt + (cnt === 1 ? ' item' : ' items');
+    document.getElementById('fb-items').textContent = '🛒 ' + cnt + (cnt === 1 ? ' item' : ' items');
+    document.getElementById('fb-label').textContent = 'View Cart →';
     document.getElementById('fb-total').textContent = '₹' + sub;
     document.getElementById('hcart-cnt').textContent = cnt;
   } else {
@@ -677,7 +688,8 @@ function placeOrder() {
 
   msg += `\n*Order Items:*\n`;
   items.forEach(([id, qty]) => {
-    const item = MENU.find(m => m.id == id);
+    const item = MENU.find(m => String(m.id) === String(id));
+    if(!item) return;
     msg += `• ${item.name} × ${qty}  = ₹${item.price * qty}\n`;
   });
 
@@ -699,9 +711,10 @@ function placeOrder() {
       distance: distKm >= 0 ? parseFloat(distKm.toFixed(1)) : null,
       deliveryCharge: del,
       items: items.map(([id, qty]) => {
-        const item = MENU.find(m => m.id == id);
+        const item = MENU.find(m => String(m.id) === String(id));
+        if(!item) return null;
         return { name: item.name, qty, price: item.price, total: item.price * qty };
-      }),
+      }).filter(Boolean),
       subtotal: sub,
       total: sub + del,
     };
@@ -907,15 +920,16 @@ function renderMenu() {
       lastCat = item.cat;
     }
 
-    const qty  = cart[item.id] || 0;
+    const itemKey = String(item.id);
+    const qty  = cart[itemKey] || 0;
     const ctrl = item.mrp
       ? ''   // MRP items: no add button
       : qty === 0
-        ? `<button class="add-btn" onclick="addItem(${item.id})">+</button>`
+        ? `<button class="add-btn" onclick="addItem('${itemKey}')">+</button>`
         : `<div class="qty-ctrl">
-             <button onclick="removeItem(${item.id})">−</button>
+             <button onclick="removeItem('${itemKey}')">−</button>
              <span>${qty}</span>
-             <button onclick="addItem(${item.id})">+</button>
+             <button onclick="addItem('${itemKey}')">+</button>
            </div>`;
 
     const displayName = (window._lang === 'hi' && item.nameHi) ? item.nameHi : item.name;
@@ -1085,19 +1099,47 @@ function applyFirebaseMenu(docs) {
   if (!docs.length) return;
 
   // Rebuild MENU array
+  // Map from Firebase category values → CATS ids used in rendering
+  const CAT_MAP = {
+    'breakfast':   'breakfast',
+    'starters':    'starters',
+    'sandwiches':  'sandwiches',
+    'indian':      'indian',
+    'indian main': 'indian',
+    'chinese':     'chinese',
+    'breads':      'breads',
+    'meals':       'meals',
+    'beverages':   'beverages',
+    // Old uppercase values
+    'Breakfast':   'breakfast',
+    'Starters':    'starters',
+    'Sandwiches':  'sandwiches',
+    'Indian Main': 'indian',
+    'Chinese':     'chinese',
+    'Breads':      'breads',
+    'Meals':       'meals',
+    'Beverages':   'beverages',
+  };
+
+  // CATS order for sorting
+  const CAT_SORT_ORDER = ['breakfast','starters','sandwiches','indian','chinese','breads','meals','beverages'];
+
   MENU.length = 0;
   docs
     .filter(item => !item.soldOut && item.available !== false)
     .forEach(item => {
-      // Normalise: support both 'cat' and 'category' field names
-      if (!item.cat && item.category) item.cat = item.category;
-      if (!item.category && item.cat) item.category = item.cat;
+      // Normalise category to lowercase CATS id
+      const rawCat = item.category || item.cat || '';
+      item.cat = CAT_MAP[rawCat] || rawCat.toLowerCase();
+      item.category = item.cat;
       MENU.push(item);
     });
 
   // Sort: category order → paneer first → high to low price
   MENU.sort((a, b) => {
-    const catDiff = CAT_ORDER.indexOf(a.cat) - CAT_ORDER.indexOf(b.cat);
+    const ai = CAT_SORT_ORDER.indexOf(a.cat);
+    const bi = CAT_SORT_ORDER.indexOf(b.cat);
+    const catDiff = (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
     if (catDiff !== 0) return catDiff;
     const pa = isPaneer(a.name) ? 0 : 1;
     const pb = isPaneer(b.name) ? 0 : 1;
