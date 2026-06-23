@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="theme-color" content="#16213E"/>
+<meta name="description" content="Urban ज़ायका - Fresh food delivery in Met City, Haryana. Order online now!"/>
+<meta property="og:title" content="Urban ज़ायका"/>
+<meta property="og:description" content="Fresh food delivery in Met City, Haryana"/>
+<meta property="og:type" content="website"/>
+<title>Urban ज़ायका</title>
+<link rel="manifest" href="/manifest.json"/>
+<link rel="icon" href="/icon-192.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--red:#F40009;--navy:#16213E;--white:#fff;--bg:#f4f4f4;--card:#fff;--border:#e8e8e8;--muted:#777;--green:#2e7d32;--r:14px;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter','Noto Sans Devanagari',sans-serif;background:var(--bg);color:#1a1a1a;max-width:480px;margin:0 auto;min-height:100vh;overflow-x:hidden;}
+body.hi{font-family:'Noto Sans Devanagari','Inter',sans-serif;}
+
+/* ── HEADER ── */
+.hdr{background:var(--navy);padding:13px 16px 11px;position:sticky;top:0;z-index:200;}
+.hdr-top{display:flex;align-items:center;justify-content:space-between;}
+.logo h1{color:#fff;font-size:20px;font-weight:700;letter-spacing:-.3px;}
+.logo h1 span{color:var(--red);}
+.logo p{color:#8899bb;font-size:11px;margin-top:2px;}
+.lang-btn{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);color:#fff;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:background .2s;}
+.lang-btn:hover{background:rgba(255,255,255,.2);}
+
+/* ── SEARCH ── */
+.search-wrap{background:var(--navy);padding:8px 16px 13px;}
+.s-inner{position:relative;}
+.s-inp{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:9px 14px 9px 36px;color:#fff;font-size:13px;outline:none;}
+.s-inp::placeholder{color:#8899bb;}
+.s-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#8899bb;font-size:14px;pointer-events:none;}
+
+/* ── BANNER ── */
+.banner{background:linear-gradient(130deg,#b50007,var(--red));margin:12px 12px 4px;border-radius:var(--r);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;overflow:hidden;position:relative;}
+.banner::before{content:'';position:absolute;right:-10px;top:-20px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.07);}
+.bn-sub{color:rgba(255,255,255,.82);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
+.bn-main{color:#fff;font-size:14px;font-weight:700;margin-top:3px;}
+.bn-ico{font-size:34px;position:relative;z-index:1;}
+
+/* ── CATEGORY PILLS ── */
+.cat-bar{display:flex;gap:7px;overflow-x:auto;padding:9px 12px 5px;scrollbar-width:none;}
+.cat-bar::-webkit-scrollbar{display:none;}
+.cpill{flex-shrink:0;background:var(--card);border:1.5px solid var(--border);border-radius:20px;padding:5px 13px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .15s;color:#444;}
+.cpill.on{background:var(--red);border-color:var(--red);color:#fff;font-weight:600;}
+
+/* ── SECTION TITLE ── */
+.sec-hd{font-size:15px;font-weight:700;padding:13px 16px 7px;color:var(--navy);display:flex;align-items:center;gap:8px;}
+.sec-hd::after{content:'';flex:1;height:1.5px;background:var(--border);border-radius:2px;}
+
+/* ── MENU CARD ── */
+.mlist{padding:0 12px;display:flex;flex-direction:column;gap:9px;}
+.mcard{background:var(--card);border-radius:var(--r);display:flex;align-items:stretch;box-shadow:0 1px 5px rgba(0,0,0,.07);overflow:hidden;position:relative;transition:box-shadow .2s;}
+.mcard:active{box-shadow:0 3px 12px rgba(0,0,0,.13);}
+
+/* SVG photo tile */
+.ptile{width:96px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.ptile svg{width:100%;height:100%;display:block;}
+
+/* Item info */
+.minfo{flex:1;padding:10px 12px 10px 9px;display:flex;flex-direction:column;justify-content:space-between;min-width:0;}
+.vrow{display:flex;align-items:center;gap:5px;margin-bottom:3px;}
+.vdot{width:14px;height:14px;border:1.5px solid;border-radius:2px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.vdot.v{border-color:var(--green);}.vdot.v::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);}
+.vdot.nv{border-color:#c62828;}.vdot.nv::after{content:'';width:7px;height:7px;border-radius:50%;background:#c62828;}
+.iname{font-size:14px;font-weight:600;color:#1a1a1a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.idesc{font-size:11px;color:var(--muted);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:5px;}
+.ifoot{display:flex;align-items:center;justify-content:space-between;}
+.iprice{font-size:15px;font-weight:700;color:var(--navy);}
+.sold-lbl{font-size:11px;color:#999;font-weight:500;}
+
+.add-btn{background:#fff;border:1.5px solid var(--red);color:var(--red);border-radius:8px;padding:5px 15px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;}
+.add-btn:active{background:var(--red);color:#fff;transform:scale(.97);}
+.qctrl{display:flex;align-items:center;background:var(--red);border-radius:8px;overflow:hidden;}
+.qbtn{background:none;border:none;color:#fff;font-size:16px;font-weight:700;padding:4px 10px;cursor:pointer;line-height:1;}
+.qnum{color:#fff;font-size:13px;font-weight:700;min-width:20px;text-align:center;}
+
+.best-badge{position:absolute;top:7px;left:7px;background:rgba(230,81,0,.92);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;text-transform:uppercase;letter-spacing:.4px;z-index:2;}
+
+/* ── CART BAR ── */
+.cart-bar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:448px;background:var(--navy);border-radius:14px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 8px 32px rgba(22,33,62,.4);z-index:300;cursor:pointer;animation:slideUp .3s ease;}
+@keyframes slideUp{from{transform:translateX(-50%) translateY(20px);opacity:0;}to{transform:translateX(-50%) translateY(0);opacity:1;}}
+.cl{display:flex;align-items:center;gap:10px;}
+.ccount{background:var(--red);color:#fff;width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;}
+.clbl{color:#fff;font-size:13px;font-weight:600;line-height:1.2;}
+.clbl span{display:block;font-size:11px;color:#8899bb;font-weight:400;}
+.cprice{color:#fff;font-size:16px;font-weight:700;}
+.carrow{background:rgba(255,255,255,.1);color:#fff;width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;}
+
+/* ── CHECKOUT OVERLAY ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:400;display:none;align-items:flex-end;}
+.overlay.show{display:flex;}
+.sheet{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:480px;margin:0 auto;padding:20px 20px 32px;max-height:92vh;overflow-y:auto;}
+.sheet-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.sheet-hd h2{font-size:17px;font-weight:700;color:var(--navy);}
+.close-btn{background:#f4f4f4;border:none;width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+
+/* Order type toggle */
+.otype{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.otype-btn{border:1.5px solid var(--border);border-radius:10px;padding:10px;text-align:center;cursor:pointer;transition:all .15s;background:#fff;}
+.otype-btn.on{border-color:var(--red);background:#fff5f5;}
+.otype-btn .oi{font-size:22px;display:block;margin-bottom:3px;}
+.otype-btn .ol{font-size:13px;font-weight:600;color:#444;}
+.otype-btn.on .ol{color:var(--red);}
+
+/* GPS / Location */
+.gps-btn{width:100%;padding:11px;border-radius:10px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;transition:all .2s;}
+.gps-btn.detected{border-color:var(--red);background:#fff5f5;color:var(--red);}
+.gps-status{font-size:12px;padding:8px 12px;border-radius:8px;margin-bottom:12px;display:none;}
+.gps-status.ok{background:#e8f5e9;color:#2e7d32;display:block;}
+.gps-status.err{background:#fff3e0;color:#e65100;display:block;}
+.gps-status.far{background:#fce4ec;color:#c62828;display:block;}
+
+/* Free delivery progress */
+.free-bar{background:#fff8e1;border-radius:10px;padding:10px 12px;margin-bottom:14px;display:none;}
+.free-bar.show{display:block;}
+.free-bar p{font-size:12px;font-weight:600;color:#e65100;margin-bottom:6px;}
+.prog-track{background:#ffe082;border-radius:4px;height:5px;overflow:hidden;}
+.prog-fill{background:#FF6F00;height:100%;border-radius:4px;transition:width .4s;}
+
+/* Form fields */
+.flabel{font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;display:block;}
+.flabel .req{color:var(--red);}
+.finp{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;font-size:14px;outline:none;margin-bottom:12px;font-family:inherit;transition:border-color .2s;}
+.finp:focus{border-color:var(--red);}
+.finp.err-field{border-color:#c62828;}
+
+/* Order summary */
+.sum-box{background:#f9f9f9;border-radius:10px;padding:12px;margin-bottom:16px;}
+.sum-row{display:flex;justify-content:space-between;font-size:13px;padding:3px 0;}
+.sum-row.total{font-size:15px;font-weight:700;border-top:1.5px solid var(--border);margin-top:6px;padding-top:8px;}
+.sum-row.free-del{color:var(--green);font-weight:600;}
+
+.wa-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:12px;padding:15px;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s;}
+.wa-btn:disabled{opacity:.6;cursor:not-allowed;}
+.wa-btn:active{opacity:.85;}
+
+/* Cart items in sheet */
+.cart-items{margin-bottom:14px;}
+.ci-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f0f0;font-size:13px;}
+.ci-row:last-child{border-bottom:none;}
+.ci-name{flex:1;font-weight:500;}
+.ci-qty{color:var(--muted);margin:0 10px;}
+.ci-price{font-weight:600;}
+
+.pb{height:90px;}
+
+/* Loading spinner */
+.loading{text-align:center;padding:40px 20px;color:var(--muted);}
+.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* Toast */
+.toast{position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:500;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;}
+</style>
+</head>
+<body id="appBody">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-top">
+    <div class="logo">
+      <h1>Urban <span>ज़ायका</span></h1>
+      <p id="hdr-sub">Met City, Haryana · Open Now 🟢</p>
+    </div>
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">हिंदी</button>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <div class="s-inner">
+    <span class="s-ico">🔍</span>
+    <input class="s-inp" id="srch" placeholder="Search dishes..." oninput="renderMenu()"/>
+  </div>
+</div>
+
+<!-- BANNER -->
+<div class="banner">
+  <div>
+    <p class="bn-sub" id="bnSub">ORDER ABOVE ₹1000 FOR FREE DELIVERY</p>
+    <p class="bn-main" id="bnMain">Fresh food, Fast delivery 🚀</p>
+  </div>
+  <div class="bn-ico">🍛</div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="cat-bar" id="catBar"></div>
+
+<!-- MENU -->
+<div id="menuWrap">
+  <div class="loading"><div class="spinner"></div><p id="loadTxt">Loading menu...</p></div>
+</div>
+
+<div class="pb"></div>
+
+<!-- CART BAR -->
+<div class="cart-bar" id="cartBar" style="display:none" onclick="openCheckout()">
+  <div class="cl">
+    <div class="ccount" id="cCount">0</div>
+    <div class="clbl" id="cLbl">View Cart<span id="cSub">Tap to place order</span></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="cprice" id="cPrice">₹0</div>
+    <div class="carrow">›</div>
+  </div>
+</div>
+
+<!-- CHECKOUT OVERLAY -->
+<div class="overlay" id="overlay" onclick="overlayClick(event)">
+<div class="sheet" id="sheet">
+  <div class="sheet-hd">
+    <h2 id="sheetTitle">Your Order</h2>
+    <button class="close-btn" onclick="closeCheckout()">✕</button>
+  </div>
+
+  <!-- Order type -->
+  <div class="otype">
+    <div class="otype-btn" id="btnPickup" onclick="setOtype('pickup')">
+      <span class="oi">🚶</span><span class="ol" id="pickupLbl">Pickup</span>
+    </div>
+    <div class="otype-btn on" id="btnDelivery" onclick="setOtype('delivery')">
+      <span class="oi">🛵</span><span class="ol" id="deliveryLbl">Delivery</span>
+    </div>
+  </div>
+
+  <!-- GPS section (shown only for delivery) -->
+  <div id="gpsSection">
+    <button class="gps-btn" id="gpsBtn" onclick="detectGPS()">
+      <span>📍</span><span id="gpsBtnTxt">Detect My Location</span>
+    </button>
+    <div class="gps-status" id="gpsStatus"></div>
+  </div>
+
+  <!-- Free delivery progress bar -->
+  <div class="free-bar" id="freeBar">
+    <p id="freeBarTxt">🚚 Add ₹920 more for FREE delivery!</p>
+    <div class="prog-track"><div class="prog-fill" id="progFill" style="width:8%"></div></div>
+  </div>
+
+  <!-- Cart items -->
+  <div class="cart-items" id="cartItems"></div>
+
+  <!-- Form -->
+  <label class="flabel" for="custName"><span id="nameLbl">Your Name</span> <span class="req">*</span></label>
+  <input class="finp" id="custName" type="text" placeholder="Enter your full name"/>
+
+  <label class="flabel" for="custPhone"><span id="phoneLbl">Mobile Number</span> <span class="req">*</span></label>
+  <input class="finp" id="custPhone" type="tel" placeholder="10-digit mobile number" maxlength="10"/>
+
+  <div id="addrSection">
+    <label class="flabel" for="custAddr"><span id="addrLbl">Delivery Address</span></label>
+    <textarea class="finp" id="custAddr" rows="2" placeholder="Enter full delivery address" style="resize:none;"></textarea>
+  </div>
+
+  <!-- Summary -->
+  <div class="sum-box">
+    <div class="sum-row"><span id="subLbl">Subtotal</span><span id="sumSub">₹0</span></div>
+    <div class="sum-row" id="delRow"><span id="delLbl">Delivery charge</span><span id="sumDel">₹0</span></div>
+    <div class="sum-row total"><span id="totalLbl">Total</span><span id="sumTotal">₹0</span></div>
+  </div>
+
+  <button class="wa-btn" id="waBtn" onclick="placeOrder()">
+    <span>📱</span><span id="waBtnTxt">Order via WhatsApp</span><span id="waBtnPrice"></span>
+  </button>
+</div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- FIREBASE -->
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import{getFirestore,collection,getDocs,query,orderBy}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const FC={
+  apiKey:"AIzaSyBkgTWZwKcXy5BiCVpppltZWVTW7gIPDbE",
+  authDomain:"urban-zayka.firebaseapp.com",
+  projectId:"urban-zayka",
+  storageBucket:"urban-zayka.firebasestorage.app",
+  messagingSenderId:"849575139822",
+  appId:"1:849575139822:web:01e6d124f8d78267b196ff",
+  measurementId:"G-HLPX0RYR22"
+};
+const app=initializeApp(FC);
+const db=getFirestore(app);
+window._db=db;
+
+async function loadMenu(){
+  try{
+    const snap=await getDocs(collection(db,"menuItems"));
+    const items=[];
+    snap.forEach(d=>items.push({id:d.id,...d.data()}));
+    window._menuData=items;
+    window._menuLoaded=true;
+    if(window._initDone)window.buildMenu();
+  }catch(e){
+    console.error(e);
+    document.getElementById('loadTxt').textContent='Failed to load menu. Please refresh.';
+  }
+}
+loadMenu();
+</script>
+
+<script>
+// ── LANGUAGE ──────────────────────────────────────────────────────────────
+const L={
+  en:{
+    hdrSub:"Met City, Haryana · Open Now 🟢",
+    bnSub:"ORDER ABOVE ₹1000 FOR FREE DELIVERY",
+    bnMain:"Fresh food, Fast delivery 🚀",
+    search:"Search dishes...",
+    loading:"Loading menu...",
+    langBtn:"हिंदी",
+    allCat:"All",
+    add:"ADD",
+    best:"BESTSELLER",
+    soldOut:"SOLD OUT",
+    viewCart:"View Cart",
+    cartSub:"Tap to place order",
+    sheetTitle:"Your Order",
+    pickup:"Pickup",
+    delivery:"Delivery",
+    detectGPS:"Detect My Location",
+    locationDetected:"Location Detected ✓",
+    nameLbl:"Your Name",
+    phoneLbl:"Mobile Number",
+    addrLbl:"Delivery Address",
+    subLbl:"Subtotal",
+    delLbl:"Delivery charge",
+    totalLbl:"Total",
+    freeDelRow:"FREE 🎉",
+    orderBtn:"Order via WhatsApp",
+    nameErr:"Please enter your name",
+    phoneErr:"Please enter valid 10-digit mobile number",
+    farErr:"Sorry, we deliver only within 10km. You are {d}km away.",
+    gpsOk:"You are {d}km away — Delivery charge: ₹{c}",
+    gpsFree:"You are {d}km away — FREE Delivery! 🎉",
+    gpsErr:"Could not detect location. Enter address manually.",
+    freeBarTxt:"🚚 Add ₹{r} more for FREE delivery!",
+    delSlabs:"Delivery: upto 5km = ₹50 | 5–10km = ₹100 | Max 10km",
+    countdown:"Opening WhatsApp in {n}s..."
+  },
+  hi:{
+    hdrSub:"मेट सिटी, हरियाणा · अभी खुला है 🟢",
+    bnSub:"₹1000 से ऊपर के ऑर्डर पर मुफ़्त डिलीवरी",
+    bnMain:"ताज़ा खाना, तेज़ डिलीवरी 🚀",
+    search:"खाना खोजें...",
+    loading:"मेनू लोड हो रहा है...",
+    langBtn:"English",
+    allCat:"सभी",
+    add:"जोड़ें",
+    best:"बेस्टसेलर",
+    soldOut:"उपलब्ध नहीं",
+    viewCart:"कार्ट देखें",
+    cartSub:"ऑर्डर करने के लिए दबाएं",
+    sheetTitle:"आपका ऑर्डर",
+    pickup:"पिकअप",
+    delivery:"डिलीवरी",
+    detectGPS:"मेरी लोकेशन पता करें",
+    locationDetected:"लोकेशन मिल गई ✓",
+    nameLbl:"आपका नाम",
+    phoneLbl:"मोबाइल नंबर",
+    addrLbl:"डिलीवरी पता",
+    subLbl:"उप-योग",
+    delLbl:"डिलीवरी चार्ज",
+    totalLbl:"कुल",
+    freeDelRow:"मुफ़्त 🎉",
+    orderBtn:"WhatsApp पर ऑर्डर करें",
+    nameErr:"कृपया अपना नाम दर्ज करें",
+    phoneErr:"कृपया 10 अंकों का मोबाइल नंबर दर्ज करें",
+    farErr:"खेद है, हम केवल 10km तक डिलीवरी करते हैं। आप {d}km दूर हैं।",
+    gpsOk:"आप {d}km दूर हैं — डिलीवरी चार्ज: ₹{c}",
+    gpsFree:"आप {d}km दूर हैं — मुफ़्त डिलीवरी! 🎉",
+    gpsErr:"लोकेशन नहीं मिली। पता मैन्युअल भरें।",
+    freeBarTxt:"🚚 मुफ़्त डिलीवरी के लिए ₹{r} और जोड़ें!",
+    delSlabs:"डिलीवरी: 5km तक = ₹50 | 5–10km = ₹100 | अधिकतम 10km",
+    countdown:"{n}s में WhatsApp खुल रहा है..."
+  }
+};
+
+// ── SVG ILLUSTRATIONS (per category) ──────────────────────────────────────
+const SVGS={
+  breakfast:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#FFF8E1"/><ellipse cx="48" cy="56" rx="34" ry="20" fill="#F4C842"/><ellipse cx="48" cy="54" rx="30" ry="16" fill="#E8A020"/><ellipse cx="48" cy="52" rx="22" ry="11" fill="#F4C842"/><circle cx="36" cy="48" r="4" fill="#2e7d32" opacity=".7"/><circle cx="52" cy="50" r="3" fill="#2e7d32" opacity=".7"/><circle cx="44" cy="56" r="3" fill="#c62828" opacity=".6"/><ellipse cx="48" cy="34" rx="18" ry="7" fill="#FFE082" opacity=".8"/><ellipse cx="48" cy="32" rx="16" ry="5" fill="#FFF9C4"/></svg>`,
+  starters:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#FFF3E0"/><rect x="18" y="62" width="60" height="5" rx="2.5" fill="#8B6914"/><rect x="42" y="28" width="5" height="38" rx="2" fill="#A0522D"/><rect x="26" y="40" width="17" height="17" rx="3" fill="#FF8C42" transform="rotate(-10 34 48)"/><rect x="27" y="41" width="15" height="15" rx="2" fill="#FFB347" transform="rotate(-10 34 48)"/><circle cx="35" cy="37" r="5" fill="#FF6347" opacity=".85"/><rect x="50" y="36" width="17" height="17" rx="3" fill="#FF8C42" transform="rotate(8 58 44)"/><rect x="51" y="37" width="15" height="15" rx="2" fill="#FFB347" transform="rotate(8 58 44)"/><circle cx="60" cy="34" r="5" fill="#2e7d32" opacity=".85"/></svg>`,
+  sandwiches:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#FFFDE7"/><rect x="14" y="58" width="68" height="14" rx="7" fill="#D4A055"/><rect x="14" y="44" width="68" height="16" rx="4" fill="#F5F5F5"/><rect x="14" y="46" width="68" height="4" fill="#FF8F00" opacity=".7"/><rect x="14" y="50" width="68" height="4" fill="#4CAF50" opacity=".8"/><rect x="14" y="54" width="68" height="4" fill="#FF5252" opacity=".7"/><rect x="14" y="30" width="68" height="16" rx="7" fill="#E8A020"/><ellipse cx="48" cy="30" rx="34" ry="7" fill="#F4C17A"/></svg>`,
+  indian:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#FBE9E7"/><path d="M16 64 Q16 40 48 38 Q80 40 80 64 Q80 76 48 76 Q16 76 16 64Z" fill="#E53935"/><path d="M18 63 Q18 41 48 39 Q78 41 78 63 Q78 74 48 74 Q18 74 18 63Z" fill="#EF5350"/><path d="M20 62 Q20 43 48 41 Q76 43 76 62 Q76 72 48 72 Q20 72 20 62Z" fill="#FF7043"/><rect x="31" y="50" width="13" height="13" rx="2" fill="#FFFDE7" opacity=".9"/><rect x="51" y="52" width="11" height="11" rx="2" fill="#FFFDE7" opacity=".9"/><rect x="38" y="58" width="11" height="11" rx="2" fill="#FFFDE7" opacity=".85"/><circle cx="48" cy="36" r="4" fill="#FFC107"/></svg>`,
+  chinese:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#F3F8FF"/><ellipse cx="48" cy="70" rx="34" ry="8" fill="#ccc" opacity=".3"/><ellipse cx="30" cy="56" rx="13" ry="9" fill="#F5F5F5" stroke="#DDD" stroke-width="1.5"/><path d="M19 56 Q30 44 41 56" fill="#EFEFEF" stroke="#DDD" stroke-width="1.5"/><ellipse cx="48" cy="50" rx="13" ry="9" fill="#F5F5F5" stroke="#DDD" stroke-width="1.5"/><path d="M37 50 Q48 38 59 50" fill="#EFEFEF" stroke="#DDD" stroke-width="1.5"/><ellipse cx="66" cy="56" rx="13" ry="9" fill="#F5F5F5" stroke="#DDD" stroke-width="1.5"/><path d="M55 56 Q66 44 77 56" fill="#EFEFEF" stroke="#DDD" stroke-width="1.5"/><circle cx="48" cy="28" r="10" fill="#E53935" opacity=".9"/><path d="M43 28 Q48 23 53 28 Q48 33 43 28" fill="#C62828"/></svg>`,
+  breads:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#FFF8E1"/><ellipse cx="48" cy="62" rx="34" ry="16" fill="#D4A055"/><ellipse cx="48" cy="58" rx="32" ry="14" fill="#E8B86D"/><ellipse cx="48" cy="54" rx="28" ry="11" fill="#F4C842"/><ellipse cx="48" cy="52" rx="24" ry="8" fill="#E8A020"/><path d="M28 46 Q38 40 48 44 Q58 40 68 46" fill="none" stroke="#C8860A" stroke-width="2" opacity=".6"/><circle cx="36" cy="50" r="3" fill="#C8860A" opacity=".4"/><circle cx="60" cy="48" r="3" fill="#C8860A" opacity=".4"/></svg>`,
+  meals:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#F1F8E9"/><ellipse cx="48" cy="68" rx="36" ry="10" fill="#ccc" opacity=".2"/><circle cx="48" cy="54" r="28" fill="#fff" stroke="#E0E0E0" stroke-width="2"/><ellipse cx="32" cy="52" rx="10" ry="8" fill="#FF7043" opacity=".85"/><ellipse cx="52" cy="46" rx="9" ry="7" fill="#FFCC02" opacity=".85"/><ellipse cx="58" cy="58" rx="9" ry="7" fill="#4CAF50" opacity=".85"/><ellipse cx="40" cy="62" rx="8" ry="6" fill="#795548" opacity=".75"/><circle cx="48" cy="54" r="6" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1.5"/></svg>`,
+  beverages:`<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="96" fill="#FFFDE7"/><rect x="30" y="30" width="36" height="48" rx="8" fill="#FFB300"/><rect x="31" y="31" width="34" height="46" rx="7" fill="#FFC107"/><rect x="32" y="32" width="32" height="18" rx="6" fill="#FFD54F" opacity=".7"/><ellipse cx="48" cy="30" rx="18" ry="5" fill="#FFCA28"/><ellipse cx="48" cy="29" rx="17" ry="4" fill="#FFE082"/><path d="M36 56 Q48 51 60 56" fill="none" stroke="#FF8F00" stroke-width="1.5"/><rect x="62" y="44" width="13" height="4" rx="2" fill="#FFB300"/></svg>`
+};
+
+// ── MENU CATEGORIES CONFIG ─────────────────────────────────────────────────
+const CATS=[
+  {key:'breakfast',  label:'Breakfast',  labelHi:'नाश्ता',      icon:'🌅'},
+  {key:'starters',   label:'Starters',   labelHi:'स्टार्टर',    icon:'🥗'},
+  {key:'sandwiches', label:'Sandwiches', labelHi:'सैंडविच',     icon:'🥪'},
+  {key:'indian',     label:'Indian Main',labelHi:'इंडियन मेन',  icon:'🍛'},
+  {key:'chinese',    label:'Chinese',    labelHi:'चाइनीज़',     icon:'🥡'},
+  {key:'breads',     label:'Breads',     labelHi:'ब्रेड्स',     icon:'🫓'},
+  {key:'meals',      label:'Meals',      labelHi:'मील्स',       icon:'🍱'},
+  {key:'beverages',  label:'Beverages',  labelHi:'पेय',         icon:'🥤'},
+];
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+let lang = localStorage.getItem('uz_lang') || 'en';
+let cart = {};
+let activeCat = 'all';
+let orderType = 'delivery';
+let gpsData = null; // {dist, charge}
+let menuData = []; // loaded from Firebase
+
+const RESTAURANT_LAT = 28.50518186292854;
+const RESTAURANT_LNG = 76.74672250104636;
+const WA_NUMBER = '918860609555';
+const FREE_DEL_MIN = 1000;
+
+// ── HELPERS ────────────────────────────────────────────────────────────────
+function t(key, vars={}){
+  let s = L[lang][key] || key;
+  Object.entries(vars).forEach(([k,v])=>{ s=s.replace(`{${k}}`,v); });
+  return s;
+}
+function showToast(msg,dur=2500){
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),dur);
+}
+function haversine(lat1,lon1,lat2,lon2){
+  const R=6371, dLat=(lat2-lat1)*Math.PI/180, dLon=(lon2-lon1)*Math.PI/180;
+  const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+function deliveryCharge(distKm, subtotal){
+  if(subtotal >= FREE_DEL_MIN) return 0;
+  if(distKm <= 5) return 50;
+  if(distKm <= 10) return 100;
+  return -1; // too far
+}
+
+// ── LANGUAGE ──────────────────────────────────────────────────────────────
+function applyLang(){
+  document.getElementById('appBody').className = lang==='hi'?'hi':'';
+  document.getElementById('langBtn').textContent = t('langBtn');
+  document.getElementById('hdr-sub').textContent = t('hdrSub');
+  document.getElementById('bnSub').textContent = t('bnSub');
+  document.getElementById('bnMain').textContent = t('bnMain');
+  document.getElementById('srch').placeholder = t('search');
+  document.getElementById('loadTxt').textContent = t('loading');
+  document.getElementById('sheetTitle').textContent = t('sheetTitle');
+  document.getElementById('pickupLbl').textContent = t('pickup');
+  document.getElementById('deliveryLbl').textContent = t('delivery');
+  document.getElementById('gpsBtnTxt').textContent = gpsData ? t('locationDetected') : t('detectGPS');
+  document.getElementById('nameLbl').textContent = t('nameLbl');
+  document.getElementById('phoneLbl').textContent = t('phoneLbl');
+  document.getElementById('addrLbl').textContent = t('addrLbl');
+  document.getElementById('subLbl').textContent = t('subLbl');
+  document.getElementById('delLbl').textContent = t('delLbl');
+  document.getElementById('totalLbl').textContent = t('totalLbl');
+  document.getElementById('waBtnTxt').textContent = t('orderBtn');
+}
+function toggleLang(){
+  lang = lang==='en'?'hi':'en';
+  localStorage.setItem('uz_lang', lang);
+  applyLang();
+  renderCats();
+  renderMenu();
+  updateCartBar();
+  if(document.getElementById('overlay').classList.contains('show')) updateSheet();
+}
+
+// ── CATEGORIES ─────────────────────────────────────────────────────────────
+function renderCats(){
+  const bar = document.getElementById('catBar');
+  const allLabel = t('allCat');
+  const pills = [{key:'all', icon:'🍽️', label:allLabel}, ...CATS.map(c=>({key:c.key, icon:c.icon, label:lang==='hi'?c.labelHi:c.label}))];
+  bar.innerHTML = pills.map(p=>`<div class="cpill${activeCat===p.key?' on':''}" onclick="selCat('${p.key}')">${p.icon} ${p.label}</div>`).join('');
+}
+function selCat(c){ activeCat=c; renderCats(); renderMenu(); }
+
+// ── MENU RENDERING ──────────────────────────────────────────────────────────
+function buildMenu(){
+  // Called once Firebase data is loaded
+  menuData = window._menuData || [];
+  renderMenu();
+}
+
+function getSvg(category){
+  const key = (category||'').toLowerCase();
+  return SVGS[key] || SVGS['indian'];
+}
+
+function renderMenu(){
+  if(!window._menuLoaded){ return; }
+  const wrap = document.getElementById('menuWrap');
+  const q = document.getElementById('srch').value.toLowerCase().trim();
+
+  // Group by category, maintaining CATS order
+  const grouped = {};
+  CATS.forEach(c=>{ grouped[c.key]=[]; });
+
+  menuData.forEach(item=>{
+    const cat = (item.category||'').toLowerCase();
+    if(grouped[cat]) grouped[cat].push(item);
+  });
+
+  // Sort within each category: paneer first, then high-to-low price
+  Object.keys(grouped).forEach(cat=>{
+    grouped[cat].sort((a,b)=>{
+      const aP = (a.name||'').toLowerCase().includes('paneer');
+      const bP = (b.name||'').toLowerCase().includes('paneer');
+      if(aP && !bP) return -1;
+      if(!aP && bP) return 1;
+      return (b.price||0)-(a.price||0);
+    });
+  });
+
+  wrap.innerHTML='';
+
+  const sections = activeCat==='all' ? CATS : CATS.filter(c=>c.cat===activeCat||c.key===activeCat);
+
+  let anyShown = false;
+  sections.forEach(catCfg=>{
+    let items = grouped[catCfg.key]||[];
+    if(q) items = items.filter(i=>{
+      const name = (lang==='hi' && i.nameHi ? i.nameHi : i.name)||'';
+      return name.toLowerCase().includes(q);
+    });
+    if(!items.length) return;
+    anyShown = true;
+
+    const sec = document.createElement('div');
+    const title = lang==='hi' ? catCfg.labelHi : catCfg.label;
+    sec.innerHTML = `<div class="sec-hd">${catCfg.icon} ${title}</div><div class="mlist" id="ml-${catCfg.key}"></div>`;
+    wrap.appendChild(sec);
+
+    const list = sec.querySelector(`#ml-${catCfg.key}`);
+    items.forEach(item => renderCard(list, item));
+  });
+
+  if(!anyShown){
+    wrap.innerHTML=`<div class="loading"><p style="font-size:14px;color:var(--muted)">${lang==='hi'?'कोई आइटम नहीं मिला':'No items found'}</p></div>`;
+  }
+}
+
+function renderCard(list, item){
+  const qty = cart[item.id]||0;
+  const name = (lang==='hi' && item.nameHi) ? item.nameHi : item.name;
+  const desc = (lang==='hi' && item.descHi) ? item.descHi : (item.description||item.desc||'');
+  const isSoldOut = item.soldOut || item.available===false;
+  const isBest = item.bestseller || item.best;
+
+  const card = document.createElement('div');
+  card.className='mcard'; card.id=`card-${item.id}`;
+
+  card.innerHTML=`
+    <div class="ptile">${getSvg(item.category)}</div>
+    <div class="minfo">
+      <div>
+        <div class="vrow">
+          <div class="vdot ${item.veg||item.isVeg?'v':'nv'}"></div>
+          <div class="iname">${name}</div>
+        </div>
+        ${desc?`<div class="idesc">${desc}</div>`:''}
+      </div>
+      <div class="ifoot">
+        <div class="iprice">₹${item.price}</div>
+        <div id="ctrl-${item.id}"></div>
+      </div>
+    </div>
+    ${isBest?`<div class="best-badge">${t('best')}</div>`:''}
+  `;
+  list.appendChild(card);
+  renderCtrl(item.id, isSoldOut);
+}
+
+function renderCtrl(id, soldOut){
+  const el = document.getElementById(`ctrl-${id}`); if(!el) return;
+  const qty = cart[id]||0;
+  if(soldOut){
+    el.innerHTML=`<span class="sold-lbl">${t('soldOut')}</span>`;
+    return;
+  }
+  el.innerHTML = qty===0
+    ? `<button class="add-btn" onclick="addItem('${id}')">${t('add')}</button>`
+    : `<div class="qctrl"><button class="qbtn" onclick="remItem('${id}')">−</button><span class="qnum">${qty}</span><button class="qbtn" onclick="addItem('${id}')">+</button></div>`;
+}
+
+function addItem(id){
+  cart[id]=(cart[id]||0)+1;
+  const item=menuData.find(i=>i.id===id);
+  const sold=item&&(item.soldOut||item.available===false);
+  renderCtrl(id,sold); updateCartBar();
+  if(document.getElementById('overlay').classList.contains('show')) updateSheet();
+}
+function remItem(id){
+  if(cart[id]>1) cart[id]--; else delete cart[id];
+  const item=menuData.find(i=>i.id===id);
+  const sold=item&&(item.soldOut||item.available===false);
+  renderCtrl(id,sold); updateCartBar();
+  if(document.getElementById('overlay').classList.contains('show')) updateSheet();
+}
+
+function cartTotals(){
+  let qty=0, sub=0;
+  Object.entries(cart).forEach(([id,q])=>{
+    const item=menuData.find(i=>i.id===id);
+    if(item){ qty+=q; sub+=q*item.price; }
+  });
+  return {qty, sub};
+}
+
+// ── CART BAR ────────────────────────────────────────────────────────────────
+function updateCartBar(){
+  const {qty, sub} = cartTotals();
+  const bar = document.getElementById('cartBar');
+  if(!qty){ bar.style.display='none'; return; }
+  bar.style.display='flex';
+  document.getElementById('cCount').textContent=qty;
+  document.getElementById('cPrice').textContent=`₹${sub}`;
+  document.getElementById('cLbl').innerHTML=`${t('viewCart')}<span>${t('cartSub')}</span>`;
+}
+
+// ── GPS ─────────────────────────────────────────────────────────────────────
+function detectGPS(){
+  if(!navigator.geolocation){ showToast(t('gpsErr')); return; }
+  const btn=document.getElementById('gpsBtn');
+  btn.innerHTML=`<span>⏳</span><span>${lang==='hi'?'लोकेशन ढूंढ रहे हैं...':'Detecting location...'}</span>`;
+  navigator.geolocation.getCurrentPosition(pos=>{
+    const dist = haversine(pos.coords.latitude, pos.coords.longitude, RESTAURANT_LAT, RESTAURANT_LNG);
+    const distR = Math.round(dist*10)/10;
+    const {sub} = cartTotals();
+    const charge = deliveryCharge(distR, sub);
+
+    if(charge===-1){
+      document.getElementById('gpsStatus').className='gps-status far';
+      document.getElementById('gpsStatus').textContent=t('farErr',{d:distR});
+      gpsData=null;
+      btn.innerHTML=`<span>📍</span><span>${t('detectGPS')}</span>`;
+    } else {
+      gpsData={dist:distR, charge};
+      btn.className='gps-btn detected';
+      btn.innerHTML=`<span>📍</span><span>${t('locationDetected')}</span>`;
+      const statusEl=document.getElementById('gpsStatus');
+      if(charge===0){
+        statusEl.className='gps-status ok';
+        statusEl.textContent=t('gpsFree',{d:distR});
+      } else {
+        statusEl.className='gps-status ok';
+        statusEl.textContent=t('gpsOk',{d:distR,c:charge});
+      }
+    }
+    updateSheet();
+  }, ()=>{
+    document.getElementById('gpsStatus').className='gps-status err';
+    document.getElementById('gpsStatus').textContent=t('gpsErr');
+    btn.innerHTML=`<span>📍</span><span>${t('detectGPS')}</span>`;
+    gpsData=null;
+  });
+}
+
+// ── CHECKOUT ─────────────────────────────────────────────────────────────────
+function openCheckout(){
+  const {qty}=cartTotals(); if(!qty) return;
+  document.getElementById('overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+  applyLang();
+  updateSheet();
+}
+function closeCheckout(){
+  document.getElementById('overlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+function overlayClick(e){ if(e.target===document.getElementById('overlay')) closeCheckout(); }
+
+function setOtype(type){
+  orderType=type;
+  document.getElementById('btnPickup').classList.toggle('on', type==='pickup');
+  document.getElementById('btnDelivery').classList.toggle('on', type==='delivery');
+  document.getElementById('gpsSection').style.display=type==='delivery'?'block':'none';
+  document.getElementById('addrSection').style.display=type==='delivery'?'block':'none';
+  document.getElementById('delRow').style.display=type==='delivery'?'flex':'none';
+  updateSheet();
+}
+
+function updateSheet(){
+  const {qty, sub} = cartTotals();
+
+  // Cart items list
+  const ciWrap=document.getElementById('cartItems');
+  ciWrap.innerHTML='';
+  Object.entries(cart).forEach(([id,q])=>{
+    const item=menuData.find(i=>i.id===id); if(!item) return;
+    const name=(lang==='hi'&&item.nameHi)?item.nameHi:item.name;
+    const row=document.createElement('div'); row.className='ci-row';
+    row.innerHTML=`<span class="ci-name">${name}</span><span class="ci-qty">×${q}</span><span class="ci-price">₹${item.price*q}</span>`;
+    ciWrap.appendChild(row);
+  });
+
+  // Delivery charge
+  let delCharge = 0;
+  if(orderType==='delivery'){
+    if(gpsData) delCharge=deliveryCharge(gpsData.dist, sub);
+    else delCharge=sub>=FREE_DEL_MIN?0:50; // default estimate
+  }
+
+  // Free delivery progress bar
+  const freeBar=document.getElementById('freeBar');
+  const freeBarTxt=document.getElementById('freeBarTxt');
+  const progFill=document.getElementById('progFill');
+  if(orderType==='delivery' && sub<FREE_DEL_MIN && delCharge>0){
+    freeBar.classList.add('show');
+    const remain=FREE_DEL_MIN-sub;
+    const pct=Math.min(100,Math.round(sub/FREE_DEL_MIN*100));
+    freeBarTxt.textContent=t('freeBarTxt',{r:remain});
+    progFill.style.width=pct+'%';
+  } else {
+    freeBar.classList.remove('show');
+  }
+
+  const total = sub + (orderType==='delivery' ? (delCharge>0?delCharge:0) : 0);
+  document.getElementById('sumSub').textContent=`₹${sub}`;
+
+  const delRow=document.getElementById('sumDel');
+  if(orderType==='delivery'){
+    if(delCharge===0) {
+      delRow.textContent=t('freeDelRow');
+      delRow.parentElement.className='sum-row free-del';
+    } else if(delCharge>0){
+      delRow.textContent=`₹${delCharge}`;
+      delRow.parentElement.className='sum-row';
+    } else {
+      delRow.textContent=lang==='hi'?'क्षेत्र के बाहर':'Out of range';
+      delRow.parentElement.className='sum-row';
+    }
+  }
+
+  document.getElementById('sumTotal').textContent=`₹${total}`;
+  document.getElementById('waBtnPrice').textContent=` ₹${total}`;
+}
+
+// ── PLACE ORDER ──────────────────────────────────────────────────────────────
+function placeOrder(){
+  const name=document.getElementById('custName').value.trim();
+  const phone=document.getElementById('custPhone').value.trim();
+  const addr=document.getElementById('custAddr').value.trim();
+
+  // Validate
+  document.getElementById('custName').classList.remove('err-field');
+  document.getElementById('custPhone').classList.remove('err-field');
+
+  if(!name){ showToast(t('nameErr')); document.getElementById('custName').classList.add('err-field'); return; }
+  if(!/^\d{10}$/.test(phone)){ showToast(t('phoneErr')); document.getElementById('custPhone').classList.add('err-field'); return; }
+  if(orderType==='delivery' && gpsData && gpsData.charge===-1){ showToast(t('farErr',{d:gpsData.dist})); return; }
+
+  const {sub} = cartTotals();
+  const delCharge = orderType==='delivery' ? (gpsData?deliveryCharge(gpsData.dist,sub):sub>=FREE_DEL_MIN?0:50) : 0;
+  const total = sub + (orderType==='delivery' && delCharge>0 ? delCharge : 0);
+
+  // Build WhatsApp message
+  let msg = `🍽️ *New Order — Urban ज़ायका*\n\n`;
+  msg += `👤 *Name:* ${name}\n`;
+  msg += `📱 *Mobile:* ${phone}\n`;
+  msg += `🛵 *Type:* ${orderType==='delivery'?'Delivery':'Pickup'}\n`;
+  if(orderType==='delivery'){
+    if(gpsData) msg+=`📍 *Distance:* ${gpsData.dist}km\n`;
+    if(addr) msg+=`🏠 *Address:* ${addr}\n`;
+  }
+  msg+=`\n📋 *Order Details:*\n`;
+  Object.entries(cart).forEach(([id,q])=>{
+    const item=menuData.find(i=>i.id===id); if(!item) return;
+    msg+=`• ${item.name} ×${q} — ₹${item.price*q}\n`;
+  });
+  msg+=`\n💰 *Subtotal:* ₹${sub}`;
+  if(orderType==='delivery') msg+=`\n🚚 *Delivery:* ${delCharge===0?'FREE':'₹'+delCharge}`;
+  msg+=`\n✅ *Total: ₹${total}*`;
+
+  const url=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+  // 3-second countdown
+  const btn=document.getElementById('waBtn');
+  btn.disabled=true;
+  let n=3;
+  const tick=()=>{
+    document.getElementById('waBtnTxt').textContent=t('countdown',{n});
+    if(n===0){ window.open(url,'_blank'); closeCheckout(); cart={}; updateCartBar(); renderMenu(); return; }
+    n--; setTimeout(tick,1000);
+  };
+  tick();
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+applyLang();
+renderCats();
+setOtype('delivery');
+
+// Poll for Firebase data
+window._initDone=true;
+if(window._menuLoaded){ buildMenu(); }
+else{
+  const poll=setInterval(()=>{
+    if(window._menuLoaded){ clearInterval(poll); buildMenu(); }
+  },200);
+  setTimeout(()=>clearInterval(poll),15000);
+}
+
+// Register service worker
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/sw.js').catch(()=>{});
+}
+</script>
+</body>
+</html>
