@@ -148,6 +148,11 @@ const UZ_SEO = {
   // $ = cheap, $$ = moderate, $$$ = expensive
   priceRange: "₹50 – ₹250",
 
+  // ── GOOGLE BUSINESS PROFILE ────────────────────────────────
+  googleCID:   "9778314102620661048",
+  googleMaps:  "https://www.google.com/maps?cid=9778314102620661048",
+  googleBiz:   "https://g.page/r/9778314102620661048",
+
   // ── DELIVERY ───────────────────────────────────────────────
   delivery: {
     available:  true,
@@ -296,6 +301,10 @@ const UZ_SEO = {
         }
       }))
     },
+    "review": {
+      "@type": "Review",
+      "url": `https://search.google.com/local/writereview?placeid=${S.googleCID}`
+    },
     "potentialAction": {
       "@type": "OrderAction",
       "target": {
@@ -321,7 +330,9 @@ const UZ_SEO = {
     },
     "sameAs": [
       `https://wa.me/${S.whatsapp}`,
-      S.siteUrl
+      S.siteUrl,
+      S.googleMaps,
+      `https://www.google.com/maps?cid=${S.googleCID}`
     ]
   });
 
@@ -367,7 +378,7 @@ const UZ_SEO = {
     "openingHours": ["Mo-Su 07:00-10:00", "Mo-Su 12:00-22:30"],
     "servesCuisine": S.cuisine,
     "priceRange": S.priceRange,
-    "hasMap": `https://www.google.com/maps?q=${S.geo.lat},${S.geo.lng}`,
+    "hasMap": `https://www.google.com/maps?cid=${S.googleCID}`,
     "paymentAccepted": "Cash, UPI, WhatsApp Pay",
     "currenciesAccepted": "INR"
   });
