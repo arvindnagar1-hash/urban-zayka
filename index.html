@@ -212,7 +212,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 .bill-row:last-child { border-bottom: none; font-weight: 700; color: #1a1a1a; font-size: 14px; }
 
 /* ---- CHECKOUT ---- */
-.checkout-bar { padding: 12px; background: #fff; border-top: 1px solid #eee; }
+.checkout-bar { padding: 12px; background: #fff; border-top: 1px solid #eee; position: sticky; bottom: 0; z-index: 10; flex-shrink: 0; }
 .checkout-btn { width: 100%; background: var(--red); color: #fff; border: none; border-radius: 14px; padding: 14px 18px; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: inherit; }
 
 /* ---- SUCCESS ---- */
