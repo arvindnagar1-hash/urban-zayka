@@ -1142,6 +1142,11 @@ function buildTabs() {
   });
 }
 
+// ── INIT ───────────────────────────────────
+buildTabs();
+renderMenu();
+
+
 // ── PWA INSTALL ────────────────────────────
 
 const isIOS          = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
