@@ -25,79 +25,61 @@ const UZ_SEO = {
   // ── PAGE TITLE & DESCRIPTION ────────────────────────────────
   // Keep title under 60 chars, description under 160 chars
   title:       "Urban ज़ायका — Order Food Online | Met City, Haryana",
-  description: "Order fresh Indian, Chinese & Breakfast food online from Urban Zayka, Met City Haryana. Fast delivery in Dadri Toe, Jhajjar. Paneer Tikka, Malai Chaap, Biryani. Order via WhatsApp!",
+  description: "Order fresh Indian, Chinese & Breakfast food online from Urban Zayka — near Met City, Jhajjar, Haryana. Tiffin & delivery for Met City workers. Malai Chaap, Paneer Tikka, Biryani & more. Order via WhatsApp!",
 
   // ── KEYWORDS ────────────────────────────────────────────────
-  // Deep local SEO — Dadri Toe, Met City, Jhajjar area
+  // Mix of English + Hindi + Local keywords
   keywords: [
-    // ── Primary Brand ──
-    "Urban Zayka",
-    "Urban Zayka Met City",
-    "Urban Zayka Dadri",
-    "urbanzayka.in",
-
-    // ── Core Local (most important) ──
+    // Primary — Met City exact match
     "food delivery Met City",
-    "food delivery Dadri Toe",
+    "restaurant near Met City",
+    "Met City food order online",
+    "Urban Zayka Met City",
+    "order food Met City Jhajjar",
+    "food near Met City Haryana",
+    "best restaurant Met City",
+    "Met City restaurant",
+    // Nearby villages within delivery range
+    "food delivery Aurangpur",
+    "restaurant Dadri Toye",
+    "food delivery Shree Ram Colony Met City",
+    "food delivery Badsa",
+    "restaurant Jhajjar Haryana",
     "food delivery Jhajjar",
-    "restaurant Met City Jhajjar",
-    "food order online Met City",
-    "home delivery Met City Haryana",
-    "online food order Dadri Toe",
-    "food delivery near MET City",
-
-    // ── Nearby Areas ──
-    "food delivery Fatehpur Jhajjar",
-    "food delivery Khalekpur",
-    "food delivery Yaqubpur",
-    "food delivery Kutani Jhajjar",
-    "food delivery Nangla Jhajjar",
-    "food delivery Sondhi",
-    "food delivery Nimana Jhajjar",
-    "food delivery Bir Dadri",
-    "food delivery Sheojipura",
-    "food delivery Kaloi Jhajjar",
-    "restaurant near Dadri Toe",
-    "restaurant near KMP Expressway Jhajjar",
-
-    // ── Dish-specific keywords ──
-    "Paneer Tikka delivery Met City",
-    "Malai Chaap Met City",
-    "Malai Chaap delivery Jhajjar",
-    "Paneer Butter Masala Met City",
-    "Veg Biryani delivery Dadri",
-    "Dal Makhani delivery Met City",
-    "Chole Bhature Met City",
-    "Paratha delivery Met City",
-    "Maggi delivery Met City",
-    "Momos delivery Met City",
-    "Tandoori Chaap Jhajjar",
-    "Chinese food delivery Met City",
-    "breakfast delivery Met City",
+    "order food online Jhajjar",
+    "home delivery Jhajjar",
+    "veg restaurant Jhajjar",
+    // Worker & tiffin audience
     "tiffin service Met City",
-    "lunch delivery MET City workers",
-    "office food delivery Met City",
-
-    // ── Industry workers (600+ companies in MET City!) ──
-    "food delivery Reliance MET City",
-    "lunch delivery Panasonic MET City",
-    "food delivery Japanese Industrial Township",
-    "canteen food delivery MET City",
-    "office lunch delivery Jhajjar",
-
-    // ── Hindi keywords (local audience) ──
+    "tiffin service Met City workers",
+    "office lunch delivery Met City",
+    "lunch delivery Met City",
+    "bulk food order Met City",
+    "corporate tiffin Met City",
+    "factory workers lunch Met City",
+    "industrial area food delivery Met City",
+    // Cuisine with Met City
+    "Indian food Met City",
+    "Chinese food Met City",
+    "North Indian restaurant Met City",
+    "Paneer Tikka Met City",
+    "Malai Chaap Met City",
+    "Biryani delivery Met City",
+    "breakfast delivery Met City",
+    "Chole Bhature Met City",
+    "thali Met City Jhajjar",
+    "WhatsApp food order Met City",
+    // Hindi keywords
     "मेट सिटी खाना डिलीवरी",
     "मेट सिटी रेस्टोरेंट",
-    "दादरी टोए खाना डिलीवरी",
+    "मेट सिटी के पास खाना",
+    "मेट सिटी नाश्ता डिलीवरी",
+    "मेट सिटी टिफिन सर्विस",
     "झज्जर खाना ऑर्डर",
-    "पनीर टिक्का डिलीवरी मेट सिटी",
+    "अर्बन ज़ायका मेट सिटी",
     "मलाई चाप मेट सिटी",
-    "ऑनलाइन खाना ऑर्डर झज्जर",
+    "पनीर टिक्का मेट सिटी",
     "घर पर खाना डिलीवरी मेट सिटी",
-    "दादरी खाना डिलीवरी",
-    "नाश्ता डिलीवरी मेट सिटी",
-    "ऑफिस खाना डिलीवरी मेट सिटी",
-    "झज्जर रेस्टोरेंट",
   ].join(", "),
 
   // ── OPEN GRAPH (Facebook, WhatsApp preview) ────────────────
@@ -120,7 +102,7 @@ const UZ_SEO = {
   // ── GEO / LOCAL SEO ────────────────────────────────────────
   geo: {
     region:    "IN-HR",
-    placename: "Met City, Manesar, Haryana, India",
+    placename: "Near Met City, Aurangpur, Jhajjar, Haryana, India",
     lat:       "28.50518186292854",
     lng:       "76.74672250104636",
   },
@@ -134,11 +116,11 @@ const UZ_SEO = {
 
   // ── ADDRESS ────────────────────────────────────────────────
   address: {
-    street:   "Met City",
-    city:     "Manesar",
+    street:   "Gali No 4, Shree Ram Colony, near Met City, Dadri Toye, Aurangpur",
+    city:     "Jhajjar",
     state:    "Haryana",
     country:  "IN",
-    pincode:  "122504",
+    pincode:  "124103",
   },
 
   // ── CUISINE TYPES ──────────────────────────────────────────
@@ -147,11 +129,6 @@ const UZ_SEO = {
   // ── PRICE RANGE ────────────────────────────────────────────
   // $ = cheap, $$ = moderate, $$$ = expensive
   priceRange: "₹50 – ₹250",
-
-  // ── GOOGLE BUSINESS PROFILE ────────────────────────────────
-  googleCID:   "9778314102620661048",
-  googleMaps:  "https://www.google.com/maps?cid=9778314102620661048",
-  googleBiz:   "https://g.page/r/9778314102620661048",
 
   // ── DELIVERY ───────────────────────────────────────────────
   delivery: {
@@ -202,7 +179,6 @@ const UZ_SEO = {
   document.title = S.title;
 
   // ── 2. BASIC META ──────────────────────────────────────────
-  meta('google-site-verification', '3Sntnz5x6HouSRmwxU3SHJF-UknwBOxJzcI3i7j1Xac');
   meta('description',            S.description);
   meta('keywords',               S.keywords);
   meta('author',                 S.siteNameEn);
@@ -301,10 +277,6 @@ const UZ_SEO = {
         }
       }))
     },
-    "review": {
-      "@type": "Review",
-      "url": `https://search.google.com/local/writereview?placeid=${S.googleCID}`
-    },
     "potentialAction": {
       "@type": "OrderAction",
       "target": {
@@ -323,16 +295,14 @@ const UZ_SEO = {
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.5",
-      "reviewCount": "50",
+      "ratingValue": "5.0",
+      "reviewCount": "41",
       "bestRating": "5",
       "worstRating": "1"
     },
     "sameAs": [
       `https://wa.me/${S.whatsapp}`,
-      S.siteUrl,
-      S.googleMaps,
-      `https://www.google.com/maps?cid=${S.googleCID}`
+      S.siteUrl
     ]
   });
 
@@ -378,7 +348,7 @@ const UZ_SEO = {
     "openingHours": ["Mo-Su 07:00-10:00", "Mo-Su 12:00-22:30"],
     "servesCuisine": S.cuisine,
     "priceRange": S.priceRange,
-    "hasMap": `https://www.google.com/maps?cid=${S.googleCID}`,
+    "hasMap": `https://www.google.com/maps?q=${S.geo.lat},${S.geo.lng}`,
     "paymentAccepted": "Cash, UPI, WhatsApp Pay",
     "currenciesAccepted": "INR"
   });
