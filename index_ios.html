@@ -329,7 +329,8 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
         </button>
       </div>
       <div class="search-bar">
-        <span>🔍 Search dishes, e.g. Malai Chaap…</span>
+        <span style="font-size:14px">🔍</span>
+        <input type="search" id="search-input" placeholder="Search dishes, e.g. Malai Chaap…" oninput="filterMenu(this.value)" style="flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:13px;font-family:inherit;" />
       </div>
     </div>
     <div class="tabs" id="tabs-container"></div>
@@ -660,14 +661,15 @@ function removeItem(id) {
 }
 
 function cartTotal() {
-  return Object.entries(cart).reduce((sum, [id, qty]) => {
-    const item = MENU.find(m => String(m.id) === String(id));
+  return Object.entries(cart).reduce(function(sum, entry) {
+    var id = entry[0]; var qty = entry[1];
+    var item = MENU.find(function(m) { return String(m.id) === String(id); });
     return sum + ((item ? item.price : 0) * qty);
   }, 0);
 }
 
 function cartCount() {
-  return Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+  return Object.values(cart).reduce(function(sum, qty) { return sum + qty; }, 0);
 }
 
 function deliveryCharge() {
@@ -690,45 +692,36 @@ function renderCart() {
     return;
   }
 
-  el.innerHTML = items.map(([id, qty]) => {
-    const item = MENU.find(m => String(m.id) === String(id));
-    if(!item) return '';
-    return `
-      <div class="cart-item">
-        <div>
-          <div class="ci-name">${item.emoji || '🍽️'} ${item.name}</div>
-          <div class="ci-price">₹${item.price} × ${qty} = ₹${item.price * qty}</div>
-        </div>
-        <div class="qty-ctrl">
-          <button onclick="removeItem('${id}'); renderCart()">−</button>
-          <span>${qty}</span>
-          <button onclick="addItem('${id}'); renderCart()">+</button>
-        </div>
-      </div>`;
-  }).join('');
+  el.innerHTML = (function() {
+    var html = '';
+    items.forEach(function(entry) {
+      var id = entry[0]; var qty = entry[1];
+      var item = MENU.find(function(m) { return String(m.id) === String(id); });
+      if (!item) return;
+      html += '<div class="cart-item">';
+      html += '<div><div class="ci-name">' + (item.emoji||'🍽️') + ' ' + item.name + '</div>';
+      html += '<div class="ci-price">₹' + item.price + ' × ' + qty + ' = ₹' + (item.price*qty) + '</div></div>';
+      html += '<div class="qty-ctrl">';
+      html += '<button onclick="removeItem('' + id + ''); renderCart()">−</button>';
+      html += '<span>' + qty + '</span>';
+      html += '<button onclick="addItem('' + id + ''); renderCart()">+</button>';
+      html += '</div></div>';
+    });
+    return html;
+  })();
 
   renderBill();
 }
 
 function renderBill() {
-  const sub = cartTotal();
-  const del = deliveryCharge();
-  const tot = sub + del;
-
-  let deliveryRow = '';
-  if (orderType === 'delivery') {
-    if (del > 0) {
-      deliveryRow = `<div class="bill-row"><span>Delivery charge (${distKm.toFixed(1)} km)</span><span>₹${del}</span></div>`;
-    } else if (distKm < 0) {
-      deliveryRow = `<div class="bill-row"><span style="color:#e53935">⚠️ Detect location to see charge</span><span>–</span></div>`;
-    }
-  }
-
-  document.getElementById('bill-box').innerHTML = `
-    <div class="bill-row"><span>Subtotal</span><span>₹${sub}</span></div>
-    ${deliveryRow}
-    <div class="bill-row"><span>Total</span><span>₹${tot}</span></div>`;
-
+  var sub = cartTotal();
+  var del = deliveryCharge();
+  var tot = sub + del;
+  var deliveryRow = '';
+  document.getElementById('bill-box').innerHTML =
+    '<div class="bill-row"><span>Subtotal</span><span>₹' + sub + '</span></div>' +
+    deliveryRow +
+    '<div class="bill-row"><span>Total</span><span>₹' + tot + '</span></div>';
   document.getElementById('checkout-total').textContent = '₹' + tot;
 }
 
@@ -772,120 +765,55 @@ function updateFloatBar() {
 
 // ── PLACE ORDER ────────────────────────────
 
-async function placeOrder() {
-  const items = Object.entries(cart);
+function placeOrder() {
+  var items = Object.entries(cart);
+  if (!items.length) { alert('Pehle kuch items add karein.'); return; }
 
-  if (!items.length) {
-    alert('Please add items to your cart first.');
-    return;
-  }
-  // Kiosk: pickup only, delivery check skipped
+  var name  = document.getElementById('cust-name').value.trim();
+  var phone = document.getElementById('cust-phone').value.trim();
+  if (!name)  { alert('Naam daalna zaroori hai.'); document.getElementById('cust-name').focus(); return; }
+  if (!phone || phone.length < 10) { alert('Sahi 10-digit mobile number daalen.'); document.getElementById('cust-phone').focus(); return; }
 
-  const name  = document.getElementById('cust-name').value.trim();
-  const phone = document.getElementById('cust-phone').value.trim();
-  const addr  = document.getElementById('cust-addr').value.trim();
+  var refNo = 'UZ' + Date.now().toString().slice(-6);
+  var sub   = cartTotal();
 
-  if (!name) {
-    alert('Please enter your name to place the order.');
-    document.getElementById('cust-name').focus();
-    return;
-  }
-  if (!phone || phone.length < 10) {
-    alert('Please enter a valid 10-digit mobile number.');
-    document.getElementById('cust-phone').focus();
-    return;
-  }
-  if (orderType === 'delivery' && !addr) {
-    alert('Please enter your delivery address.');
-    document.getElementById('cust-addr').focus();
-    return;
-  }
-  const refNo = 'UZ' + Date.now().toString().slice(-6);
-
-  // Build WhatsApp message
-  let msg = `*🍽️ New Order – Urban ज़ायका*\n`;
-  msg += `*Order ID:* ${refNo}\n`;
-  msg += `*Name:* ${name}\n`;
-  if (phone) msg += `*Phone:* ${phone}\n`;
-  msg += `*Type:* 🚶 Pickup (Kiosk Order)\n`;
-
-  if (orderType === 'delivery') {
-    msg += `*Distance:* ${distKm.toFixed(1)} km\n`;
-    if (addr) msg += `*Address:* ${addr}\n`;
-  }
-
-  msg += `\n*Order Items:*\n`;
-  items.forEach(([id, qty]) => {
-    const item = MENU.find(m => String(m.id) === String(id));
-    if(!item) return;
-    msg += `• ${item.name} × ${qty}  = ₹${item.price * qty}\n`;
+  var orderItems = [];
+  items.forEach(function(e) {
+    var item = MENU.find(function(m) { return String(m.id) === String(e[0]); });
+    if (item) orderItems.push({ name: item.name, qty: e[1], price: item.price, total: item.price * e[1] });
   });
 
-  const sub = cartTotal();
-  const del = deliveryCharge();
-  msg += `\n*Subtotal:* ₹${sub}`;
-  if (del) msg += `\n*Delivery charge:* ₹${del}`;
-  msg += `\n*Total:* ₹${sub + del}`;
-  msg += `\n\n_Placed via urbanzayka.com/order_`;
-// ── STEP 1: Disable button & show saving state ──────────────────────────
-  const confirmBtn = document.querySelector('.checkout-btn');
-  if (confirmBtn) { confirmBtn.disabled = true; confirmBtn.querySelector('span').textContent = '⏳ Saving order...'; }
-
-  // ── STEP 2: Save to Firebase FIRST (await) ─────────────────────────────
-  const orderData = {
+  var orderData = {
     orderId: refNo,
     customerName: name,
     customerPhone: phone,
-    orderType,
-    address: addr || '',
-    distance: distKm >= 0 ? parseFloat(distKm.toFixed(1)) : null,
-    deliveryCharge: del,
-    items: Object.entries(cart).map(([id, qty]) => {
-      const item = MENU.find(m => String(m.id) === String(id));
-      if(!item) return null;
-      return { name: item.name, qty, price: item.price, total: item.price * qty };
-    }).filter(Boolean),
+    orderType: 'pickup',
+    source: 'kiosk',
+    items: orderItems,
     subtotal: sub,
-    total: sub + del,
+    total: sub,
+    deliveryCharge: 0
   };
 
-  try {
-    if (typeof window.saveOrderToFirebase === 'function') {
-      await window.saveOrderToFirebase(orderData);
-      console.log('✅ Order saved to dashboard');
-    }
-  } catch(e) {
-    // Even if Firebase fails, still proceed — WhatsApp is backup
-    console.warn('Firebase save failed, proceeding anyway:', e);
+  var confirmBtn = document.querySelector('.checkout-btn');
+  if (confirmBtn) { confirmBtn.disabled = true; confirmBtn.querySelector('span').textContent = '⏳ Order save ho raha hai...'; }
+
+  function showSuccess() {
+    playDing();
+    document.getElementById('order-ref').textContent = 'Order ID: ' + refNo;
+    showScreen('sc-success');
+    if (confirmBtn) { confirmBtn.disabled = false; confirmBtn.querySelector('span').textContent = '✅ Confirm Order'; }
+    setTimeout(function() { newOrder(); }, 30000);
   }
 
-  // ── STEP 3: Play ding, show success screen ─────────────────────────────
-  playDing();
-  document.getElementById('order-ref').textContent = 'Order ID: ' + refNo;
-  showScreen('sc-success');
-
-  // Reset button state
-  if (confirmBtn) { confirmBtn.disabled = false; confirmBtn.querySelector('span').textContent = '✅ Confirm Order'; }
-
-  // ── STEP 4: 3-second countdown → auto-open WhatsApp ────────────────────
-  let secs = 3;
-  const ring = document.getElementById('countdown-ring');
-  const numEl = document.getElementById('countdown-num');
-  const txtEl = document.getElementById('countdown-txt');
-  const circumference = 144.5;
-
-  const tick = () => {
-    secs--;
-    numEl.textContent = secs > 0 ? secs : '📲';
-    txtEl.textContent = secs > 0 ? `Opening WhatsApp in ${secs}s...` : 'Opening WhatsApp...';
-    ring.style.strokeDashoffset = circumference * (1 - secs / 3);
-    if (secs <= 0) {
-      window.open(waUrl, '_blank');
-    } else {
-      setTimeout(tick, 1000);
-    }
-  };
-  setTimeout(tick, 1000);
+  if (typeof window.saveOrderToFirebase === 'function') {
+    window.saveOrderToFirebase(orderData).then(showSuccess).catch(function(e) {
+      console.warn('Firebase failed:', e);
+      showSuccess();
+    });
+  } else {
+    showSuccess();
+  }
 }
 
 // ── DING SOUND ─────────────────────────────
@@ -894,7 +822,7 @@ function playDing() {
   try {
     const ctx    = new (window.AudioContext || window.webkitAudioContext)();
     const notes  = [523.25, 659.25, 783.99]; // C5, E5, G5
-    notes.forEach((freq, i) => {
+    notes.forEach(function(freq, i) {
       const osc  = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.connect(gain);
@@ -991,14 +919,11 @@ function onLocationSuccess(pos) {
   const { zone1_km, zone1_charge, zone2_km, zone2_charge } = CONFIG.delivery;
 
   if (km <= zone1_km) {
-    showLocResult('ok',
-      `✅ You are ${km.toFixed(1)} km away — Delivery charge: ₹${zone1_charge}`);
+    showLocResult('ok', '✅ You are ' + km.toFixed(1) + ' km away — Delivery charge: ₹' + zone1_charge);
   } else if (km <= zone2_km) {
-    showLocResult('warn',
-      `🛵 You are ${km.toFixed(1)} km away — Delivery charge: ₹${zone2_charge}`);
+    showLocResult('warn', '🛵 You are ' + km.toFixed(1) + ' km away — Delivery charge: ₹' + zone2_charge);
   } else {
-    showLocResult('err',
-      `❌ You are ${km.toFixed(1)} km away — Outside our delivery zone (max ${zone2_km} km). Please pick up or call us at ${CONFIG.phone}.`);
+    showLocResult('err', '❌ You are ' + km.toFixed(1) + ' km away — Outside delivery zone (max ' + zone2_km + ' km). Call: ' + CONFIG.phone);
     distKm = -1; // Block order
   }
 
@@ -1054,7 +979,7 @@ function showLocResult(type, message) {
 // ── SCREEN NAVIGATION ──────────────────────
 
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
   document.getElementById(id).classList.add('active');
   const el = document.getElementById(id);
   if (el) el.scrollTop = 0;
@@ -1070,53 +995,80 @@ function showCart() {
   // Kiosk: pickup only, no location detect needed
 }
 
+
+// ── SEARCH / FILTER ──────────────────────
+function filterMenu(query) {
+  var el = document.getElementById('menu-list');
+  var q = query ? query.toLowerCase().trim() : '';
+  if (!q) { renderMenu(); return; }
+  var filtered = MENU.filter(function(item) {
+    return item.name.toLowerCase().indexOf(q) > -1 ||
+           (item.sub && item.sub.toLowerCase().indexOf(q) > -1);
+  });
+  if (!filtered.length) {
+    el.innerHTML = '<p style="text-align:center;padding:30px;color:#aaa;font-size:14px">Koi item nahi mila</p>';
+    return;
+  }
+  var html = '';
+  filtered.forEach(function(item) {
+    var itemKey = String(item.id);
+    var qty = cart[itemKey] || 0;
+    var ctrl = item.mrp ? '' : qty === 0
+      ? '<button class="add-btn" onclick="addItem('' + itemKey + '')">+</button>'
+      : '<div class="qty-ctrl"><button onclick="removeItem('' + itemKey + '')">−</button><span>' + qty + '</span><button onclick="addItem('' + itemKey + '')">+</button></div>';
+    var photoHtml = item.imageUrl
+      ? '<img src="' + item.imageUrl + '" style="width:54px;height:54px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid #fde0e0;" onerror="this.style.display='none'" />'
+      : '<div class="item-emoji">' + (item.emoji || '🍽️') + '</div>';
+    html += '<div class="menu-item">' + photoHtml + '<div class="item-info"><div class="item-name">' + item.name + '</div>' + (item.sub ? '<div class="item-sub">' + item.sub + '</div>' : '') + '<div class="item-price">' + (item.mrp ? 'MRP' : '₹' + item.price) + '</div></div>' + ctrl + '</div>';
+  });
+  el.innerHTML = html;
+}
+
 // ── MENU RENDER ────────────────────────────
 
 let activeCat = 'all';
 
 function renderMenu() {
-  const el    = document.getElementById('menu-list');
-  const items = activeCat === 'all' ? MENU : MENU.filter(i => i.cat === activeCat || i.cat?.toLowerCase() === activeCat?.toLowerCase());
-  let html = '', lastCat = '';
+  var el = document.getElementById('menu-list');
+  var items = activeCat === 'all' ? MENU : MENU.filter(function(i) {
+    var c = i.cat ? i.cat.toLowerCase() : '';
+    var a = activeCat ? activeCat.toLowerCase() : '';
+    return i.cat === activeCat || c === a;
+  });
+  var html = '';
+  var lastCat = '';
 
-  items.forEach(item => {
-    // Section header when showing all categories
+  items.forEach(function(item) {
     if (activeCat === 'all' && item.cat !== lastCat) {
-      const catKey = item.cat;
-      const hiCatLabel = HINDI_CAT_LABELS[catKey];
-      const secLabel = (window._lang === 'hi' && hiCatLabel) ? hiCatLabel : CAT_LABELS[catKey];
-      html += `<div class="sec-title">${secLabel}</div>`;
+      var catKey = item.cat;
+      var hiCatLabel = HINDI_CAT_LABELS[catKey];
+      var secLabel = (window._lang === 'hi' && hiCatLabel) ? hiCatLabel : CAT_LABELS[catKey];
+      html += '<div class="sec-title">' + secLabel + '</div>';
       lastCat = item.cat;
     }
 
-    const itemKey = String(item.id);
-    const qty  = cart[itemKey] || 0;
-    const ctrl = item.mrp
-      ? ''   // MRP items: no add button
-      : qty === 0
-        ? `<button class="add-btn" onclick="addItem('${itemKey}')">+</button>`
-        : `<div class="qty-ctrl">
-             <button onclick="removeItem('${itemKey}')">−</button>
-             <span>${qty}</span>
-             <button onclick="addItem('${itemKey}')">+</button>
-           </div>`;
+    var itemKey = String(item.id);
+    var qty = cart[itemKey] || 0;
+    var ctrl = '';
+    if (!item.mrp) {
+      if (qty === 0) {
+        ctrl = '<button class="add-btn" onclick="addItem(\'' + itemKey + '\')">+</button>';
+      } else {
+        ctrl = '<div class="qty-ctrl"><button onclick="removeItem(\'' + itemKey + '\')">−</button><span>' + qty + '</span><button onclick="addItem(\'' + itemKey + '\')">+</button></div>';
+      }
+    }
 
-    const displayName = (window._lang === 'hi' && item.nameHi) ? item.nameHi : item.name;
-    const displayDesc = (window._lang === 'hi' && item.descriptionHi) ? item.descriptionHi : (item.description || item.sub || '');
-    const photoHtml = item.imageUrl
-      ? `<img src="${item.imageUrl}" style="width:54px;height:54px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid #fde0e0;" onerror="this.style.display='none'" />`
-      : `<div class="item-emoji">${item.emoji || '🍽️'}</div>`;
+    var displayName = (window._lang === 'hi' && item.nameHi) ? item.nameHi : item.name;
+    var displayDesc = (window._lang === 'hi' && item.descriptionHi) ? item.descriptionHi : (item.description || item.sub || '');
+    var photoHtml = item.imageUrl
+      ? '<img src="' + item.imageUrl + '" style="width:54px;height:54px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid #fde0e0;" onerror="this.style.display='none'" />'
+      : '<div class="item-emoji">' + (item.emoji || '🍽️') + '</div>';
 
-    html += `
-      <div class="menu-item">
-        ${photoHtml}
-        <div class="item-info">
-          <div class="item-name">${displayName}</div>
-          ${displayDesc ? `<div class="item-sub">${displayDesc}</div>` : ''}
-          <div class="item-price">${item.mrp ? 'MRP' : '₹' + item.price}</div>
-        </div>
-        ${ctrl}
-      </div>`;
+    html += '<div class="menu-item">' + photoHtml;
+    html += '<div class="item-info"><div class="item-name">' + displayName + '</div>';
+    if (displayDesc) html += '<div class="item-sub">' + displayDesc + '</div>';
+    html += '<div class="item-price">' + (item.mrp ? 'MRP' : '₹' + item.price) + '</div></div>';
+    html += ctrl + '</div>';
   });
 
   el.innerHTML = html;
@@ -1175,13 +1127,13 @@ if (window._lang === 'hi') {
 function buildTabs() {
   const container = document.getElementById('tabs-container');
   container.innerHTML = '';
-  CATS.forEach(cat => {
+  CATS.forEach(function(cat) {
     const btn = document.createElement('button');
     btn.className = 'tab' + (cat.id === activeCat ? ' active' : '');
     const hiLabel = HINDI_CATS[cat.id];
     btn.textContent = (window._lang === 'hi' && hiLabel) ? hiLabel : cat.label;
-    btn.onclick = () => {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.onclick = function() {
+      document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
       btn.classList.add('active');
       activeCat = cat.id;
       renderMenu();
@@ -1197,87 +1149,9 @@ const isInStandalone = window.matchMedia('(display-mode: standalone)').matches |
 
 let deferredPrompt = null;
 
-// Android / Chrome: capture install prompt
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
+// Install prompt disabled on kiosk
 
-  if (!isInStandalone) {
-    const banner = document.getElementById('install-banner');
-    const btn    = document.getElementById('install-btn');
-    banner.style.display = 'flex';
-
-    btn.onclick = async () => {
-      banner.style.display = 'none';
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
-    };
-  }
-});
-
-// iOS Safari: show manual "Add to Home Screen" instructions
-if (isIOS && !isInStandalone) {
-  setTimeout(() => {
-    const banner = document.getElementById('install-banner');
-    const btn    = document.getElementById('install-btn');
-    banner.style.display = 'flex';
-
-    btn.onclick = () => {
-      banner.style.display = 'none';
-      document.getElementById('ios-tooltip').classList.add('show');
-    };
-  }, 2500);
-}
-
-// ── INIT ───────────────────────────────────
-
-buildTabs();
-renderMenu();
-// Show loading indicator — Firebase will replace this when data arrives
-
-
-</script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script>
-/* Firebase — iOS 12 Compatible (compat mode) */
-var firebaseConfig = {
-  apiKey: "AIzaSyBkgTWZwKcXy5BiCVpppltZWVTW7gIPDbE",
-  authDomain: "urban-zayka.firebaseapp.com",
-  projectId: "urban-zayka",
-  storageBucket: "urban-zayka.firebasestorage.app",
-  messagingSenderId: "849575139822",
-  appId: "1:849575139822:web:01e6d124f8d78267b196ff"
-};
-
-try {
-  firebase.initializeApp(firebaseConfig);
-  var db = firebase.firestore();
-
-  var CAT_MAP = {
-    'breakfast':'breakfast','starters':'starters','sandwiches':'sandwiches',
-    'indian':'indian','indian main':'indian','chinese':'chinese',
-    'breads':'breads','meals':'meals','beverages':'beverages',
-    'Breakfast':'breakfast','Starters':'starters','Sandwiches':'sandwiches',
-    'Indian Main':'indian','Chinese':'chinese','Breads':'breads',
-    'Meals':'meals','Beverages':'beverages'
-  };
-  var CAT_SORT_ORDER = ['breakfast','starters','sandwiches','indian','chinese','breads','meals','beverages'];
-  var CAT_ORDER = ['Breakfast','Starters','Sandwiches','Indian Main','Chinese','Breads','Meals','Beverages'];
-
-  function isPaneer(name) { return /paneer/i.test(name); }
-
-  function applyFirebaseMenu(docs) {
-    if (!docs.length) return;
-    MENU.length = 0;
-    docs.filter(function(item) { return !item.soldOut && item.available !== false; })
-      .forEach(function(item) {
-        var rawCat = item.category || item.cat || '';
-        item.cat = CAT_MAP[rawCat] || rawCat.toLowerCase();
-        item.category = item.cat;
-        MENU.push(item);
-      });
+// iOS install prompt disabled on kiosk
     MENU.sort(function(a, b) {
       var ai = CAT_SORT_ORDER.indexOf(a.cat);
       var bi = CAT_SORT_ORDER.indexOf(b.cat);
@@ -1340,6 +1214,20 @@ try {
 } catch(e) {
   console.log('Firebase init failed — using hardcoded menu');
 }
+</script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+try {
+  firebase.initializeApp({
+    apiKey: "AIzaSyBkgTWZwKcXy5BiCVpppltZWVTW7gIPDbE",
+    authDomain: "urban-zayka.firebaseapp.com",
+    projectId: "urban-zayka",
+    storageBucket: "urban-zayka.firebasestorage.app",
+    messagingSenderId: "849575139822",
+    appId: "1:849575139822:web:01e6d124f8d78267b196ff"
+  });
+} catch(e) { console.log('Firebase already initialized'); }
 </script>
 </body>
 </html>
