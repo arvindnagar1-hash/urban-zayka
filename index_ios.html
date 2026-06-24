@@ -450,7 +450,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
             </div>
           </div>
           <div style="text-align:center;padding:20px 0;">
-            <div style="font-size:48px;margin-bottom:10px">🙏</div>
+            <div style="font-size:48px;margin-bottom:10px">&#x1F64F;</div>
             <div style="font-size:16px;font-weight:600;margin-bottom:6px;">Aapka order receive ho gaya!</div>
             <div style="font-size:13px;color:#888;">Counter pe payment karein.<br>30 sec mein screen reset hogi.</div>
           </div>
@@ -790,20 +790,16 @@ function placeOrder() {
   var orderItems = [];
   items.forEach(function(e) {
     var item = MENU.find(function(m) { return String(m.id) === String(e[0]); });
-    if (item) orderItems.push({name:item.name, qty:e[1], price:item.price, total:item.price*e[1]});
+    if (item) orderItems.push({name:item.name,qty:e[1],price:item.price,total:item.price*e[1]});
   });
-  var orderData = {
-    orderId: refNo, customerName: name, customerPhone: phone,
-    orderType: 'pickup', source: 'kiosk',
-    items: orderItems, subtotal: sub, total: sub, deliveryCharge: 0
-  };
+  var orderData = {orderId:refNo,customerName:name,customerPhone:phone,orderType:'pickup',source:'kiosk',items:orderItems,subtotal:sub,total:sub,deliveryCharge:0};
   var btn = document.querySelector('.checkout-btn');
-  if (btn) { btn.disabled = true; btn.querySelector('span').textContent = 'Saving...'; }
+  if (btn) { btn.disabled=true; btn.querySelector('span').textContent='Saving...'; }
   function done() {
     playDing();
     document.getElementById('order-ref').textContent = 'Order ID: ' + refNo;
     showScreen('sc-success');
-    if (btn) { btn.disabled = false; btn.querySelector('span').textContent = 'Confirm Order'; }
+    if (btn) { btn.disabled=false; btn.querySelector('span').textContent='Confirm Order'; }
     setTimeout(function() { newOrder(); }, 30000);
   }
   if (typeof window.saveOrderToFirebase === 'function') {
@@ -1159,51 +1155,8 @@ if (isIOS && !isInStandalone) {
 
 buildTabs();
 renderMenu();
-</script>
 
 
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script>
-(function() {
-  try {
-    firebase.initializeApp({
-      apiKey:"AIzaSyBkgTWZwKcXy5BiCVpppltZWVTW7gIPDbE",
-      authDomain:"urban-zayka.firebaseapp.com",
-      projectId:"urban-zayka",
-      storageBucket:"urban-zayka.firebasestorage.app",
-      messagingSenderId:"849575139822",
-      appId:"1:849575139822:web:01e6d124f8d78267b196ff"
-    });
-    var db = firebase.firestore();
-    var CM = {breakfast:'breakfast',starters:'starters',sandwiches:'sandwiches',indian:'indian','indian main':'indian',chinese:'chinese',breads:'breads',meals:'meals',beverages:'beverages',Breakfast:'breakfast',Starters:'starters',Sandwiches:'sandwiches','Indian Main':'indian',Chinese:'chinese',Breads:'breads',Meals:'meals',Beverages:'beverages'};
-    var CS = ['breakfast','starters','sandwiches','indian','chinese','breads','meals','beverages'];
-    var CO = ['Breakfast','Starters','Sandwiches','Indian Main','Chinese','Breads','Meals','Beverages'];
-    function applyMenu(docs) {
-      if (!docs.length) return;
-      MENU.length = 0;
-      docs.filter(function(d){return !d.soldOut && d.available!==false;}).forEach(function(item){
-        item.cat = CM[item.category||item.cat||''] || (item.category||'').toLowerCase();
-        MENU.push(item);
-      });
-      MENU.sort(function(a,b){var ai=CS.indexOf(a.cat),bi=CS.indexOf(b.cat),cd=(ai<0?99:ai)-(bi<0?99:bi);return cd?cd:b.price-a.price;});
-      CATS.length=0;
-      var cl={all:'All Items',Breakfast:'🌅 Breakfast',Starters:'🍢 Starters',Sandwiches:'🥪 Sandwiches','Indian Main':'🍛 Indian Main',Chinese:'🥢 Chinese',Breads:'🫓 Breads',Meals:'🍱 Meals',Beverages:'☕ Beverages'};
-      ['all'].concat(CO).forEach(function(id){CATS.push({id:id,label:cl[id]||id});});
-      buildTabs(); renderMenu();
-    }
-    window.saveOrderToFirebase = function(data) {
-      return db.collection('orders').add(Object.assign({},data,{status:'new',createdAt:firebase.firestore.FieldValue.serverTimestamp()}));
-    };
-    db.collection('menuItems').get().then(function(s){
-      if(!s.empty) applyMenu(s.docs.map(function(d){return Object.assign({},d.data(),{id:d.id});}));
-      else return db.collection('menu').get().then(function(s2){if(!s2.empty) applyMenu(s2.docs.map(function(d){return Object.assign({},d.data(),{id:d.id});}));});
-    }).catch(function(){});
-  } catch(e) {}
-})();
-</script>
-</body>
-</html>
 // ── FILTER / SEARCH ──────────────────────
 function filterMenu(q) {
   if (!q || !q.trim()) { renderMenu(); return; }
@@ -1249,4 +1202,50 @@ function filterMenu(q) {
 // ── INIT ──────────────────────────────────
 buildTabs();
 renderMenu();
+buildTabs();
+renderMenu();
+</script>
 
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+(function() {
+  try {
+    firebase.initializeApp({
+      apiKey:"AIzaSyBkgTWZwKcXy5BiCVpppltZWVTW7gIPDbE",
+      authDomain:"urban-zayka.firebaseapp.com",
+      projectId:"urban-zayka",
+      storageBucket:"urban-zayka.firebasestorage.app",
+      messagingSenderId:"849575139822",
+      appId:"1:849575139822:web:01e6d124f8d78267b196ff"
+    });
+    var db = firebase.firestore();
+    var CM = {breakfast:'breakfast',starters:'starters',sandwiches:'sandwiches',indian:'indian','indian main':'indian',chinese:'chinese',breads:'breads',meals:'meals',beverages:'beverages',Breakfast:'breakfast',Starters:'starters',Sandwiches:'sandwiches','Indian Main':'indian',Chinese:'chinese',Breads:'breads',Meals:'meals',Beverages:'beverages'};
+    var CS = ['breakfast','starters','sandwiches','indian','chinese','breads','meals','beverages'];
+    var CO = ['Breakfast','Starters','Sandwiches','Indian Main','Chinese','Breads','Meals','Beverages'];
+    function applyMenu(docs) {
+      if (!docs.length) return;
+      MENU.length = 0;
+      docs.filter(function(d){return !d.soldOut&&d.available!==false;}).forEach(function(item){
+        item.cat = CM[item.category||item.cat||''] || (item.category||'').toLowerCase();
+        MENU.push(item);
+      });
+      MENU.sort(function(a,b){var ai=CS.indexOf(a.cat),bi=CS.indexOf(b.cat),cd=(ai<0?99:ai)-(bi<0?99:bi);return cd?cd:b.price-a.price;});
+      CATS.length=0;
+      var cl={all:'All Items',Breakfast:'&#x1F305; Breakfast',Starters:'&#x1F362; Starters',Sandwiches:'&#x1F96A; Sandwiches','Indian Main':'&#x1F35B; Indian Main',Chinese:'&#x1F962; Chinese',Breads:'&#x1FAD3; Breads',Meals:'&#x1F371; Meals',Beverages:'&#x2615; Beverages'};
+      ['all'].concat(CO).forEach(function(id){CATS.push({id:id,label:cl[id]||id});});
+      buildTabs(); renderMenu();
+    }
+    window.saveOrderToFirebase = function(data) {
+      return db.collection('orders').add(Object.assign({},data,{status:'new',createdAt:firebase.firestore.FieldValue.serverTimestamp()}));
+    };
+    db.collection('menuItems').get().then(function(s){
+      if(!s.empty) applyMenu(s.docs.map(function(d){return Object.assign({},d.data(),{id:d.id});}));
+      else return db.collection('menu').get().then(function(s2){if(!s2.empty) applyMenu(s2.docs.map(function(d){return Object.assign({},d.data(),{id:d.id});}));});
+    }).catch(function(){});
+  } catch(e) { console.log('Firebase init failed'); }
+})();
+</script>
+</body>
+</html>
