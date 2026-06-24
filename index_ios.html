@@ -261,7 +261,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 .suc-ring-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: #1a1a1a; }
 .suc-countdown-txt { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 3px; }
 .suc-countdown-sub { font-size: 12px; color: #888; line-height: 1.5; }
-
+.wa-open-btn { width: 100%; background: #25D366; color: #fff; border: none; border-radius: 10px; padding: 13px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 8px; }
 .new-order-btn { width: 100%; background: #fff; border: 0.5px solid #e8e8e8; border-radius: 10px; padding: 11px; font-size: 13px; color: #888; cursor: pointer; font-family: inherit; }
 .order-ref { font-size: 12px; color: #aaa; margin-top: 4px; }
 
@@ -288,8 +288,8 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 <body>
 <div id="app">
 
-  <!-- Install banner hidden on kiosk -->
-  <div class="install-banner" id="install-banner" style="display:none;visibility:hidden">
+  <!-- INSTALL BANNER (Android) -->
+  <div class="install-banner" id="install-banner" style="display:none">
     <div style="font-size:28px">📲</div>
     <p><strong>Add to Home Screen</strong>Install Urban ज़ायका for quick ordering!</p>
     <button class="install-btn" id="install-btn">Install</button>
@@ -328,15 +328,12 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
           🛒 <span id="hcart-cnt">0</span>
         </button>
       </div>
-      <div class="search-bar">
-        <span style="font-size:14px">🔍</span>
-        <input type="search" id="search-input" placeholder="Search dishes, e.g. Malai Chaap…" oninput="filterMenu(this.value)" style="flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:13px;font-family:inherit;" />
-      </div>
+      <div class="search-bar"><span style="font-size:14px">🔍</span><input type="search" id="search-input" placeholder="Search dishes..." oninput="filterMenu(this.value)" autocomplete="off" style="flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:13px;font-family:inherit;" /></div>
     </div>
     <div class="tabs" id="tabs-container"></div>
     <div class="menu-list" id="menu-list"></div>
     <!-- Google footer strip -->
-    <div class="g-footer-strip" id="g-footer" style="display:none">
+    <div class="g-footer-strip" id="g-footer">
       <a class="g-foot-btn" href="https://www.google.com/maps?cid=9778314102620661048" target="_blank" rel="noopener">
         <span class="g-foot-icon">📍</span>
         <span class="g-foot-label">Find us</span>
@@ -374,12 +371,12 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 
       <!-- ORDER TYPE -->
       <div class="section-block">
-        <div class="sec-label" style="display:none">Order Type</div>
+        <div class="sec-label">Order Type</div>
         <div class="otype-btns">
-          <button class="otype-btn sel" id="btn-pickup" onclick="setType('pickup')" style="display:none">
+          <button class="otype-btn" id="btn-pickup" onclick="setType('pickup')">
             <span class="icon">🚶</span>Pickup
           </button>
-          <button class="otype-btn" id="btn-delivery" onclick="setType('delivery')" style="display:none">
+          <button class="otype-btn sel" id="btn-delivery" onclick="setType('delivery')">
             <span class="icon">🛵</span>Delivery
           </button>
         </div>
@@ -452,19 +449,27 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
               <span id="suc-total">₹0</span>
             </div>
           </div>
-
-          <div class="suc-countdown" style="justify-content:center;text-align:center;flex-direction:column;gap:8px;">
-            <div style="font-size:40px">🙏</div>
-            <div class="suc-countdown-txt">Aapka order receive ho gaya!</div>
-            <div class="suc-countdown-sub">Kripya counter pe payment karein.<br>Aapka khaana tayar hote hi bulaya jaayega.</div>
-            <div id="auto-reset-txt" style="font-size:12px;color:#aaa;margin-top:8px;">30 seconds mein screen reset hogi...</div>
+          <div style="text-align:center;padding:20px 0;">
+            <div style="font-size:48px;margin-bottom:10px">🙏</div>
+            <div style="font-size:16px;font-weight:600;margin-bottom:6px;">Aapka order receive ho gaya!</div>
+            <div style="font-size:13px;color:#888;">Counter pe payment karein.<br>30 sec mein screen reset hogi.</div>
           </div>
-
-          <button class="new-order-btn" onclick="newOrder()" style="margin-top:8px;background:#F40009;color:#fff;font-weight:700;border:none;">
-            🔄 Naya Order
+          <button class="new-order-btn" onclick="newOrder()">
+            🔄 Place Another Order
           </button>
 
-<!-- Google review hidden on kiosk -->
+          <!-- Google Review Card -->
+          <div class="g-review-card">
+            <p>Enjoyed your food? ❤️</p>
+            <small>Leave a quick Google review — helps us grow!</small>
+            <div class="g-stars-row">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <a class="g-review-btn" href="https://search.google.com/local/writereview?placeid=9778314102620661048" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+              Rate on Google
+            </a>
+          </div>
 
         </div>
       </div>
@@ -661,15 +666,14 @@ function removeItem(id) {
 }
 
 function cartTotal() {
-  return Object.entries(cart).reduce(function(sum, entry) {
-    var id = entry[0]; var qty = entry[1];
-    var item = MENU.find(function(m) { return String(m.id) === String(id); });
+  return Object.entries(cart).reduce((sum, [id, qty]) => {
+    const item = MENU.find(m => String(m.id) === String(id));
     return sum + ((item ? item.price : 0) * qty);
   }, 0);
 }
 
 function cartCount() {
-  return Object.values(cart).reduce(function(sum, qty) { return sum + qty; }, 0);
+  return Object.values(cart).reduce((sum, qty) => sum + qty, 0);
 }
 
 function deliveryCharge() {
@@ -692,36 +696,45 @@ function renderCart() {
     return;
   }
 
-  el.innerHTML = (function() {
-    var html = '';
-    items.forEach(function(entry) {
-      var id = entry[0]; var qty = entry[1];
-      var item = MENU.find(function(m) { return String(m.id) === String(id); });
-      if (!item) return;
-      html += '<div class="cart-item">';
-      html += '<div><div class="ci-name">' + (item.emoji||'🍽️') + ' ' + item.name + '</div>';
-      html += '<div class="ci-price">₹' + item.price + ' × ' + qty + ' = ₹' + (item.price*qty) + '</div></div>';
-      html += '<div class="qty-ctrl">';
-      html += '<button onclick="removeItem('' + id + ''); renderCart()">−</button>';
-      html += '<span>' + qty + '</span>';
-      html += '<button onclick="addItem('' + id + ''); renderCart()">+</button>';
-      html += '</div></div>';
-    });
-    return html;
-  })();
+  el.innerHTML = items.map(([id, qty]) => {
+    const item = MENU.find(m => String(m.id) === String(id));
+    if(!item) return '';
+    return `
+      <div class="cart-item">
+        <div>
+          <div class="ci-name">${item.emoji || '🍽️'} ${item.name}</div>
+          <div class="ci-price">₹${item.price} × ${qty} = ₹${item.price * qty}</div>
+        </div>
+        <div class="qty-ctrl">
+          <button onclick="removeItem('${id}'); renderCart()">−</button>
+          <span>${qty}</span>
+          <button onclick="addItem('${id}'); renderCart()">+</button>
+        </div>
+      </div>`;
+  }).join('');
 
   renderBill();
 }
 
 function renderBill() {
-  var sub = cartTotal();
-  var del = deliveryCharge();
-  var tot = sub + del;
-  var deliveryRow = '';
-  document.getElementById('bill-box').innerHTML =
-    '<div class="bill-row"><span>Subtotal</span><span>₹' + sub + '</span></div>' +
-    deliveryRow +
-    '<div class="bill-row"><span>Total</span><span>₹' + tot + '</span></div>';
+  const sub = cartTotal();
+  const del = deliveryCharge();
+  const tot = sub + del;
+
+  let deliveryRow = '';
+  if (orderType === 'delivery') {
+    if (del > 0) {
+      deliveryRow = `<div class="bill-row"><span>Delivery charge (${distKm.toFixed(1)} km)</span><span>₹${del}</span></div>`;
+    } else if (distKm < 0) {
+      deliveryRow = `<div class="bill-row"><span style="color:#e53935">⚠️ Detect location to see charge</span><span>–</span></div>`;
+    }
+  }
+
+  document.getElementById('bill-box').innerHTML = `
+    <div class="bill-row"><span>Subtotal</span><span>₹${sub}</span></div>
+    ${deliveryRow}
+    <div class="bill-row"><span>Total</span><span>₹${tot}</span></div>`;
+
   document.getElementById('checkout-total').textContent = '₹' + tot;
 }
 
@@ -768,52 +781,34 @@ function updateFloatBar() {
 function placeOrder() {
   var items = Object.entries(cart);
   if (!items.length) { alert('Pehle kuch items add karein.'); return; }
-
-  var name  = document.getElementById('cust-name').value.trim();
+  var name = document.getElementById('cust-name').value.trim();
   var phone = document.getElementById('cust-phone').value.trim();
-  if (!name)  { alert('Naam daalna zaroori hai.'); document.getElementById('cust-name').focus(); return; }
-  if (!phone || phone.length < 10) { alert('Sahi 10-digit mobile number daalen.'); document.getElementById('cust-phone').focus(); return; }
-
+  if (!name) { alert('Naam daalna zaroori hai.'); document.getElementById('cust-name').focus(); return; }
+  if (!phone || phone.length < 10) { alert('Sahi 10-digit mobile daalen.'); document.getElementById('cust-phone').focus(); return; }
   var refNo = 'UZ' + Date.now().toString().slice(-6);
-  var sub   = cartTotal();
-
+  var sub = cartTotal();
   var orderItems = [];
   items.forEach(function(e) {
     var item = MENU.find(function(m) { return String(m.id) === String(e[0]); });
-    if (item) orderItems.push({ name: item.name, qty: e[1], price: item.price, total: item.price * e[1] });
+    if (item) orderItems.push({name:item.name, qty:e[1], price:item.price, total:item.price*e[1]});
   });
-
   var orderData = {
-    orderId: refNo,
-    customerName: name,
-    customerPhone: phone,
-    orderType: 'pickup',
-    source: 'kiosk',
-    items: orderItems,
-    subtotal: sub,
-    total: sub,
-    deliveryCharge: 0
+    orderId: refNo, customerName: name, customerPhone: phone,
+    orderType: 'pickup', source: 'kiosk',
+    items: orderItems, subtotal: sub, total: sub, deliveryCharge: 0
   };
-
-  var confirmBtn = document.querySelector('.checkout-btn');
-  if (confirmBtn) { confirmBtn.disabled = true; confirmBtn.querySelector('span').textContent = '⏳ Order save ho raha hai...'; }
-
-  function showSuccess() {
+  var btn = document.querySelector('.checkout-btn');
+  if (btn) { btn.disabled = true; btn.querySelector('span').textContent = 'Saving...'; }
+  function done() {
     playDing();
     document.getElementById('order-ref').textContent = 'Order ID: ' + refNo;
     showScreen('sc-success');
-    if (confirmBtn) { confirmBtn.disabled = false; confirmBtn.querySelector('span').textContent = '✅ Confirm Order'; }
+    if (btn) { btn.disabled = false; btn.querySelector('span').textContent = 'Confirm Order'; }
     setTimeout(function() { newOrder(); }, 30000);
   }
-
   if (typeof window.saveOrderToFirebase === 'function') {
-    window.saveOrderToFirebase(orderData).then(showSuccess).catch(function(e) {
-      console.warn('Firebase failed:', e);
-      showSuccess();
-    });
-  } else {
-    showSuccess();
-  }
+    window.saveOrderToFirebase(orderData).then(done).catch(function() { done(); });
+  } else { done(); }
 }
 
 // ── DING SOUND ─────────────────────────────
@@ -822,7 +817,7 @@ function playDing() {
   try {
     const ctx    = new (window.AudioContext || window.webkitAudioContext)();
     const notes  = [523.25, 659.25, 783.99]; // C5, E5, G5
-    notes.forEach(function(freq, i) {
+    notes.forEach((freq, i) => {
       const osc  = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.connect(gain);
@@ -848,7 +843,7 @@ function shareApp() {
   if (navigator.share) {
     navigator.share({ title: 'Urban ज़ायका', text, url: 'https://urbanzayka.in' });
   } else {
-    // WhatsApp share disabled on kiosk
+    window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
   }
 }
 
@@ -919,11 +914,14 @@ function onLocationSuccess(pos) {
   const { zone1_km, zone1_charge, zone2_km, zone2_charge } = CONFIG.delivery;
 
   if (km <= zone1_km) {
-    showLocResult('ok', '✅ You are ' + km.toFixed(1) + ' km away — Delivery charge: ₹' + zone1_charge);
+    showLocResult('ok',
+      `✅ You are ${km.toFixed(1)} km away — Delivery charge: ₹${zone1_charge}`);
   } else if (km <= zone2_km) {
-    showLocResult('warn', '🛵 You are ' + km.toFixed(1) + ' km away — Delivery charge: ₹' + zone2_charge);
+    showLocResult('warn',
+      `🛵 You are ${km.toFixed(1)} km away — Delivery charge: ₹${zone2_charge}`);
   } else {
-    showLocResult('err', '❌ You are ' + km.toFixed(1) + ' km away — Outside delivery zone (max ' + zone2_km + ' km). Call: ' + CONFIG.phone);
+    showLocResult('err',
+      `❌ You are ${km.toFixed(1)} km away — Outside our delivery zone (max ${zone2_km} km). Please pick up or call us at ${CONFIG.phone}.`);
     distKm = -1; // Block order
   }
 
@@ -979,7 +977,7 @@ function showLocResult(type, message) {
 // ── SCREEN NAVIGATION ──────────────────────
 
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   const el = document.getElementById(id);
   if (el) el.scrollTop = 0;
@@ -992,36 +990,9 @@ function showCart() {
   renderCart();
   showScreen('sc-cart');
   // Auto-detect location if delivery is selected and not yet detected
-  // Kiosk: pickup only, no location detect needed
-}
-
-
-// ── SEARCH / FILTER ──────────────────────
-function filterMenu(query) {
-  var el = document.getElementById('menu-list');
-  var q = query ? query.toLowerCase().trim() : '';
-  if (!q) { renderMenu(); return; }
-  var filtered = MENU.filter(function(item) {
-    return item.name.toLowerCase().indexOf(q) > -1 ||
-           (item.sub && item.sub.toLowerCase().indexOf(q) > -1);
-  });
-  if (!filtered.length) {
-    el.innerHTML = '<p style="text-align:center;padding:30px;color:#aaa;font-size:14px">Koi item nahi mila</p>';
-    return;
+  if (orderType === 'delivery' && distKm < 0) {
+    setTimeout(detectLocation, 400);
   }
-  var html = '';
-  filtered.forEach(function(item) {
-    var itemKey = String(item.id);
-    var qty = cart[itemKey] || 0;
-    var ctrl = item.mrp ? '' : qty === 0
-      ? '<button class="add-btn" onclick="addItem('' + itemKey + '')">+</button>'
-      : '<div class="qty-ctrl"><button onclick="removeItem('' + itemKey + '')">−</button><span>' + qty + '</span><button onclick="addItem('' + itemKey + '')">+</button></div>';
-    var photoHtml = item.imageUrl
-      ? '<img src="' + item.imageUrl + '" style="width:54px;height:54px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid #fde0e0;" onerror="this.style.display='none'" />'
-      : '<div class="item-emoji">' + (item.emoji || '🍽️') + '</div>';
-    html += '<div class="menu-item">' + photoHtml + '<div class="item-info"><div class="item-name">' + item.name + '</div>' + (item.sub ? '<div class="item-sub">' + item.sub + '</div>' : '') + '<div class="item-price">' + (item.mrp ? 'MRP' : '₹' + item.price) + '</div></div>' + ctrl + '</div>';
-  });
-  el.innerHTML = html;
 }
 
 // ── MENU RENDER ────────────────────────────
@@ -1029,46 +1000,48 @@ function filterMenu(query) {
 let activeCat = 'all';
 
 function renderMenu() {
-  var el = document.getElementById('menu-list');
-  var items = activeCat === 'all' ? MENU : MENU.filter(function(i) {
-    var c = i.cat ? i.cat.toLowerCase() : '';
-    var a = activeCat ? activeCat.toLowerCase() : '';
-    return i.cat === activeCat || c === a;
-  });
-  var html = '';
-  var lastCat = '';
+  const el    = document.getElementById('menu-list');
+  const items = activeCat === 'all' ? MENU : MENU.filter(i => i.cat === activeCat || i.cat?.toLowerCase() === activeCat?.toLowerCase());
+  let html = '', lastCat = '';
 
-  items.forEach(function(item) {
+  items.forEach(item => {
+    // Section header when showing all categories
     if (activeCat === 'all' && item.cat !== lastCat) {
-      var catKey = item.cat;
-      var hiCatLabel = HINDI_CAT_LABELS[catKey];
-      var secLabel = (window._lang === 'hi' && hiCatLabel) ? hiCatLabel : CAT_LABELS[catKey];
-      html += '<div class="sec-title">' + secLabel + '</div>';
+      const catKey = item.cat;
+      const hiCatLabel = HINDI_CAT_LABELS[catKey];
+      const secLabel = (window._lang === 'hi' && hiCatLabel) ? hiCatLabel : CAT_LABELS[catKey];
+      html += `<div class="sec-title">${secLabel}</div>`;
       lastCat = item.cat;
     }
 
-    var itemKey = String(item.id);
-    var qty = cart[itemKey] || 0;
-    var ctrl = '';
-    if (!item.mrp) {
-      if (qty === 0) {
-        ctrl = '<button class="add-btn" onclick="addItem(\'' + itemKey + '\')">+</button>';
-      } else {
-        ctrl = '<div class="qty-ctrl"><button onclick="removeItem(\'' + itemKey + '\')">−</button><span>' + qty + '</span><button onclick="addItem(\'' + itemKey + '\')">+</button></div>';
-      }
-    }
+    const itemKey = String(item.id);
+    const qty  = cart[itemKey] || 0;
+    const ctrl = item.mrp
+      ? ''   // MRP items: no add button
+      : qty === 0
+        ? `<button class="add-btn" onclick="addItem('${itemKey}')">+</button>`
+        : `<div class="qty-ctrl">
+             <button onclick="removeItem('${itemKey}')">−</button>
+             <span>${qty}</span>
+             <button onclick="addItem('${itemKey}')">+</button>
+           </div>`;
 
-    var displayName = (window._lang === 'hi' && item.nameHi) ? item.nameHi : item.name;
-    var displayDesc = (window._lang === 'hi' && item.descriptionHi) ? item.descriptionHi : (item.description || item.sub || '');
-    var photoHtml = item.imageUrl
-      ? '<img src="' + item.imageUrl + '" style="width:54px;height:54px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid #fde0e0;" onerror="this.style.display='none'" />'
-      : '<div class="item-emoji">' + (item.emoji || '🍽️') + '</div>';
+    const displayName = (window._lang === 'hi' && item.nameHi) ? item.nameHi : item.name;
+    const displayDesc = (window._lang === 'hi' && item.descriptionHi) ? item.descriptionHi : (item.description || item.sub || '');
+    const photoHtml = item.imageUrl
+      ? `<img src="${item.imageUrl}" style="width:54px;height:54px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid #fde0e0;" onerror="this.style.display='none'" />`
+      : `<div class="item-emoji">${item.emoji || '🍽️'}</div>`;
 
-    html += '<div class="menu-item">' + photoHtml;
-    html += '<div class="item-info"><div class="item-name">' + displayName + '</div>';
-    if (displayDesc) html += '<div class="item-sub">' + displayDesc + '</div>';
-    html += '<div class="item-price">' + (item.mrp ? 'MRP' : '₹' + item.price) + '</div></div>';
-    html += ctrl + '</div>';
+    html += `
+      <div class="menu-item">
+        ${photoHtml}
+        <div class="item-info">
+          <div class="item-name">${displayName}</div>
+          ${displayDesc ? `<div class="item-sub">${displayDesc}</div>` : ''}
+          <div class="item-price">${item.mrp ? 'MRP' : '₹' + item.price}</div>
+        </div>
+        ${ctrl}
+      </div>`;
   });
 
   el.innerHTML = html;
@@ -1127,13 +1100,13 @@ if (window._lang === 'hi') {
 function buildTabs() {
   const container = document.getElementById('tabs-container');
   container.innerHTML = '';
-  CATS.forEach(function(cat) {
+  CATS.forEach(cat => {
     const btn = document.createElement('button');
     btn.className = 'tab' + (cat.id === activeCat ? ' active' : '');
     const hiLabel = HINDI_CATS[cat.id];
     btn.textContent = (window._lang === 'hi' && hiLabel) ? hiLabel : cat.label;
-    btn.onclick = function() {
-      document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+    btn.onclick = () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       btn.classList.add('active');
       activeCat = cat.id;
       renderMenu();
@@ -1142,11 +1115,6 @@ function buildTabs() {
   });
 }
 
-// ── INIT ───────────────────────────────────
-buildTabs();
-renderMenu();
-
-
 // ── PWA INSTALL ────────────────────────────
 
 const isIOS          = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
@@ -1154,85 +1122,131 @@ const isInStandalone = window.matchMedia('(display-mode: standalone)').matches |
 
 let deferredPrompt = null;
 
-// Install prompt disabled on kiosk
+// Android / Chrome: capture install prompt
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
 
-// iOS install prompt disabled on kiosk
-    MENU.sort(function(a, b) {
-      var ai = CAT_SORT_ORDER.indexOf(a.cat);
-      var bi = CAT_SORT_ORDER.indexOf(b.cat);
-      var catDiff = (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
-      if (catDiff !== 0) return catDiff;
-      var pa = isPaneer(a.name) ? 0 : 1;
-      var pb = isPaneer(b.name) ? 0 : 1;
-      if (pa !== pb) return pa - pb;
-      return b.price - a.price;
-    });
-    CATS.length = 0;
-    var catLabels = {
-      'all':'All Items','Breakfast':'🌅 Breakfast','Starters':'🍢 Starters',
-      'Sandwiches':'🥪 Sandwiches','Indian Main':'🍛 Indian Main',
-      'Chinese':'🥢 Chinese','Breads':'🫓 Breads','Meals':'🍱 Meals','Beverages':'☕ Beverages'
+  if (!isInStandalone) {
+    const banner = document.getElementById('install-banner');
+    const btn    = document.getElementById('install-btn');
+    banner.style.display = 'flex';
+
+    btn.onclick = async () => {
+      banner.style.display = 'none';
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
     };
-    ['all'].concat(CAT_ORDER).forEach(function(id) { CATS.push({ id: id, label: catLabels[id] || id }); });
-    Object.assign(CAT_LABELS, {
-      'Breakfast':'🌅 Breakfast (7–10AM)','Starters':'🍢 Starters (12PM–10:30PM)',
-      'Sandwiches':'🥪 Sandwiches','Indian Main':'🍛 Indian Main Course',
-      'Chinese':'🥢 Chinese Main Course','Breads':'🫓 Indian Breads',
-      'Meals':'🍱 Meals & Thali','Beverages':'☕ Beverages'
-    });
-    buildTabs();
-    renderMenu();
-    console.log('Firebase menu loaded: ' + MENU.length + ' items');
   }
+});
 
-  // Save order to Firebase
-  window.saveOrderToFirebase = function(orderData) {
-    return db.collection('orders').add(Object.assign({}, orderData, {
-      status: 'new',
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    })).then(function() {
-      console.log('Order saved to Firebase');
-    }).catch(function(e) {
-      console.log('Firebase save failed:', e);
-    });
-  };
+// iOS Safari: show manual "Add to Home Screen" instructions
+if (isIOS && !isInStandalone) {
+  setTimeout(() => {
+    const banner = document.getElementById('install-banner');
+    const btn    = document.getElementById('install-btn');
+    banner.style.display = 'flex';
 
-  // Load menu from Firebase
-  db.collection('menuItems').get().then(function(snap) {
-    if (!snap.empty) {
-      var docs = snap.docs.map(function(d) { return Object.assign({}, d.data(), { id: d.id }); });
-      applyFirebaseMenu(docs);
-    } else {
-      return db.collection('menu').get().then(function(snap2) {
-        if (!snap2.empty) {
-          var docs2 = snap2.docs.map(function(d) { return Object.assign({}, d.data(), { id: d.id }); });
-          applyFirebaseMenu(docs2);
-        } else {
-          console.log('Firebase empty — using hardcoded menu');
-        }
-      });
-    }
-  }).catch(function(e) {
-    console.log('Firebase load failed — using hardcoded menu:', e);
-  });
-
-} catch(e) {
-  console.log('Firebase init failed — using hardcoded menu');
+    btn.onclick = () => {
+      banner.style.display = 'none';
+      document.getElementById('ios-tooltip').classList.add('show');
+    };
+  }, 2500);
 }
+
+// ── INIT ───────────────────────────────────
+
+buildTabs();
+renderMenu();
 </script>
+
+
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
-try {
-  firebase.initializeApp({
-    apiKey: "AIzaSyBkgTWZwKcXy5BiCVpppltZWVTW7gIPDbE",
-    authDomain: "urban-zayka.firebaseapp.com",
-    projectId: "urban-zayka",
-    storageBucket: "urban-zayka.firebasestorage.app",
-    messagingSenderId: "849575139822",
-    appId: "1:849575139822:web:01e6d124f8d78267b196ff"
-  });
-} catch(e) { console.log('Firebase already initialized'); }
+(function() {
+  try {
+    firebase.initializeApp({
+      apiKey:"AIzaSyBkgTWZwKcXy5BiCVpppltZWVTW7gIPDbE",
+      authDomain:"urban-zayka.firebaseapp.com",
+      projectId:"urban-zayka",
+      storageBucket:"urban-zayka.firebasestorage.app",
+      messagingSenderId:"849575139822",
+      appId:"1:849575139822:web:01e6d124f8d78267b196ff"
+    });
+    var db = firebase.firestore();
+    var CM = {breakfast:'breakfast',starters:'starters',sandwiches:'sandwiches',indian:'indian','indian main':'indian',chinese:'chinese',breads:'breads',meals:'meals',beverages:'beverages',Breakfast:'breakfast',Starters:'starters',Sandwiches:'sandwiches','Indian Main':'indian',Chinese:'chinese',Breads:'breads',Meals:'meals',Beverages:'beverages'};
+    var CS = ['breakfast','starters','sandwiches','indian','chinese','breads','meals','beverages'];
+    var CO = ['Breakfast','Starters','Sandwiches','Indian Main','Chinese','Breads','Meals','Beverages'];
+    function applyMenu(docs) {
+      if (!docs.length) return;
+      MENU.length = 0;
+      docs.filter(function(d){return !d.soldOut && d.available!==false;}).forEach(function(item){
+        item.cat = CM[item.category||item.cat||''] || (item.category||'').toLowerCase();
+        MENU.push(item);
+      });
+      MENU.sort(function(a,b){var ai=CS.indexOf(a.cat),bi=CS.indexOf(b.cat),cd=(ai<0?99:ai)-(bi<0?99:bi);return cd?cd:b.price-a.price;});
+      CATS.length=0;
+      var cl={all:'All Items',Breakfast:'🌅 Breakfast',Starters:'🍢 Starters',Sandwiches:'🥪 Sandwiches','Indian Main':'🍛 Indian Main',Chinese:'🥢 Chinese',Breads:'🫓 Breads',Meals:'🍱 Meals',Beverages:'☕ Beverages'};
+      ['all'].concat(CO).forEach(function(id){CATS.push({id:id,label:cl[id]||id});});
+      buildTabs(); renderMenu();
+    }
+    window.saveOrderToFirebase = function(data) {
+      return db.collection('orders').add(Object.assign({},data,{status:'new',createdAt:firebase.firestore.FieldValue.serverTimestamp()}));
+    };
+    db.collection('menuItems').get().then(function(s){
+      if(!s.empty) applyMenu(s.docs.map(function(d){return Object.assign({},d.data(),{id:d.id});}));
+      else return db.collection('menu').get().then(function(s2){if(!s2.empty) applyMenu(s2.docs.map(function(d){return Object.assign({},d.data(),{id:d.id});}));});
+    }).catch(function(){});
+  } catch(e) {}
+})();
 </script>
 </body>
 </html>
+// ── FILTER / SEARCH ──────────────────────
+function filterMenu(q) {
+  if (!q || !q.trim()) { renderMenu(); return; }
+  var lower = q.toLowerCase();
+  var el = document.getElementById('menu-list');
+  var filtered = MENU.filter(function(item) {
+    return item.name.toLowerCase().indexOf(lower) > -1 ||
+      (item.sub && item.sub.toLowerCase().indexOf(lower) > -1);
+  });
+  if (!filtered.length) {
+    el.innerHTML = '<p style="text-align:center;padding:30px;color:#aaa">Koi item nahi mila</p>';
+    return;
+  }
+  var html = '';
+  filtered.forEach(function(item) {
+    var key = String(item.id);
+    var qty = cart[key] || 0;
+    var ctrl = '';
+    if (!item.mrp) {
+      if (qty === 0) {
+        ctrl = '<button class="add-btn" onclick="addItem(\'' + key + '\')">+</button>';
+      } else {
+        ctrl = '<div class="qty-ctrl">' +
+          '<button onclick="removeItem(\'' + key + '\')">&#8722;</button>' +
+          '<span>' + qty + '</span>' +
+          '<button onclick="addItem(\'' + key + '\')">+</button>' +
+          '</div>';
+      }
+    }
+    var ph = item.imageUrl
+      ? '<img src="' + item.imageUrl + '" style="width:54px;height:54px;border-radius:12px;object-fit:cover;flex-shrink:0;" />'
+      : '<div class="item-emoji">' + (item.emoji || '&#127869;') + '</div>';
+    html += '<div class="menu-item">' + ph +
+      '<div class="item-info">' +
+      '<div class="item-name">' + item.name + '</div>' +
+      (item.sub ? '<div class="item-sub">' + item.sub + '</div>' : '') +
+      '<div class="item-price">' + (item.mrp ? 'MRP' : '&#8377;' + item.price) + '</div>' +
+      '</div>' + ctrl + '</div>';
+  });
+  el.innerHTML = html;
+}
+
+// ── INIT ──────────────────────────────────
+buildTabs();
+renderMenu();
+
