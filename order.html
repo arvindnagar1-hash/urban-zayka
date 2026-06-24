@@ -407,7 +407,6 @@ function placeOrder() {
   btn.querySelector('span').textContent = 'Placing order...';
 
   if (!db) { showToast('❌ Firebase not available'); btn.disabled=false; btn.querySelector('span').textContent='✅ Place Order'; return; } db.collection('orders').add(orderData).then(function() {
-    sendWhatsApp(refNo, orderItems, sub);
     printReceipt(refNo, orderItems, sub);
     showSuccess(refNo, orderItems, sub);
   }).catch(function(e) {
@@ -415,7 +414,6 @@ function placeOrder() {
     // Try without server timestamp
     orderData.createdAt = new Date();
     db.collection('orders').add(orderData).then(function() {
-      sendWhatsApp(refNo, orderItems, sub);
       printReceipt(refNo, orderItems, sub);
       showSuccess(refNo, orderItems, sub);
     }).catch(function() {
@@ -424,19 +422,6 @@ function placeOrder() {
       btn.querySelector('span').textContent = '✅ Place Order';
     });
   });
-}
-
-// ── WHATSAPP ─────────────────────────────────────────────────────────────────
-function sendWhatsApp(refNo, items, total) {
-  var msg = '*🍽️ New Order — Urban ज़ायका*\n';
-  msg += '*Order ID:* ' + refNo + '\n';
-  msg += '*Type:* 🪑 Dine-In (QR Order)\n';
-  msg += '*Name:* ' + guestName + '\n';
-  msg += '*Phone:* ' + guestPhone + '\n\n';
-  msg += '*Items:*\n';
-  items.forEach(function(i) { msg += '• ' + i.name + ' ×' + i.qty + ' = ₹' + i.total + '\n'; });
-  msg += '\n*Total: ₹' + total + '*';
-  window.open('https://wa.me/'+WHATSAPP_NO+'?text='+encodeURIComponent(msg), '_blank');
 }
 
 // ── PRINT ─────────────────────────────────────────────────────────────────────
