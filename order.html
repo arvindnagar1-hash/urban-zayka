@@ -19,7 +19,8 @@ html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Ro
 .screen.active{display:block}
 
 /* ── WELCOME SCREEN ── */
-#sc-welcome{background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center}
+#sc-welcome{background:var(--navy);flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;display:none}
+#sc-welcome.active{display:flex}
 .welcome-logo{width:80px;height:80px;background:var(--red);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:40px;margin:0 auto 20px}
 .welcome-title{font-size:28px;font-weight:800;color:#fff;margin-bottom:6px}
 .welcome-sub{font-size:14px;color:#A0A0B0;margin-bottom:32px}
@@ -73,8 +74,9 @@ html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Ro
 .float-bar span{font-size:14px;font-weight:600}
 
 /* ── CART SCREEN ── */
-#sc-cart{background:#fff;display:flex;flex-direction:column;position:fixed;inset:0;max-width:480px;left:50%;transform:translateX(-50%);z-index:300}
+#sc-cart{background:#fff;flex-direction:column;position:fixed;inset:0;max-width:480px;left:50%;transform:translateX(-50%);z-index:300;display:none}
 #sc-cart.active{display:flex}
+
 .cart-hdr{background:var(--navy);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
 .back-btn{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:0;line-height:1}
 .cart-hdr h2{font-size:16px;font-weight:600}
@@ -95,7 +97,8 @@ html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Ro
 .empty-cart .ei{font-size:52px;margin-bottom:12px}
 
 /* ── SUCCESS SCREEN ── */
-#sc-success{background:#f5f5f5;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;text-align:center}
+#sc-success{background:#f5f5f5;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;text-align:center;display:none}
+#sc-success.active{display:flex}
 .suc-icon{width:72px;height:72px;background:#E8F5E9;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 16px}
 .suc-title{font-size:22px;font-weight:700;color:#1a1a1a;margin-bottom:6px}
 .suc-ref{font-size:13px;color:#888;margin-bottom:24px}
