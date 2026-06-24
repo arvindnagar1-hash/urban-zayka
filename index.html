@@ -129,13 +129,37 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 /* ---- SCREENS ---- */
 .screen { display: none; }
 .screen.active { display: block; }
-#sc-menu { display: none; }
-#sc-menu.active { display: block; min-height: 100vh; }
-#sc-cart { display: none; }
-#sc-cart.active { display: flex; flex-direction: column; height: 100vh; height: 100dvh; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: #fff; z-index: 50; }
-#sc-cart > div[style*="flex:1"] { flex: 1; overflow-y: auto; min-height: 0; }
-#sc-success { display: none; }
-#sc-success.active { display: flex; flex-direction: column; height: 100vh; height: 100dvh; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: #f4f4f4; z-index: 50; overflow-y: auto; }
+#sc-menu.active { min-height: 100vh; }
+#sc-cart.active {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  background: #fff;
+  z-index: 50;
+  height: 100vh;
+  height: 100dvh;
+}
+#sc-cart.active > .cart-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#sc-success.active {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  background: #f4f4f4;
+  z-index: 50;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+}
 
 /* ---- HEADER (dark) ---- */
 .app-header { background: var(--navy2); padding: 12px 14px 10px; position: sticky; top: 0; z-index: 100; }
@@ -212,8 +236,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 .bill-row:last-child { border-bottom: none; font-weight: 700; color: #1a1a1a; font-size: 14px; }
 
 /* ---- CHECKOUT ---- */
-.checkout-bar { padding: 12px; background: #fff; border-top: 1px solid #eee; flex-shrink: 0; display: none; }
-#sc-cart.active .checkout-bar { display: block; }
+.checkout-bar { padding: 12px 12px max(12px,env(safe-area-inset-bottom)) 12px; background: #fff; border-top: 1px solid #eee; flex-shrink: 0; }
 .checkout-btn { width: 100%; background: var(--red); color: #fff; border: none; border-radius: 14px; padding: 14px 18px; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: inherit; }
 
 /* ---- SUCCESS ---- */
