@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQXWVJVQ5X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZQXWVJVQ5X');
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <!-- GOOGLE SEARCH CONSOLE VERIFICATION -->
   <meta name="google-site-verification" content="3Sntnz5x6HouSRmwxU3SHJF-UknwBOxJzcI3i7j1Xac"/>
@@ -56,7 +64,7 @@
     "alternateName": "Urban ज़ायका",
     "description": "Indian, Chinese and Breakfast restaurant in Met City, Haryana. Online ordering available with home delivery.",
     "url": "https://urbanzayka.in",
-    "telephone": "+91-1251-298167",
+    "telephone": "+91-8860609555",
     "image": "https://urbanzayka.in/icons/icon-512.png",
     "priceRange": "₹50 - ₹260",
     "servesCuisine": ["Indian", "Chinese", "North Indian", "Street Food"],
@@ -64,10 +72,10 @@
     "acceptsReservations": false,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Met City",
-      "addressLocality": "Bahadurgarh",
+      "streetAddress": "Gali No 4, Shree Ram Colony, near Met City, Dadri Toye, Aurangpur",
+      "addressLocality": "Jhajjar",
       "addressRegion": "Haryana",
-      "postalCode": "124501",
+      "postalCode": "124103",
       "addressCountry": "IN"
     },
     "geo": {
@@ -320,8 +328,8 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
         </div>
         <a class="g-rating-pill" href="https://www.google.com/maps?cid=9778314102620661048" target="_blank" rel="noopener" title="See us on Google Maps">
           <span class="g-star">★</span>
-          <span class="g-score">4.5</span>
-          <span class="g-count">(50)</span>
+          <span class="g-score">5.0</span>
+          <span class="g-count">(41)</span>
         </a>
         <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLang()" style="background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);color:#fff;padding:5px 11px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;margin-left:4px;">हिंदी</button>
         <button class="hcart-btn" id="hcart-btn" onclick="showCart()">
@@ -344,7 +352,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
       <a class="g-foot-btn" href="https://search.google.com/local/writereview?placeid=9778314102620661048" target="_blank" rel="noopener">
         <span class="g-foot-icon">⭐</span>
         <span class="g-foot-label">Rate us</span>
-        <span class="g-foot-sub">50 reviews</span>
+        <span class="g-foot-sub">41 reviews</span>
       </a>
       <a class="g-foot-btn" onclick="shareApp(); return false;" href="#">
         <span class="g-foot-icon">📲</span>
@@ -508,7 +516,7 @@ const CONFIG = {
   name:        'Urban ज़ायका',
   phone:       '01251-298167',       // Display phone
   whatsapp:    '918860609555',       // WhatsApp number with country code (91 = India)
-  address:     'Met City, Haryana',
+  address:     'Near Met City, Gali No 4, Shree Ram Colony, Aurangpur, Jhajjar, Haryana 124103',
   hours:       '7AM – 10:30PM',
 
   // ---- LOCATION (for delivery distance calculation) ----
