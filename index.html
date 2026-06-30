@@ -2,14 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Google Analytics GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQXWVJVQ5X"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-ZQXWVJVQ5X');
-  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <!-- GOOGLE SEARCH CONSOLE VERIFICATION -->
   <meta name="google-site-verification" content="3Sntnz5x6HouSRmwxU3SHJF-UknwBOxJzcI3i7j1Xac"/>
@@ -64,7 +56,7 @@
     "alternateName": "Urban ज़ायका",
     "description": "Indian, Chinese and Breakfast restaurant in Met City, Haryana. Online ordering available with home delivery.",
     "url": "https://urbanzayka.in",
-    "telephone": "+91-8860609555",
+    "telephone": "+91-1251-298167",
     "image": "https://urbanzayka.in/icons/icon-512.png",
     "priceRange": "₹50 - ₹260",
     "servesCuisine": ["Indian", "Chinese", "North Indian", "Street Food"],
@@ -72,10 +64,10 @@
     "acceptsReservations": false,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Gali No 4, Shree Ram Colony, near Met City, Dadri Toye, Aurangpur",
-      "addressLocality": "Jhajjar",
+      "streetAddress": "Met City",
+      "addressLocality": "Bahadurgarh",
       "addressRegion": "Haryana",
-      "postalCode": "124103",
+      "postalCode": "124501",
       "addressCountry": "IN"
     },
     "geo": {
@@ -291,10 +283,53 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 .g-foot-icon { font-size:20px; }
 .g-foot-label { font-size:11px; font-weight:600; color:#1a1a1a; }
 .g-foot-sub { font-size:10px; color:#aaa; }
+
+/* ── ORDER TYPE MODAL ── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; z-index: 999; }
+.modal-overlay.hidden { display: none; }
+.modal-content { background: #fff; border-radius: 20px; padding: 28px 20px; max-width: 360px; width: calc(100% - 32px); text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+.modal-header { margin-bottom: 24px; }
+.modal-title { font-size: 18px; font-weight: 700; color: #1a1a1a; margin: 0 0 6px; }
+.modal-sub { font-size: 13px; color: #888; margin: 0; line-height: 1.4; }
+.modal-buttons { display: flex; flex-direction: column; gap: 12px; }
+.modal-btn { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; border: 1.5px solid #e0e0e0; background: #f8f8f8; border-radius: 14px; cursor: pointer; font-family: inherit; transition: all .2s; }
+.modal-btn:active { border-color: var(--red); background: #fff5f5; }
+.modal-btn-icon { font-size: 32px; }
+.modal-btn-label { font-size: 15px; font-weight: 600; color: #1a1a1a; }
+.modal-btn-sub { font-size: 12px; color: #888; }
+
+/* ── CORPORATE DISCOUNT ── */
+.corp-block { background: #F1F8F6; border: 1.5px solid #C8E6C9; border-radius: 10px; padding: 12px; margin: 0 12px 12px; }
+.corp-block-label { font-size: 12px; font-weight: 600; color: #2E7D32; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.corp-status-ok { font-size: 11px; color: #2E7D32; margin-top: 8px; background: #E8F5E9; padding: 7px 10px; border-radius: 6px; display: none; align-items: center; gap: 6px; }
+.corp-discount-badge { position: absolute; top: 6px; right: 6px; background: #E8F5E9; color: #2E7D32; padding: 2px 7px; border-radius: 12px; font-size: 10px; font-weight: 700; }
 </style>
 </head>
 <body>
 <div id="app">
+
+  <!-- ORDER TYPE MODAL (first load) -->
+  <div class="modal-overlay hidden" id="orderTypeModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div style="font-size: 28px; margin-bottom: 8px;">🍽️</div>
+        <h2 class="modal-title">How would you like to order?</h2>
+        <p class="modal-sub">Choose pickup or delivery to get started</p>
+      </div>
+      <div class="modal-buttons">
+        <button class="modal-btn" onclick="setOrderTypeFromModal('pickup')">
+          <span class="modal-btn-icon">🚶</span>
+          <span class="modal-btn-label">Pickup</span>
+          <span class="modal-btn-sub">From our counter</span>
+        </button>
+        <button class="modal-btn" onclick="setOrderTypeFromModal('delivery')">
+          <span class="modal-btn-icon">🛵</span>
+          <span class="modal-btn-label">Delivery</span>
+          <span class="modal-btn-sub">To your location</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- INSTALL BANNER (Android) -->
   <div class="install-banner" id="install-banner" style="display:none">
@@ -328,8 +363,8 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
         </div>
         <a class="g-rating-pill" href="https://www.google.com/maps?cid=9778314102620661048" target="_blank" rel="noopener" title="See us on Google Maps">
           <span class="g-star">★</span>
-          <span class="g-score">5.0</span>
-          <span class="g-count">(41)</span>
+          <span class="g-score">4.5</span>
+          <span class="g-count">(50)</span>
         </a>
         <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLang()" style="background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);color:#fff;padding:5px 11px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;margin-left:4px;">हिंदी</button>
         <button class="hcart-btn" id="hcart-btn" onclick="showCart()">
@@ -352,7 +387,7 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
       <a class="g-foot-btn" href="https://search.google.com/local/writereview?placeid=9778314102620661048" target="_blank" rel="noopener">
         <span class="g-foot-icon">⭐</span>
         <span class="g-foot-label">Rate us</span>
-        <span class="g-foot-sub">41 reviews</span>
+        <span class="g-foot-sub">50 reviews</span>
       </a>
       <a class="g-foot-btn" onclick="shareApp(); return false;" href="#">
         <span class="g-foot-icon">📲</span>
@@ -383,17 +418,17 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
       <div class="section-block">
         <div class="sec-label">Order Type</div>
         <div class="otype-btns">
-          <button class="otype-btn" id="btn-pickup" onclick="setType('pickup')">
+          <button class="otype-btn sel" id="btn-pickup" onclick="setType('pickup')">
             <span class="icon">🚶</span>Pickup
           </button>
-          <button class="otype-btn sel" id="btn-delivery" onclick="setType('delivery')">
+          <button class="otype-btn" id="btn-delivery" onclick="setType('delivery')">
             <span class="icon">🛵</span>Delivery
           </button>
         </div>
       </div>
 
       <!-- DELIVERY LOCATION -->
-      <div class="section-block" id="dist-block" style="display:block;padding-top:0">
+      <div class="section-block" id="dist-block" style="display:none;padding-top:0">
         <div class="sec-label">Your Location</div>
         <button class="loc-btn" id="loc-btn" onclick="detectLocation()">
           <span id="loc-btn-icon">📍</span>
@@ -414,9 +449,19 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
         <input class="name-input" id="cust-phone" type="tel" placeholder="10-digit mobile number" maxlength="10" required />
       </div>
 
-      <div id="delivery-addr-block" style="display:block;" class="section-block" style="padding-top:0">
+      <div id="delivery-addr-block" style="display:none;" class="section-block" style="padding-top:0">
         <div class="sec-label">Delivery Address</div>
         <input class="name-input" id="cust-addr" type="text" placeholder="Enter full delivery address" />
+      </div>
+
+      <!-- CORPORATE DISCOUNT (delivery only, optional) -->
+      <div id="corp-discount-block" style="display:none;">
+        <div class="corp-block">
+          <div class="corp-block-label">💼 Met City Corporate Benefit (Optional)</div>
+          <input class="name-input" id="cust-company" type="text" placeholder="Company name (e.g., Panasonic)" oninput="renderCart()" />
+          <input class="name-input" id="cust-empid" type="text" placeholder="Employee ID" style="margin-top:8px;" oninput="renderCart()" />
+          <div class="corp-status-ok" id="corp-discount-status">✅ ₹40 discount applied on ज़ायका Special Thali</div>
+        </div>
       </div>
 
       <!-- BILL -->
@@ -516,7 +561,7 @@ const CONFIG = {
   name:        'Urban ज़ायका',
   phone:       '01251-298167',       // Display phone
   whatsapp:    '918860609555',       // WhatsApp number with country code (91 = India)
-  address:     'Near Met City, Gali No 4, Shree Ram Colony, Aurangpur, Jhajjar, Haryana 124103',
+  address:     'Met City, Haryana',
   hours:       '7AM – 10:30PM',
 
   // ---- LOCATION (for delivery distance calculation) ----
@@ -533,6 +578,13 @@ const CONFIG = {
     zone2_km:     10,   // Up to this distance (km)
     zone2_charge: 100,  // Charge in ₹
     // Beyond zone2_km → outside delivery zone (no delivery)
+  },
+
+  // ---- CORPORATE DISCOUNT ----
+  // Applies ONLY to ज़ायका Special Thali, delivery orders only, both fields optional
+  corporate: {
+    discountAmount: 40,
+    targetItemName: 'ज़ायका Special Thali',
   },
 
 };
@@ -654,7 +706,7 @@ const MENU = [
   { id: 59, name: 'Dal Makhani + Rice',       price: 180, cat: 'meals',      emoji: '🍽️' },
   { id: 60, name: 'Rajma Masala + Rice',      price: 150, cat: 'meals',      emoji: '🍽️' },
   { id: 61, name: 'Diet Thali',               price: 100, cat: 'meals',      emoji: '🍱', sub: 'Dal + Sabji + Rice + Roti + Green Salad' },
-  { id: 62, name: 'ज़ायका Special Thali',      price: 180, cat: 'meals',      emoji: '🍱', sub: 'Dal + Sabji + Rice + Roti + Salad + Raita + Paneer + Sweet' },
+  { id: 62, name: 'ज़ायका Special Thali',      price: 180, cat: 'meals',      emoji: '🍱', isCorporate: true, sub: 'Dal + Sabji + Rice + Roti + Salad + Raita + Paneer + Sweet' },
 
   // ── BEVERAGES ──────────────────────────────
   { id: 63, name: 'Tea',                      price: 30,  cat: 'beverages',  emoji: '☕' },
@@ -672,7 +724,18 @@ const MENU = [
    ============================================ */
 
 let cart      = {};   // { itemId: quantity }
-let orderType = 'delivery';
+let orderType = 'pickup'; // default until modal choice is made
+
+// ── ORDER TYPE MODAL ────────────────────────
+
+function showOrderTypeModal() {
+  document.getElementById('orderTypeModal').classList.remove('hidden');
+}
+
+function setOrderTypeFromModal(type) {
+  document.getElementById('orderTypeModal').classList.add('hidden');
+  setType(type);
+}
 
 // ── CART OPERATIONS ────────────────────────
 
@@ -710,6 +773,29 @@ function deliveryCharge() {
   return distKm <= zone1_km ? zone1_charge : zone2_charge;
 }
 
+// ── CORPORATE DISCOUNT (null-safe) ─────────
+
+function getCorporateDiscount() {
+  if (orderType !== 'delivery') return 0;
+
+  const companyEl = document.getElementById('cust-company');
+  const empidEl   = document.getElementById('cust-empid');
+  if (!companyEl || !empidEl) return 0; // fields not in DOM (pickup mode)
+
+  const company = companyEl.value.trim();
+  const empid   = empidEl.value.trim();
+  if (!company || !empid) return 0; // both required to claim discount
+
+  // Find corporate-eligible items in cart (e.g. ज़ायका Special Thali)
+  let qty = 0;
+  Object.entries(cart).forEach(([id, q]) => {
+    const item = MENU.find(m => String(m.id) === String(id));
+    if (item && item.isCorporate) qty += q;
+  });
+
+  return qty * CONFIG.corporate.discountAmount;
+}
+
 // ── RENDER CART LIST ───────────────────────
 
 function renderCart() {
@@ -742,9 +828,10 @@ function renderCart() {
 }
 
 function renderBill() {
-  const sub = cartTotal();
-  const del = deliveryCharge();
-  const tot = sub + del;
+  const sub  = cartTotal();
+  const del  = deliveryCharge();
+  const disc = getCorporateDiscount();
+  const tot  = sub + del - disc;
 
   let deliveryRow = '';
   if (orderType === 'delivery') {
@@ -755,9 +842,19 @@ function renderBill() {
     }
   }
 
+  let discRow = '';
+  const statusEl = document.getElementById('corp-discount-status');
+  if (disc > 0) {
+    discRow = `<div class="bill-row" style="color:#2E7D32"><span>💼 Corporate discount</span><span>−₹${disc}</span></div>`;
+    if (statusEl) statusEl.style.display = 'flex';
+  } else if (statusEl) {
+    statusEl.style.display = 'none';
+  }
+
   document.getElementById('bill-box').innerHTML = `
     <div class="bill-row"><span>Subtotal</span><span>₹${sub}</span></div>
     ${deliveryRow}
+    ${discRow}
     <div class="bill-row"><span>Total</span><span>₹${tot}</span></div>`;
 
   document.getElementById('checkout-total').textContent = '₹' + tot;
@@ -771,6 +868,7 @@ function setType(t) {
   document.getElementById('btn-delivery').classList.toggle('sel', t === 'delivery');
   document.getElementById('dist-block').style.display          = t === 'delivery' ? 'block' : 'none';
   document.getElementById('delivery-addr-block').style.display = t === 'delivery' ? 'block' : 'none';
+  document.getElementById('corp-discount-block').style.display = t === 'delivery' ? 'block' : 'none';
   if (t === 'pickup') {
     distKm = -1;
   } else {
@@ -778,6 +876,7 @@ function setType(t) {
     if (distKm < 0) detectLocation();
   }
   renderCart();
+  renderMenu(); // refresh corporate discount badges on items
 }
 
 // ── FLOAT BAR UPDATE ───────────────────────
@@ -834,7 +933,15 @@ async function placeOrder() {
     document.getElementById('cust-addr').focus();
     return;
   }
+  const company = document.getElementById('cust-company') ? document.getElementById('cust-company').value.trim() : '';
+  const empid   = document.getElementById('cust-empid')   ? document.getElementById('cust-empid').value.trim()   : '';
+
   const refNo = 'UZ' + Date.now().toString().slice(-6);
+
+  const sub  = cartTotal();
+  const del  = deliveryCharge();
+  const disc = getCorporateDiscount();
+  const tot  = sub + del - disc;
 
   // Build WhatsApp message
   let msg = `*🍽️ New Order – Urban ज़ायका*\n`;
@@ -846,6 +953,9 @@ async function placeOrder() {
   if (orderType === 'delivery') {
     msg += `*Distance:* ${distKm.toFixed(1)} km\n`;
     if (addr) msg += `*Address:* ${addr}\n`;
+    if (company || empid) {
+      msg += `*Company:* ${company || '-'}  (Emp ID: ${empid || '-'})\n`;
+    }
   }
 
   msg += `\n*Order Items:*\n`;
@@ -855,12 +965,11 @@ async function placeOrder() {
     msg += `• ${item.name} × ${qty}  = ₹${item.price * qty}\n`;
   });
 
-  const sub = cartTotal();
-  const del = deliveryCharge();
   msg += `\n*Subtotal:* ₹${sub}`;
   if (del) msg += `\n*Delivery charge:* ₹${del}`;
-  msg += `\n*Total:* ₹${sub + del}`;
-  msg += `\n\n_Placed via urbanzayka.com/order_`;
+  if (disc) msg += `\n*Corporate discount:* −₹${disc}`;
+  msg += `\n*Total:* ₹${tot}`;
+  msg += `\n\n_Placed via urbanzayka.in_`;
 
   const waUrl = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
 
@@ -875,15 +984,18 @@ async function placeOrder() {
     customerPhone: phone,
     orderType,
     address: addr || '',
+    company: company || '',
+    empId: empid || '',
     distance: distKm >= 0 ? parseFloat(distKm.toFixed(1)) : null,
     deliveryCharge: del,
+    corporateDiscount: disc,
     items: Object.entries(cart).map(([id, qty]) => {
       const item = MENU.find(m => String(m.id) === String(id));
       if(!item) return null;
       return { name: item.name, qty, price: item.price, total: item.price * qty };
     }).filter(Boolean),
     subtotal: sub,
-    total: sub + del,
+    total: tot,
   };
 
   try {
@@ -896,10 +1008,32 @@ async function placeOrder() {
     console.warn('Firebase save failed, proceeding anyway:', e);
   }
 
-  // ── STEP 3: Play ding, show success screen ─────────────────────────────
+  // ── STEP 3: Populate & show success screen ─────────────────────────────
   playDing();
-  document.getElementById('order-ref').textContent = 'Order ID: ' + refNo;
+  document.getElementById('order-ref').textContent = '#' + refNo;
   document.getElementById('wa-open-btn').onclick = () => window.open(waUrl, '_blank');
+
+  const sucItemsEl = document.getElementById('suc-items');
+  sucItemsEl.innerHTML = items.map(([id, qty]) => {
+    const item = MENU.find(m => String(m.id) === String(id));
+    if (!item) return '';
+    return `<div class="suc-row"><span>${item.name} <span class="muted">×${qty}</span></span><span>₹${item.price * qty}</span></div>`;
+  }).join('');
+
+  const delRowEl = document.getElementById('suc-del-row');
+  if (del > 0) {
+    delRowEl.style.display = 'flex';
+    document.getElementById('suc-del').textContent = '₹' + del;
+  } else {
+    delRowEl.style.display = 'none';
+  }
+
+  if (disc > 0) {
+    sucItemsEl.innerHTML += `<div class="suc-row" style="color:#2E7D32"><span class="muted">💼 Corporate discount</span><span>−₹${disc}</span></div>`;
+  }
+
+  document.getElementById('suc-total').textContent = '₹' + tot;
+
   showScreen('sc-success');
 
   // Reset button state
@@ -969,12 +1103,15 @@ function newOrder() {
   document.getElementById('cust-name').value  = '';
   document.getElementById('cust-phone').value = '';
   document.getElementById('cust-addr').value  = '';
+  if (document.getElementById('cust-company')) document.getElementById('cust-company').value = '';
+  if (document.getElementById('cust-empid'))   document.getElementById('cust-empid').value   = '';
   document.getElementById('loc-result').style.display = 'none';
   document.getElementById('loc-btn-icon').textContent = '📍';
   document.getElementById('loc-btn-text').textContent = 'Detect My Location (Free)';
   updateFloatBar();
   renderMenu();
   showScreen('sc-menu');
+  showOrderTypeModal();
 }
 
 /* ============================================
@@ -1147,8 +1284,13 @@ function renderMenu() {
       ? `<img src="${item.imageUrl}" style="width:54px;height:54px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid #fde0e0;" onerror="this.style.display='none'" />`
       : `<div class="item-emoji">${item.emoji || '🍽️'}</div>`;
 
+    const corpBadge = (item.isCorporate && orderType === 'delivery')
+      ? `<span class="corp-discount-badge">💼 −₹${CONFIG.corporate.discountAmount}</span>`
+      : '';
+
     html += `
-      <div class="menu-item">
+      <div class="menu-item" style="position:relative;">
+        ${corpBadge}
         ${photoHtml}
         <div class="item-info">
           <div class="item-name">${displayName}</div>
@@ -1276,6 +1418,9 @@ buildTabs();
 renderMenu();
 // Show loading indicator — Firebase will replace this when data arrives
 document.getElementById('menu-list').innerHTML = '<div style="text-align:center;padding:40px;color:#aaa;font-size:14px">⏳ Loading menu...</div>';
+
+// Show order type modal 2s after page load (first impression)
+setTimeout(showOrderTypeModal, 2000);
 
 </script>
 <script type="module">
