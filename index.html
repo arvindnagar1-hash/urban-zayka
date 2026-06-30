@@ -1253,8 +1253,8 @@ let activeCat = 'all';
 
 function renderMenu() {
   const el    = document.getElementById('menu-list');
-  const items = activeCat === 'all' ? MENU : MENU.filter(i => i.cat === activeCat || i.cat?.toLowerCase() === activeCat?.toLowerCase());
-  let html = '', lastCat = '';
+const norm = s => (s || '').toString().trim().toLowerCase();
+const items = activeCat === 'all' ? MENU : MENU.filter(i => norm(i.cat) === norm(activeCat));  let html = '', lastCat = '';
 
   items.forEach(item => {
     // Section header when showing all categories
