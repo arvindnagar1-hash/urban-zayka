@@ -302,7 +302,17 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
 .corp-block { background: #F1F8F6; border: 1.5px solid #C8E6C9; border-radius: 10px; padding: 12px; margin: 0 12px 12px; }
 .corp-block-label { font-size: 12px; font-weight: 600; color: #2E7D32; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
 .corp-status-ok { font-size: 11px; color: #2E7D32; margin-top: 8px; background: #E8F5E9; padding: 7px 10px; border-radius: 6px; display: none; align-items: center; gap: 6px; }
-.corp-discount-badge { position: absolute; top: 6px; right: 6px; background: #E8F5E9; color: #2E7D32; padding: 2px 7px; border-radius: 12px; font-size: 10px; font-weight: 700; }
+
+/* Ribbon banner shown above corporate-eligible items in the menu list */
+.corp-item-wrap { border: 1.5px solid #2E7D32; border-radius: 12px; overflow: hidden; margin-bottom: 8px; }
+.corp-ribbon { background: #2E7D32; padding: 5px 12px; display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: #fff; }
+.corp-item-wrap .menu-item { border-bottom: none; padding: 10px 12px; }
+
+/* ── PROMO BANNERS (menu screen) ── */
+.promo-banner { display: flex; align-items: center; gap: 8px; padding: 7px 12px; margin: 8px 12px 0; border-radius: 10px; font-size: 11px; font-weight: 600; line-height: 1.4; }
+.promo-banner .pb-icon { font-size: 14px; flex-shrink: 0; }
+.promo-free-del { background: #E65100; color: #fff; }
+.promo-banner b { font-weight: 700; }
 </style>
 </head>
 <body>
@@ -375,6 +385,13 @@ html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Sego
         <span>🔍 Search dishes, e.g. Malai Chaap…</span>
       </div>
     </div>
+
+    <!-- PROMO BANNER -->
+    <div class="promo-banner promo-free-del">
+      <span class="pb-icon">🚀</span>
+      <span>Free delivery on orders above ₹1000</span>
+    </div>
+
     <div class="tabs" id="tabs-container"></div>
     <div class="menu-list" id="menu-list"></div>
     <!-- Google footer strip -->
@@ -791,6 +808,15 @@ function isDietThali(item) {
   return n === 'diet thali' || n === 'office thali';
 }
 
+// ── CORPORATE-ELIGIBLE ITEM (name-based, works for Firebase or local data) ──
+
+function isCorporateItem(item) {
+  if (!item || !item.name) return false;
+  if (item.isCorporate) return true; // honor explicit flag if present
+  const n = item.name.trim().toLowerCase();
+  return n === 'ज़ायका special thali' || n === 'zayka special thali';
+}
+
 function getItemDisplayName(item) {
   if (isDietThali(item)) {
     return orderType === 'delivery' ? DIET_THALI_VARIANT.deliveryName : DIET_THALI_VARIANT.pickupName;
@@ -824,7 +850,7 @@ function getCorporateDiscount() {
   let qty = 0;
   Object.entries(cart).forEach(([id, q]) => {
     const item = MENU.find(m => String(m.id) === String(id));
-    if (item && item.isCorporate) qty += q;
+    if (item && isCorporateItem(item)) qty += q;
   });
 
   return qty * CONFIG.corporate.discountAmount;
@@ -868,9 +894,14 @@ function renderBill() {
   const tot  = sub + del - disc;
 
   let deliveryRow = '';
+  let freeDelNote = '';
   if (orderType === 'delivery') {
-    if (del > 0) {
+    if (sub >= 1000) {
+      deliveryRow = `<div class="bill-row" style="color:#2E7D32"><span>🚀 Delivery</span><span>FREE</span></div>`;
+    } else if (del > 0) {
       deliveryRow = `<div class="bill-row"><span>Delivery charge (${distKm.toFixed(1)} km)</span><span>₹${del}</span></div>`;
+      const remaining = 1000 - sub;
+      freeDelNote = `<div class="bill-row" style="color:#E65100;font-size:11px;border-bottom:none;"><span>🚀 Add ₹${remaining} more for FREE delivery!</span><span></span></div>`;
     } else if (distKm < 0) {
       deliveryRow = `<div class="bill-row"><span style="color:#e53935">⚠️ Detect location to see charge</span><span>–</span></div>`;
     }
@@ -888,6 +919,7 @@ function renderBill() {
   document.getElementById('bill-box').innerHTML = `
     <div class="bill-row"><span>Subtotal</span><span>₹${sub}</span></div>
     ${deliveryRow}
+    ${freeDelNote}
     ${discRow}
     <div class="bill-row"><span>Total</span><span>₹${tot}</span></div>`;
 
@@ -1320,13 +1352,10 @@ function renderMenu() {
       ? `<img src="${item.imageUrl}" style="width:54px;height:54px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid #fde0e0;" onerror="this.style.display='none'" />`
       : `<div class="item-emoji">${item.emoji || '🍽️'}</div>`;
 
-    const corpBadge = (item.isCorporate && orderType === 'delivery')
-      ? `<span class="corp-discount-badge">💼 −₹${CONFIG.corporate.discountAmount}</span>`
-      : '';
+    const isCorpItem = isCorporateItem(item) && orderType === 'delivery';
 
-    html += `
-      <div class="menu-item" style="position:relative;">
-        ${corpBadge}
+    const itemHtml = `
+      <div class="menu-item" style="position:relative;${isCorpItem ? 'border-bottom:none;' : ''}">
         ${photoHtml}
         <div class="item-info">
           <div class="item-name">${displayName}</div>
@@ -1335,6 +1364,13 @@ function renderMenu() {
         </div>
         ${ctrl}
       </div>`;
+
+    html += isCorpItem
+      ? `<div class="corp-item-wrap">
+           <div class="corp-ribbon">💼 Corporate discount available — ₹${CONFIG.corporate.discountAmount} off</div>
+           ${itemHtml}
+         </div>`
+      : itemHtml;
   });
 
   el.innerHTML = html;
