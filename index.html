@@ -833,7 +833,12 @@ function getItemPrice(item) {
   return item.price;
 }
 
-// ── CORPORATE DISCOUNT (null-safe) ─────────
+// ── CORPORATE DISCOUNT (null-safe, per-item amount) ─────────
+
+function getCorporateDiscountAmount(item) {
+  if (item.corporateDiscountAmount != null) return item.corporateDiscountAmount;
+  return CONFIG.corporate.discountAmount; // fallback default
+}
 
 function getCorporateDiscount() {
   if (orderType !== 'delivery') return 0;
@@ -846,14 +851,14 @@ function getCorporateDiscount() {
   const empid   = empidEl.value.trim();
   if (!company || !empid) return 0; // both required to claim discount
 
-  // Find corporate-eligible items in cart (e.g. ज़ायका Special Thali)
-  let qty = 0;
+  // Sum discount across all corporate-eligible items in cart
+  let total = 0;
   Object.entries(cart).forEach(([id, q]) => {
     const item = MENU.find(m => String(m.id) === String(id));
-    if (item && isCorporateItem(item)) qty += q;
+    if (item && isCorporateItem(item)) total += q * getCorporateDiscountAmount(item);
   });
 
-  return qty * CONFIG.corporate.discountAmount;
+  return total;
 }
 
 // ── RENDER CART LIST ───────────────────────
@@ -1367,7 +1372,7 @@ function renderMenu() {
 
     html += isCorpItem
       ? `<div class="corp-item-wrap">
-           <div class="corp-ribbon">💼 Corporate discount available — ₹${CONFIG.corporate.discountAmount} off</div>
+           <div class="corp-ribbon">💼 Corporate discount available — ₹${getCorporateDiscountAmount(item)} off</div>
            ${itemHtml}
          </div>`
       : itemHtml;
