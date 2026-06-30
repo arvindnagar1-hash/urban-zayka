@@ -705,7 +705,7 @@ const MENU = [
   { id: 58, name: 'Chole Masala + Rice',      price: 150, cat: 'meals',      emoji: '🍽️' },
   { id: 59, name: 'Dal Makhani + Rice',       price: 180, cat: 'meals',      emoji: '🍽️' },
   { id: 60, name: 'Rajma Masala + Rice',      price: 150, cat: 'meals',      emoji: '🍽️' },
-  { id: 61, name: 'Diet Thali', nameDelivery: 'Office Thali', price: 100, priceDelivery: 150, cat: 'meals', emoji: '🍱', sub: 'Dal + Sabji + Rice + Roti + Green Salad' },
+  { id: 61, name: 'Diet Thali', price: 100, cat: 'meals', emoji: '🍱', sub: 'Dal + Sabji + Rice + Roti + Green Salad' },
   { id: 62, name: 'ज़ायका Special Thali',      price: 180, cat: 'meals',      emoji: '🍱', isCorporate: true, sub: 'Dal + Sabji + Rice + Roti + Salad + Raita + Paneer + Sweet' },
 
   // ── BEVERAGES ──────────────────────────────
@@ -776,13 +776,33 @@ function deliveryCharge() {
 // ── CORPORATE DISCOUNT (null-safe) ─────────
 
 // ── DIET/OFFICE THALI VARIANT (pickup vs delivery) ─────────
+// Hardcoded by item name — works whether item comes from Firebase or local MENU array
+
+const DIET_THALI_VARIANT = {
+  pickupName:    'Diet Thali',
+  deliveryName:  'Office Thali',
+  pickupPrice:   100,
+  deliveryPrice: 150,
+};
+
+function isDietThali(item) {
+  if (!item || !item.name) return false;
+  const n = item.name.trim().toLowerCase();
+  return n === 'diet thali' || n === 'office thali';
+}
 
 function getItemDisplayName(item) {
+  if (isDietThali(item)) {
+    return orderType === 'delivery' ? DIET_THALI_VARIANT.deliveryName : DIET_THALI_VARIANT.pickupName;
+  }
   if (item.nameDelivery && orderType === 'delivery') return item.nameDelivery;
   return item.name;
 }
 
 function getItemPrice(item) {
+  if (isDietThali(item)) {
+    return orderType === 'delivery' ? DIET_THALI_VARIANT.deliveryPrice : DIET_THALI_VARIANT.pickupPrice;
+  }
   if (item.priceDelivery != null && orderType === 'delivery') return item.priceDelivery;
   return item.price;
 }
