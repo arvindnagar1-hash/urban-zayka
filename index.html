@@ -1310,6 +1310,15 @@ window._lang = localStorage.getItem('uz_lang') || 'en';
 
 const HINDI_CATS = {
   'all':        'सभी आइटम',
+  'breakfast':  '🌅 नाश्ता',
+  'starters':   '🍢 स्टार्टर',
+  'sandwiches': '🥪 सैंडविच',
+  'indian':     '🍛 इंडियन मेन',
+  'chinese':    '🥢 चाइनीज़',
+  'breads':     '🫓 ब्रेड्स',
+  'meals':      '🍱 मील्स',
+  'beverages':  '☕ पेय',
+  // Uppercase fallbacks (hardcoded MENU before Firebase loads)
   'Breakfast':  '🌅 नाश्ता',
   'Starters':   '🍢 स्टार्टर',
   'Sandwiches': '🥪 सैंडविच',
@@ -1446,7 +1455,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 
-const CAT_ORDER = ['Breakfast','Starters','Sandwiches','Indian Main','Chinese','Breads','Meals','Beverages'];
+const CAT_ORDER = ['breakfast','starters','sandwiches','indian','chinese','breads','meals','beverages'];
 const isPaneer  = name => /paneer/i.test(name);
 
 function applyFirebaseMenu(docs) {
@@ -1505,27 +1514,27 @@ function applyFirebaseMenu(docs) {
   CATS.length = 0;
   const catLabels = {
     'all':        'All Items',
-    'Breakfast':  '🌅 Breakfast',
-    'Starters':   '🍢 Starters',
-    'Sandwiches': '🥪 Sandwiches',
-    'Indian Main':'🍛 Indian Main',
-    'Chinese':    '🥢 Chinese',
-    'Breads':     '🫓 Breads',
-    'Meals':      '🍱 Meals',
-    'Beverages':  '☕ Beverages',
+    'breakfast':  '🌅 Breakfast',
+    'starters':   '🍢 Starters',
+    'sandwiches': '🥪 Sandwiches',
+    'indian':     '🍛 Indian Main',
+    'chinese':    '🥢 Chinese',
+    'breads':     '🫓 Breads',
+    'meals':      '🍱 Meals',
+    'beverages':  '☕ Beverages',
   };
   ['all', ...CAT_ORDER].forEach(id => CATS.push({ id, label: catLabels[id] || id }));
 
   // Rebuild CAT_LABELS
   Object.assign(CAT_LABELS, {
-    'Breakfast':  '🌅 Breakfast (7–10AM)',
-    'Starters':   '🍢 Starters (12PM–10:30PM)',
-    'Sandwiches': '🥪 Sandwiches',
-    'Indian Main':'🍛 Indian Main Course',
-    'Chinese':    '🥢 Chinese Main Course',
-    'Breads':     '🫓 Indian Breads',
-    'Meals':      '🍱 Meals & Thali',
-    'Beverages':  '☕ Beverages',
+    'breakfast':  '🌅 Breakfast (7–10AM)',
+    'starters':   '🍢 Starters (12PM–10:30PM)',
+    'sandwiches': '🥪 Sandwiches',
+    'indian':     '🍛 Indian Main Course',
+    'chinese':    '🥢 Chinese Main Course',
+    'breads':     '🫓 Indian Breads',
+    'meals':      '🍱 Meals & Thali',
+    'beverages':  '☕ Beverages',
   });
 
   // Rebuild tabs and re-render
